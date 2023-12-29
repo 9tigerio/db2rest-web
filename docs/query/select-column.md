@@ -2,15 +2,22 @@
 sidebar_position: 2
 ---
 
-# Create a Document
+# Select Columns
 
-Documents are **groups of pages** connected through:
+The columns that you want to retrieve from the database can be specified in the *select* request parameter. 
+An example is shown below:
 
-- a **sidebar**
-- **previous/next navigation**
-- **versioning**
+```cli 
+https://db2rest.com/v1/film?select=id,title,year_of_release
+```
 
-## Create your first Doc
+The *select* request parameter is optional. If it is not found, then all the columns will be included. In this case
+all columns from the table *film* will be retrieved. 
+
+
+## Retrieving Join Table columns
+
+It is possible to retrieve the columns for a join table. 
 
 Create a Markdown file at `docs/hello.md`:
 
@@ -22,24 +29,7 @@ This is my **first Docusaurus document**!
 
 A new document is now available at [http://localhost:3000/docs/hello](http://localhost:3000/docs/hello).
 
-## Configure the Sidebar
 
-Docusaurus automatically **creates a sidebar** from the `docs` folder.
-
-Add metadata to customize the sidebar label and position:
-
-```md title="docs/hello.md" {1-4}
----
-sidebar_label: 'Hi!'
-sidebar_position: 3
----
-
-# Hello
-
-This is my **first Docusaurus document**!
-```
-
-It is also possible to create your sidebar explicitly in `sidebars.js`:
 
 ```js title="sidebars.js"
 export default {
