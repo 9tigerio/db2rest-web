@@ -1,0 +1,8 @@
+{
+  "label": "Query",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "How to write query using DB2Rest ?"
+  }
+}
