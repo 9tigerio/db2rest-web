@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'DB2Rest',
-  tagline: 'No Code Instant REST API for your Database.',
+  title: 'No Code Instant REST API for your Database',
+  tagline: 'Don\'t write any database access code, Install DB2Rest instead.',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
