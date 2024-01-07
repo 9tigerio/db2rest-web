@@ -15,40 +15,49 @@ const FeatureList = [
   },
   {
     title: 'Accelerate Application Delivery',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/undraw_fitness_stats_sht6.svg').default,
     description: (
       <>
-        Database access logic typically consumes 30% of the total application development time. With DB2Rest instant REST API save that time and get 30x boost in application development timelines.
+        Database access logic typically consumes 30% of the total application development time. With DB2Rest instant REST API can boost development by 30x. Focus now on solving business logic
+        and crafting beautiful UI.
+      </>
+    ),
+  },
+  
+  {
+    title: 'Blazing Fast',
+    Svg: require('@site/static/img/undraw_speed_test_re_pe1f.svg').default,
+    description: (
+      <>
+        DB2Rest is blazing fast - No Object Relational Mapping (ORM) overhead, Single Database round-trip, no code generation or compilation, Database Query Caching and batching. 
       </>
     ),
   },
   {
     title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/undraw_to_the_moon_re_q21i.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        DB2Rest was designed from the ground up to be easily installed and
+        used to get your backend or frontend integrations up and running quickly.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Unlock Legacy Data',
+    Svg: require('@site/static/img/undraw_chilling_re_4iq9.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        DB2Rest can securely unlock legacy databases. Thus you can rapidly innovate and modernize by building new applications, integration and machine learning datasets. 
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Run Anywhere',
+    Svg: require('@site/static/img/undraw_world_re_768g.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+      DB2Rest can be installed and run on premise bare-metals, Virtual Machines (VM), Docker, Kubernetes, Any cloud.
       </>
     ),
   },
