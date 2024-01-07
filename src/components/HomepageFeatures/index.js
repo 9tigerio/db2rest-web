@@ -4,6 +4,25 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
+    title: 'No Code DB Access Layer',
+    Svg: require('@site/static/img/undraw_fireworks_re_2xi7.svg').default,
+    description: (
+      <>
+        Programming database access layer involves writing lots of boilerplate code. It is often combined with onnection leak, transactional inconsistency, inefficient data batching, 
+        data leak and SQL injection issues. With DB2Rest never worry about these concerns again.    
+      </>
+    ),
+  },
+  {
+    title: 'Accelerate Application Delivery',
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    description: (
+      <>
+        Database access logic typically consumes 30% of the total application development time. With DB2Rest instant REST API save that time and get 30x boost in application development timelines.
+      </>
+    ),
+  },
+  {
     title: 'Easy to Use',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
