@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Select Columns
+# Select Columns from Table
 
 The columns that you want to retrieve from the database can be specified in the *select* request parameter. 
 An example is shown below:

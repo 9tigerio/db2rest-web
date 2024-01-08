@@ -8,7 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'No-Code REST API for your Database in Minutes.',
+  title: 'No-Code REST API for Databases in Minutes.',
   tagline: 'Don\'t write any database access code, Install DB2Rest instead.',
   favicon: 'img/favicon.svg',
 

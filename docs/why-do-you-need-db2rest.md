@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Getting Started with DB2Rest
+# Why do you need DB2Rest?
 
 Let's discover **DB2 in less than 5 minutes**.
 
