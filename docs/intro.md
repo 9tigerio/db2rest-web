@@ -4,44 +4,33 @@ sidebar_position: 1
 
 # Getting Started with DB2Rest
 
-Let's discover **DB2 in less than 5 minutes**.
+Let's discover **DB2 in less than 10 minutes**.
 
-## Getting Started
+# Installation 
 
-Get started by **creating a new site**.
+## On Premise / On Virtual Machines (VM) 
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 21 and makes uses of Java Virtual Thread feature
+for high scalability. As a result, DB2Rest is capable of handling very high volume of requests even on a single node. 
 
-### What you'll need
+In case you are deploying DB2Rest on bare metal box or a VM on any cloud like Amazon EC2 or DigitalOcean Droplet, follow the steps below:
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### 1. Install JDK 21+
 
-## Generate a new site
+Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
+Open JDK can be downloaded from here - https://jdk.java.net/21/. This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21 provides a step by step guide to install OpenJDK 21. 
 
-Generate a new Docusaurus site using the **classic template**.
 
-The classic template will automatically be added to your project after you run the command:
+### 2. Download DB2Rest
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So its super easy to get up and running under a minute. 
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+In order to download the latest edition(v-0.0.8) of DB2Rest click [here](https://pub-d494e6f63184463298f75f4d77bde7cb.r2.dev/db2rest-0.0.8.jar "here").
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+### 3. Run DB2Rest.
 
-## Start your site
+DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
 
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+```Shell
+$ java  -DDB_PASSWORD=[DATABASE_PASSWORD] -DDB_SCHEMAS=[COMMA_SEPARATED_LIST_OF_DB_SCHEMAS] -DDB_URL=[JDBC_URL] -DDB_USER=[DATABASE_USER]  -Dspring.profiles.active=local -jar db2rest-0.0.8.jar
+``` 
