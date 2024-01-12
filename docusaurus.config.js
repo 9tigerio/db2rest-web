@@ -102,6 +102,10 @@ const config = {
             title: 'Community',
             items: [
               {
+                label: 'Discord',
+                href: 'https://discord.gg/XP7aqKsv',
+              },
+              {
                 label: 'Slack',
                 href: 'https://db2rest.slack.com',
               },
