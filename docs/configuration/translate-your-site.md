@@ -26,7 +26,7 @@ Copy the `docs/intro.md` file to the `i18n/fr` folder:
 ```bash
 mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
 
-cp docs/getting-started-with-db2rest.md i18n/fr/docusaurus-plugin-content-docs/current/getting-started-with-db2rest.md
+cp docs/why-you-need-db2rest.md i18n/fr/docusaurus-plugin-content-docs/current/why-you-need-db2rest.md
 ```
 
 Translate `i18n/fr/docusaurus-plugin-content-docs/current/intro.md` in French.
