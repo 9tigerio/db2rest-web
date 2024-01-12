@@ -1,8 +1,8 @@
 {
-  "label": "Create",
+  "label": "Insert Record",
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "How to use DB2Rest to insert data."
+    "description": "Guide to insert records in a table using DB2Rest"
   }
 }
