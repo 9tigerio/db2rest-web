@@ -7,7 +7,7 @@ sidebar_position: 1
 A single record or row can be inserted in a database table using HTTP POST method along with a request body.
 The request body is a JSON object. Each key in the JSON attribute should map to a column in the table.
 
-## Examples
+## Example Request
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -85,3 +85,85 @@ On successful creation of the row in the table, DB2Rest responds with HTTP code 
 attribute 'rows' indicate the number of rows created in the table.
 
 
+## Error handling
+
+The following request will result in an error as the column 'country' is not part of he 'film' table.
+
+```bash
+$ curl 'http://localhost:8080/film' -i -X POST \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -H 'Content-Profile: public' \
+    -H 'Accept: application/json' \
+    -d '       {
+       "title" : "Dunki",
+        "description" : "Film about illegal immigration" ,
+        "release_year" : 2023,
+        "language_id" : 1,
+        "original_language_id" : null,
+        "rental_duration" : 6,
+        "rental_rate" : 0.99 ,
+        "length" : 150,
+        "replacement_cost" : 20.99 ,
+        "rating" : "PG-13" ,
+        "special_features" : "Commentaries",
+     "country" : "USA"
+}
+'
+```
+
+This will result in error response with HTTP status code 400 as shown in the listing below.
+
+```json
+{
+  "type":"https://github.com/kdhrubo/db2rest/generic-error",
+  "title":"Generic Data Access Error",
+  "status":400,
+  "detail":"ERROR: column \"country\" of relation \"film\" does not exist\n  Position: 170",
+  "instance":"/film",
+  "errorCategory":"Data-access-error",
+  "timestamp":"2024-01-13T03:42:36.504095Z"
+}
+```
+
+In the next example request, the table 'films' does not exist in the database and hence the attempt to insert data in a
+non-existent table results in error.
+
+```bash
+$ curl 'http://localhost:8080/film' -i -X POST \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -H 'Content-Profile: public' \
+    -H 'Accept: application/json' \
+    -d '       {
+       "title" : "Dunki",
+        "description" : "Film about illegal immigration" ,
+        "release_year" : 2023,
+        "language_id" : 1,
+        "original_language_id" : null,
+        "rental_duration" : 6,
+        "rental_rate" : 0.99 ,
+        "length" : 150,
+        "replacement_cost" : 20.99 ,
+        "rating" : "PG-13" ,
+        "special_features" : "Commentaries",
+     "country" : "USA"
+}
+'
+```
+
+The error response is shown below:
+
+```json
+{
+  "type":"https://github.com/kdhrubo/db2rest/generic-error",
+  "title":"Generic Data Access Error",
+  "status":400,
+  "detail":"ERROR: column \"country\" of relation \"film\" does not exist\n  Position: 170","instance":"/film","errorCategory":"Data-access-error","timestamp":"2024-01-13T04:19:56.006263Z"}
+```
+
+:::info
+
+DB2Rest has built-in support for various API and database access best-practices. In order to report API errors consistently,
+it implements
+[RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807).
+
+:::
