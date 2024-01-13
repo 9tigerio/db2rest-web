@@ -89,6 +89,14 @@ attribute 'rows' indicate the number of rows created in the table.
 
 The following request will result in an error as the column 'country' is not part of he 'film' table.
 
+:::info
+
+DB2Rest has built-in support for various API and database access best-practices. In order to report API errors consistently,
+it implements
+[RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807).
+
+:::
+
 ```bash
 $ curl 'http://localhost:8080/film' -i -X POST \
     -H 'Content-Type: application/json;charset=utf-8' \
@@ -157,13 +165,17 @@ The error response is shown below:
   "type":"https://github.com/kdhrubo/db2rest/generic-error",
   "title":"Generic Data Access Error",
   "status":400,
-  "detail":"ERROR: column \"country\" of relation \"film\" does not exist\n  Position: 170","instance":"/film","errorCategory":"Data-access-error","timestamp":"2024-01-13T04:19:56.006263Z"}
+  "detail":"ERROR: column \"country\" of relation \"film\" does not exist\n  Position: 170",
+  "instance":"/film",
+  "errorCategory":"Data-access-error",
+  "timestamp":"2024-01-13T04:19:56.006263Z"
+}
 ```
 
-:::info
+:::warning
 
-DB2Rest has built-in support for various API and database access best-practices. In order to report API errors consistently,
-it implements
-[RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807).
+In future release, the HTTP code is going to change to `404`, in case of a missing database object.
 
 :::
+
+
