@@ -79,6 +79,7 @@ const config = {
             label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/roadmap', label: 'Roadmap', position: 'left'},
           {
             href: 'https://github.com/kdhrubo/db2rest',
             label: 'GitHub',
