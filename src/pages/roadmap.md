@@ -52,6 +52,9 @@ hide_table_of_contents: true
 - [ ] Deploy to Digital Ocean
 - [ ] Deploy to AWS
 - [ ] Deploy to Azure
+- [ ] Deploy to GCP
+- [ ] Deploy to Render
 - [ ] Deploy to AWS Lightsail
 - [ ] Deploy on Koyeb
 - [ ] Ability to insert into multiple tables
+- [ ] Native executable - GraalVM native images
