@@ -1,0 +1,40 @@
+---
+sidebar_position: 3
+---
+
+# Getting Started with Reading Data from Table
+
+The easiest way to retrieve data from a table is to send a GET request with the table name.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url http://localhost:8080/film \
+        --header 'Accept-Profile: ' \
+        --header 'User-Agent: insomnia/8.4.5'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET http://localhost:8080/film \
+        Accept-Profile:'' \
+        User-Agent:insomnia/8.4.5
+        ```
+    </TabItem>
+
+</Tabs>
+
+This query will:
+    - fetch all the rows from the table.
+    - it will include all the columns from the table.
+
+
+
+
+
