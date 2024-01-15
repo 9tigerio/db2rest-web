@@ -30,9 +30,63 @@ import TabItem from '@theme/TabItem';
 
 </Tabs>
 
+DB2Rest will respond with HTTP status code 200 and return a list of results.
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"film_id": 1,
+		"title": "ACADEMY DINOSAUR",
+		"description": "A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies",
+		"release_year": "2006-01-01",
+		"language_id": 1,
+		"original_language_id": null,
+		"rental_duration": 6,
+		"rental_rate": 0.99,
+		"length": 86,
+		"replacement_cost": 20.99,
+		"rating": "PG",
+		"special_features": "Deleted Scenes,Behind the Scenes",
+		"last_update": "2006-02-15T11:03:42.000+00:00"
+	},
+	{
+		"film_id": 2,
+		"title": "ACE GOLDFINGER",
+		"description": "A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China",
+		"release_year": "2006-01-01",
+		"language_id": 1,
+		"original_language_id": null,
+		"rental_duration": 3,
+		"rental_rate": 4.99,
+		"length": 48,
+		"replacement_cost": 12.99,
+		"rating": "G",
+		"special_features": "Trailers,Deleted Scenes",
+		"last_update": "2006-02-15T11:03:42.000+00:00"
+	},
+    ....
+]
+
+```
+
 This query will:
     - fetch all the rows from the table.
     - it will include all the columns from the table.
+
+This is not ideal, if the table has many records as it will result in a [full table scan](https://en.wikipedia.org/wiki/Full_table_scan) and lot of data transported over
+the network. It may also result in time-outs. DB2Rest can solve these problems by:
+
+1. **Vertical filtering** - Allowing specifying the names of the columns that should be included in the result-set.
+2. **Horizontal filtering** - Apply filtering criteria on the table records to retrieves only the matching records.
+3. **Pagination** - Retrieve only a subset of the table records that match the horizontal filtering. For example,
+if the horizontal filters match 35 records and requested page size is 10, then this means 4 pages of records - where first
+three pages contain 10 records and the last one has 5 records. However, this will also result in 4 different requests.
+
+The next sections will discuss filtering in greater detail.
 
 
 
