@@ -46,6 +46,6 @@ integrate and interact with DB2Rest from business logic or front-end layer of yo
 
 ## Run anywhere
 
-## DevSecOps compatible 
+## DevSecOps compliant 
 
 
