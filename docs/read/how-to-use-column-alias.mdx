@@ -1,0 +1,38 @@
+---
+sidebar_position: 5
+---
+
+# How to add column alias?
+
+In the previous section of vertical filtering,
+the query below returns `title`,`description` and `release_year` columns. It is common in JSON payloads, to
+return these attributes in camel notation instead of underscore. This makes the column names more readable.
+
+DB2Rest makes this possible with use of column filtering as part of vertical filtering.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/film?select=title,description,release_year' \
+        --header 'Accept-Profile: sakila' \
+        --header 'User-Agent: insomnia/8.4.5'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/film?select=title,description,release_year' \
+        Accept-Profile:sakila \
+        User-Agent:insomnia/8.4.5
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+

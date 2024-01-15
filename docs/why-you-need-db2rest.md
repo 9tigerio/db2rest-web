@@ -4,33 +4,48 @@ sidebar_position: 2
 
 # Why you need DB2Rest?
 
-Let's discover **DB2 in less than 10 minutes**.
+Writing software today is not an easy task. You have to deal with requirements, backlog management, processes,
+engineering, framework selection, tests, automation, security, cloud, CI/CD tooling. There are just too many things to consider. Now in the engineering phase you have to tackle with complex UI and interactions, developing complex business logic, many integrations and last but not the least
+persist and query data. 
 
-# Installation 
-
-## On Premise / On Virtual Machines (VM) 
-
-DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 21 and makes uses of Java Virtual Thread feature
-for high scalability. As a result, DB2Rest is capable of handling very high volume of requests even on a single node. 
-
-In case you are deploying DB2Rest on bare metal box or a VM on any cloud like Amazon EC2 or DigitalOcean Droplet, follow the steps below:
-
-### 1. Install JDK 21+
-
-Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
-Open JDK can be downloaded from here - https://jdk.java.net/21/. This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21 provides a step by step guide to install OpenJDK 21. 
+Most projects spend 30% of the time writing boilerplate data access logic. There 
+is constant struggle with dealing with the complexity and runtime overhead of Object Relational Mapping(ORM) frameworks, implementing best practices for performance, transaction management. This makes evolving and developing data access layer most challenging part of application development. A badly developed data access layer can bring the entire application down resulting in huge business and customer
+loss. 
 
 
-### 2. Download DB2Rest
+:::tip
 
-Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So its super easy to get up and running under a minute. 
+ **Never** write data access code again. Get **`DB2Rest`** instead.
 
-In order to download the latest edition(v-0.0.8) of DB2Rest click [here](https://pub-d494e6f63184463298f75f4d77bde7cb.r2.dev/db2rest-0.0.8.jar "here").
+:::
 
-### 3. Run DB2Rest.
 
-DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
+DB2Rest is a cloud-native, fully configurable, secure no-code data access middleware layer.
+It provides an ultra-fast REST API layer over databases in seconds. Developers never write boilerplate data access logic,
+neither have to worry about overheads of ORM or think about best practices. These are all taken care out of the box by DB2Rest.
+What more - you do not even need to know SQL - instead knowing a much simpler REST Query Language (RQL) is good enough to 
+integrate and interact with DB2Rest from business logic or front-end layer of your application.
 
-```Shell
-$ java  -DDB_PASSWORD=[DATABASE_PASSWORD] -DDB_SCHEMAS=[COMMA_SEPARATED_LIST_OF_DB_SCHEMAS] -DDB_URL=[JDBC_URL] -DDB_USER=[DATABASE_USER]  -Dspring.profiles.active=local -jar db2rest-0.0.8.jar
-``` 
+# Key Features
+
+## No Code
+
+## Ultra fast
+
+## In-built best practices
+
+## Advanced Capabilities
+
+## Unlock legacy data
+
+## Zero downtime
+
+## Secure
+
+## Multi-tenancy
+
+## Run anywhere
+
+## DevSecOps compatible 
+
+
