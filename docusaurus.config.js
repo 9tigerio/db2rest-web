@@ -78,6 +78,7 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
+          {to: '/why-you-need-db2rest', label: 'Why DB2Rest?', position: 'left'},
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/roadmap', label: 'Roadmap', position: 'left'},
           {

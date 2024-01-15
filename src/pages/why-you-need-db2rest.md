@@ -1,8 +1,12 @@
 ---
-sidebar_position: 2
+title: Why Do You Need DB2Rest?
+description: Need for DB2Rest
+hide_table_of_contents: false
 ---
 
-# Why you need DB2Rest?
+# Why do you need DB2Rest?
+
+## Challenges of writing database access logic
 
 Writing software today is not an easy task. You have to deal with requirements, backlog management, processes,
 engineering, framework selection, tests, automation, security, cloud, CI/CD tooling. There are just too many things to consider. Now in the engineering phase you have to tackle with complex UI and interactions, developing complex business logic, many integrations and last but not the least
@@ -26,26 +30,26 @@ neither have to worry about overheads of ORM or think about best practices. Thes
 What more - you do not even need to know SQL - instead knowing a much simpler REST Query Language (RQL) is good enough to 
 integrate and interact with DB2Rest from business logic or front-end layer of your application.
 
-# Key Features
+## Key Features
 
-## No Code
+### No Code
 
-## Ultra fast
+### Ultra fast
 
-## In-built best practices
+### In-built best practices
 
-## Advanced Capabilities
+### Advanced Capabilities
 
-## Unlock legacy data
+### Unlock legacy data
 
-## Zero downtime
+### Zero downtime
 
-## Secure
+### Secure
 
-## Multi-tenancy
+### Multi-tenancy
 
-## Run anywhere
+### Run anywhere
 
-## DevSecOps compliant 
+### DevSecOps compliant 
 
 
