@@ -209,3 +209,16 @@ This will result in error response with HTTP status code 400 as shown in the lis
   "timestamp":"2024-01-13T03:42:36.504095Z"
 }
 ```
+
+## Transaction Management
+
+In the error scenario above, the second record has error. However, DB2Rest will reject both records and nothing
+gets saved in the database. This is because DB2Rest handles [ACID](https://en.wikipedia.org/wiki/ACID) transaction properties.
+This ensures either the entire batch is saved or nothing is saved.
+
+:::info
+
+DB2Rest co-ordinates transaction management with the database. It is applicable for both single and multiple records.
+In both cases DB2Rest ensures data is rolled back in case of an error.
+
+:::
