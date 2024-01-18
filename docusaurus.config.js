@@ -9,7 +9,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   scripts: [
-  { src: 'https://plausible.io/js/script.js',
+  { src: 'https://plausible.io/js/script.file-downloads.js',
     'data-domain': 'db2rest.com',
     defer: true,
     async: false,
