@@ -8,6 +8,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  scripts: [
+  { src: 'https://plausible.io/js/script.js',
+    'data-domain': 'db2rest.com',
+    defer: true,
+    async: false,
+  }],
   title: 'No-Code REST API for Databases in Minutes.',
   tagline: 'Don\'t write any database access code, Install DB2Rest instead.',
   favicon: 'img/favicon.svg',
