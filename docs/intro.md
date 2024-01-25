@@ -34,3 +34,14 @@ DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute
 ```Shell
 $ java  -DDB_PASSWORD=[DATABASE_PASSWORD] -DDB_SCHEMAS=[COMMA_SEPARATED_LIST_OF_DB_SCHEMAS] -DDB_URL=[JDBC_URL] -DDB_USER=[DATABASE_USER]  -Dspring.profiles.active=local -jar db2rest-0.0.8.jar
 ``` 
+
+Replace the values for the following:
+
+- DATABASE_PASSWORD - database user password
+- LIST_OF_DB_SCHEMAS - comma separated list of schemas e.g : sakila,world
+- JDBC_URL - e.g :  jdbc:mysql://localhost:3306/sakila (MySQL)
+- DATABASE_USER - database user name.
+
+The above example is for connecting to a MySQL database.
+
+Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
