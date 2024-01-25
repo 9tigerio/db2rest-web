@@ -14,8 +14,8 @@ const config = {
     defer: true,
     async: false,
   }],
-  title: 'DB2Rest',
-  tagline: 'No-Code REST API for Databases in Minutes.',
+  title: 'No-Code REST API for Databases in Minutes.',
+  tagline: 'Don\'t write any database access code, Install DB2Rest instead.',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
