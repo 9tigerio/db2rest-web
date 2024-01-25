@@ -1,5 +1,5 @@
 {
-  "label": "Insert Record",
+  "label": "Insert Record(s)",
   "position": 5,
   "link": {
     "type": "generated-index",
