@@ -71,7 +71,7 @@ const config = {
     ({
 
       // Replace with your project's social card
-      image: 'img/twitter-header-db2rest.png',
+      image: 'img/db2-rest-card.png',
       navbar: {
         title: 'DB2Rest',
         logo: {
