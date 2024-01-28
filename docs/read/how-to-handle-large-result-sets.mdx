@@ -4,6 +4,24 @@ sidebar_position: 11
 
 # How to handle large result sets?
 
+
+This GET operation will fetch results of the query in chunks of pages - 2 records at a time and sorted.
+
+```Shell
+curl --request GET \
+  --url 'http://localhost:8080/actor?select=actor_id,first_name,last_name&filter=first_name=="PENELOPE"&page=0&size=2&sort=actor_id&sort=first_name,DESC' \
+  --header 'Accept-Profile: sakila' \
+  --header 'User-Agent: insomnia/8.4.5'
+```
+**HTTPie**
+
+```Shell
+http GET 'http://localhost:8080/actor?select=actor_id,first_name,last_name&filter=first_name=="PENELOPE"&page=0&size=2&sort=actor_id&sort=first_name,DESC' \
+  Accept-Profile:sakila \
+  User-Agent:insomnia/8.4.5
+
+
+
 | Parameter Name | Description                                               |
 |----------------|-----------------------------------------------------------|
 | page           | Page you want to retrieve, 0 indexed and defaults to 0.   |
