@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Getting Started with DB2Rest
 
-Let's discover **DB2 in less than 10 minutes**.
+Let's discover **DB2Rest in less than 10 minutes**.
 
 # Installation 
 
@@ -18,8 +18,10 @@ In case you are deploying DB2Rest on bare metal box or a VM on any cloud like Am
 ### 1. Install JDK 21+
 
 Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
-Open JDK can be downloaded from here - https://jdk.java.net/21/. This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21 provides a step by step guide to install OpenJDK 21. 
 
+Open JDK can be downloaded from here - https://jdk.java.net/21/. This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21 provides a step by step guide to install OpenJDK 21 on Windows platform.
+
+Oracle JDK 21 can be downloaded and installed for various operating systems by following the instructions [here](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
 
 ### 2. Download DB2Rest
 
