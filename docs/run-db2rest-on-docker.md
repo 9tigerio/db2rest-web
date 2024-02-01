@@ -20,7 +20,13 @@ It is assumed that a MySQL server has already been installed, started, and popul
 Now in the terminal window run the following command:
 
 ```Shell
-$ docker run -e SPRING_PROFILES_ACTIVE=local -e DB_URL=jdbc:mysql://host.docker.internal:3306/sakila -e DB_USER=[DATABASE_USER] -e DB_PASSWORD=[DATABASE_PASSWORD] -e DB_SCHEMAS=sakila kdhrubo/db2rest:latest
+$ docker run -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhrubo/db2rest:latest
 ``` 
+
+| Sl# |Parameter Name| Description                           | Example                                                                                                                                                  |
+|-----|--------------|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.  | DB Url       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://host.docker.internal:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://host.docker.internal:5432/sakila?currentSchema=public |
+| 2.  | User         | Database user                         |                                                                                                                                                          |
+| 3.  | Password     | Database password                     |                                                                                                                                                          |     
 
 This will start DB2Rest within seconds ready with to server API requests on the MySQL database. 

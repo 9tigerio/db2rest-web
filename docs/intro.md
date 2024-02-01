@@ -39,11 +39,11 @@ $ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-
 
 Replace the values for the following:
 
-| Sl# |Parameter Name| Description                           | Example                                                                |
-|-----|--------------|---------------------------------------|------------------------------------------------------------------------|
-| 1.  | DB Url       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/homidb?currentSchema=public |
-| 2.  | User         | Database user                         |                                                                        |
-| 3.  | Password     | Database password                     |                                                                        |       
+| Sl# |Parameter Name| Description                           | Example                                                                                                                            |
+|-----|--------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| 1.  | DB Url       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/sakila?currentSchema=public |
+| 2.  | User         | Database user                         |                                                                                                                                    |
+| 3.  | Password     | Database password                     |                                                                                                                                    |       
 
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
