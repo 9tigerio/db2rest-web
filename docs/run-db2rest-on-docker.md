@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Run DB2Rest on Docker
+# Run on Docker
 
 This tutorial shows how you can get started with **DB2Rest in less than 10 minutes** on Docker.
 
@@ -10,7 +10,7 @@ This tutorial shows how you can get started with **DB2Rest in less than 10 minut
 
 To download the Docker desktop browse to this [link](https://www.docker.com/get-started/). This page then shows options
 to download Docker for Mac, Windows, and Linux. Please click on the link for your operating system (OS) to start the download.
-After the download is completed, follow the steps outlined [here]https://docs.docker.com/desktop/ pertinent to your OS, to install and test the Docker desktop.
+After the download is completed, follow the steps outlined [here](https://docs.docker.com/desktop/) pertinent to your OS, to install and test the Docker desktop.
 
 ### 2. Run DB2Rest
 
