@@ -25,7 +25,7 @@ $ docker run -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhr
 
 | Sl# |Parameter Name| Description                           | Example                                                                                                                                                  |
 |-----|--------------|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.  | DB Url       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://host.docker.internal:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://host.docker.internal:5432/sakila?currentSchema=public |
+| 1.  | DB URL       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://host.docker.internal:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://host.docker.internal:5432/sakila?currentSchema=public |
 | 2.  | User         | Database user                         |                                                                                                                                                          |
 | 3.  | Password     | Database password                     |                                                                                                                                                          |     
 
