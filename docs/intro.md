@@ -34,16 +34,16 @@ In order to download the latest edition(v-0.0.9) of DB2Rest click [here](https:/
 DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
 
 ```Shell
-$ java  -DDB_PASSWORD=[DATABASE_PASSWORD] -DDB_SCHEMAS=[COMMA_SEPARATED_LIST_OF_DB_SCHEMAS] -DDB_URL=[JDBC_URL] -DDB_USER=[DATABASE_USER]  -Dspring.profiles.active=local -jar db2rest-0.0.9.jar
+$ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.0.9.jar
 ``` 
 
 Replace the values for the following:
 
-- DATABASE_PASSWORD - database user password
-- LIST_OF_DB_SCHEMAS - comma separated list of schemas e.g : sakila,world
-- JDBC_URL - e.g :  jdbc:mysql://localhost:3306/sakila (MySQL)
-- DATABASE_USER - database user name.
+| Sl# |Parameter Name| Description                           | Example                                                                |
+|-----|--------------|---------------------------------------|------------------------------------------------------------------------|
+| 1.  | DB Url       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/homidb?currentSchema=public |
+| 2.  | User         | Database user                         |                                                                        |
+| 3.  | Password     | Database password                     |                                                                        |       
 
-The above example is for connecting to a MySQL database.
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
