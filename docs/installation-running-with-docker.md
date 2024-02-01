@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Install and Run DB2Rest on Docker
+# Run DB2Rest on Docker
 
-Let's discover **DB2 in less than 10 minutes**.
+This tutorial shows how you can get started with **DB2Rest in less than 10 minutes** on Docker.
 
 ### 1. Install Docker
 
