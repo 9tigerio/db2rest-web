@@ -25,16 +25,16 @@ Oracle JDK 21 can be downloaded and installed for various operating systems by f
 
 ### 2. Download DB2Rest
 
-Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So its super easy to get up and running under a minute. 
+Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So it's super easy to get up and running under a minute. 
 
-In order to download the latest edition(v-0.0.8) of DB2Rest click [here](https://pub-d494e6f63184463298f75f4d77bde7cb.r2.dev/db2rest-0.0.8.jar "here").
+In order to download the latest edition(v-0.0.9) of DB2Rest click [here](https://download.db2rest.com/db2rest-0.0.9.jar "here").
 
 ### 3. Run DB2Rest.
 
 DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
 
 ```Shell
-$ java  -DDB_PASSWORD=[DATABASE_PASSWORD] -DDB_SCHEMAS=[COMMA_SEPARATED_LIST_OF_DB_SCHEMAS] -DDB_URL=[JDBC_URL] -DDB_USER=[DATABASE_USER]  -Dspring.profiles.active=local -jar db2rest-0.0.8.jar
+$ java  -DDB_PASSWORD=[DATABASE_PASSWORD] -DDB_SCHEMAS=[COMMA_SEPARATED_LIST_OF_DB_SCHEMAS] -DDB_URL=[JDBC_URL] -DDB_USER=[DATABASE_USER]  -Dspring.profiles.active=local -jar db2rest-0.0.9.jar
 ``` 
 
 Replace the values for the following:
