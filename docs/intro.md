@@ -6,16 +6,21 @@ sidebar_position: 1
 
 Let's discover **DB2Rest in less than 10 minutes**.
 
-# Installation 
+# Run On Premise / On Virtual Machines (VM) 
 
-## On Premise / On Virtual Machines (VM) 
+In order to deploy DB2Rest on bare metal box or a VM on any cloud like [Amazon EC2](https://aws.amazon.com/pm/ec2/) 
+or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follow the steps below:
+
+## Minimum System Requirements
+
+    - Java 21
+    - 2-4 GB or RAM.
 
 DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 21 and makes uses of Java Virtual Thread feature
-for high scalability. As a result, DB2Rest is capable of handling very high volume of requests even on a single node. 
+for high scalability. Hence, DB2Rest can handling very high volume of requests even on a single node. 
 
-In case you are deploying DB2Rest on bare metal box or a VM on any cloud like Amazon EC2 or DigitalOcean Droplet, follow the steps below:
 
-### 1. Install JDK 21+
+## 1. Install JDK 21+
 
 Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
 
@@ -23,13 +28,13 @@ Open JDK can be downloaded from here - https://jdk.java.net/21/. This article fr
 
 Oracle JDK 21 can be downloaded and installed for various operating systems by following the instructions [here](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
 
-### 2. Download DB2Rest
+## 2. Download DB2Rest
 
 Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So it's super easy to get up and running under a minute. 
 
 In order to download the latest edition(v-0.0.9) of DB2Rest click [here](https://download.db2rest.com/db2rest-0.0.9.jar "here").
 
-### 3. Run DB2Rest.
+## 3. Run DB2Rest.
 
 DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
 

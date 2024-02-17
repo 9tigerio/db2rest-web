@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Key Data API Features
+# Key Advantages
 
     - **Low code DATA API** - no SQL knowledge required, instead use simple REST Query Language (RQL) to retrieve data.
     - Accelerate application development by 30x.
