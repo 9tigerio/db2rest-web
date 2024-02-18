@@ -14,7 +14,7 @@ or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follo
 ## Minimum System Requirements
 
     - Java 21
-    - 2-4 GB or RAM.
+    - 2-4 GB RAM/Memory.
 
 DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 21 and makes uses of Java Virtual Thread feature
 for high scalability. Hence, DB2Rest can handling very high volume of requests even on a single node. 

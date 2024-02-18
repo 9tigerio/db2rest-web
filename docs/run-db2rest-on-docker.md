@@ -9,7 +9,7 @@ This tutorial shows how you can get started with **DB2Rest in less than 10 minut
 ## Minimum System Requirements
 
     - Java 21
-    - 4-8 GB or RAM.
+    - 4-8 GB RAM/Memory.
 
 ## 1. Install Docker
 
