@@ -14,8 +14,8 @@ const config = {
     defer: true,
     async: false,
   }],
-  title: 'Open Source AI API Gateway.',
-  tagline: 'Accelerate development of intelligent applications on top of AI powered databases and services.',
+  title: 'Open Source REST DATA API Platform.',
+  tagline: 'Accelerate development of intelligent applications on top of AI powered databases and LLM services.',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here

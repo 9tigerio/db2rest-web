@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="AI API Gateway. Build Intelligent Applications Faster <head />">
+      description="Open Source REST DATA API for Databases. Build Intelligent Applications Faster <head />">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
