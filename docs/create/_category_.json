@@ -1,8 +1,8 @@
 {
-  "label": "Insert Record(s)",
-  "position": 5,
+  "label": "Insert Row(s)",
+  "position": 10,
   "link": {
     "type": "generated-index",
-    "description": "Guide to insert records in a table using DB2Rest"
+    "description": "Learn how to insert row(s) into a table."
   }
 }

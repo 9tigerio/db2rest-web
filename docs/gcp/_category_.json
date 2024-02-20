@@ -1,6 +1,6 @@
 {
   "label": "Run on Google Cloud Run",
-  "position": 21,
+  "position": 70,
   "link": {
     "type": "generated-index",
     "description": "Complete Guide to run DB2Rest on Google Cloud"
