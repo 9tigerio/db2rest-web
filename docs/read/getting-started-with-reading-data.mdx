@@ -8,6 +8,14 @@ The easiest way to retrieve data from a table is to send a GET request with the 
 
 
 
+:::info[Table Access Rules]
+
+    - If the database user/role has permission to access the table then it will be considered for query.
+    - In case the user has access to multiple schama, the table name must be unique if DB2Rest is not running in multi-tenant mode.
+
+:::
+
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

@@ -2,12 +2,10 @@
 sidebar_position: 4
 ---
 
-# How to apply vertical filtering on table?
+# How to apply column filtering on table?
 
-Vertical filtering is the ability to specify exactly the columns/fields that should be retrieved in a query.
-
-DB2Rest makes it easy to select the columns (from a table) in a query. The columns can be specified as a comma separated list
-as `select` request parameter.
+Column filtering is the ability to specify exactly the columns from the table that should be retrieved in a query.
+The columns can be specified as a comma separated list as `fields` request parameter.
 
 The query below shows how to retrieve only the `title`,`description` and `release_year` columns.
 
@@ -58,7 +56,7 @@ Transfer-Encoding: chunked
 
 This query will:
     - fetch all the rows from the table.
-    - it will include *only the specified columns* from the table.
+    - each row will include *only the specified columns* from the table.
 
 
 
