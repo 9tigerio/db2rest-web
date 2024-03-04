@@ -8,7 +8,15 @@ In the previous section of vertical filtering,
 the query below returns `title`,`description` and `release_year` columns. It is common in JSON payloads, to
 return these attributes in camel notation instead of underscore. This makes the column names more readable.
 
-DB2Rest makes this possible with use of column filtering as part of vertical filtering.
+DB2Rest makes this possible with use of column alias syntax as shown below.
+
+:::info
+
+Column alias can be specified with a `:` followed by column alias string
+
+`column_name>:<column_alias_string`
+
+:::
 
 
 import Tabs from '@theme/Tabs';
