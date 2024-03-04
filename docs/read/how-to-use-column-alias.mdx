@@ -14,7 +14,7 @@ DB2Rest makes this possible with use of column alias syntax as shown below.
 
 Column alias can be specified with a `:` followed by column alias string
 
-`column_name:<column_alias_string`
+`column_name:column_alias_string`
 
 e.x - `release-year:releaseYear`
 
@@ -30,8 +30,7 @@ import TabItem from '@theme/TabItem';
         ```bash
         curl --request GET \
         --url 'http://localhost:8080/film?fields=title,description,release_year:releaseYear' \
-        --header 'Accept-Profile: sakila' \
-        --header 'User-Agent: insomnia/8.4.5'
+        --header 'User-Agent: insomnia/8.6.1'
 
         ```
     </TabItem>
@@ -46,4 +45,36 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 
 
+This will retrieve the following result with the 3rd column or field name as `releaseYear`.
+
+```http
+
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"title": "ACADEMY DINOSAUR",
+		"description": "A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies",
+		"releaseYear": 2006
+	},
+	{
+		"title": "ACE GOLDFINGER",
+		"description": "A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China",
+		"releaseYear": 2006
+	},
+	{
+		"title": "ADAPTATION HOLES",
+		"description": "A Astounding Reflection of a Lumberjack And a Car who must Sink a Lumberjack in A Baloon Factory",
+		"releaseYear": 2006
+	},
+	{
+		"title": "AFFAIR PREJUDICE",
+		"description": "A Fanciful Documentary of a Frisbee And a Lumberjack who must Chase a Monkey in A Shark Tank",
+		"releaseYear": 2006
+	}
+]
+
+```
 
