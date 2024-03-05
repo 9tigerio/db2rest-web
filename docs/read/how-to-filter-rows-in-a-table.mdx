@@ -1,0 +1,127 @@
+---
+sidebar_position: 10
+---
+
+# How to filter rows in a table?
+
+It is possible to filter result rows by adding conditions on columns.
+The example, the query below retrieves all rows from the `actor` table where the `last_name` column matches 'Roshan'.
+The column filter uses [RSQL](http://localhost:3000/docs/read/introduction-to-rsql) syntax as described [here](http://localhost:3000/docs/read/introduction-to-rsql).
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/actor?filter=last_name==Roshan' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/actor?filter=last_name==Roshan' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+This will return the following result:
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"actor_id": 206,
+		"first_name": "Hrithik",
+		"last_name": "Roshan",
+		"last_update": "2024-02-20T10:03:45.037+00:00"
+	}
+]
+
+```
+
+
+## More examples
+
+The previous example, the filter was applied on a text/varchar column. The filter condition or criteria can also
+be applied on a number/integer column.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/actor?filter=actor_id==206' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/actor?filter=actor_id==206' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+This will return the following result:
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"actor_id": 206,
+		"first_name": "Hrithik",
+		"last_name": "Roshan",
+		"last_update": "2024-02-20T10:03:45.037+00:00"
+	}
+]
+
+```
+
+
+## Combining filter conditions
+
+It is possible to combine filter conditions as well. The example below shows an example where `actor_id` is 206 and
+`last_name` is 'Roshan'. The `AND` condition is specified by 'RSQL' operator `;` or `AND`.
+
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/actor?filter=last_name==Roshan;actor_id==206' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/actor?filter=last_name==Roshan;actor_id==206' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+:::tip
+
+The complete list of RSQL operators supported by DB2Rest is available [here](https://db2rest.com/docs/read/supported-rsql-operators).
+
+:::
+
