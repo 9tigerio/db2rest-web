@@ -4,56 +4,102 @@ sidebar_position: 12
 
 # How to handle large result-sets with Pagination?
 
+Sometimes the result of a query execution can fetch many records. It is inefficient to fetch a large number of row.
+It can generate a lot of network traffic as the consuming application may not require all the records.
+DB2Rest implements offset pagination to support limiting the results of a query.
 
-This GET operation will fetch results of the query in chunks of pages - 2 records at a time and sorted.
+## The LIMIT clause
 
+The simplest and most straightforward way to limit the number of rows returned by a query is to use the `LIMIT` clause.
+The `LIMIT` clause allows you to specify the maximum number of rows that you want returned from your query.
 
+Here’s an example of how to use the `LIMIT` clause:
 
-This GET operation will fetch results of the query in chunks of pages - 2 records at a time.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-```Shell
-curl --request GET \
-  --url 'http://localhost:8080/actor?select=actor_id,first_name,last_name&filter=first_name=="PENELOPE"&page=0&size=2' \
-  --header 'Accept-Profile: sakila' \
-  --header 'User-Agent: insomnia/8.4.5'
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/film?limit=5&fields=title,release_year:year' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/film?limit=5&fields=title,release_year:year' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+This query will return the first 5 rows from the `film` table.
+Note that the order in which the rows are returned depends on the order specified in the `SORT` clause (if one is present).
+If no `SORT` clause is present, the order of the rows is undefined.
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"title": "ACADEMY DINOSAUR",
+		"year": 2006
+	},
+	{
+		"title": "ACE GOLDFINGER",
+		"year": 2006
+	},
+	{
+		"title": "ADAPTATION HOLES",
+		"year": 2006
+	},
+	{
+		"title": "AFFAIR PREJUDICE",
+		"year": 2006
+	},
+    {
+		"title": "AFFAIR PREJUDICE 2",
+		"year": 2010
+	}
+]
+
 ```
-**HTTPie**
 
-```Shell
-http GET 'http://localhost:8080/actor?select=actor_id,first_name,last_name&filter=first_name=="PENELOPE"&page=0&size=2' \
-  Accept-Profile:sakila \
-  User-Agent:insomnia/8.4.5
-```
 
-## Sorting
+## Using LIMIT With OFFSET
 
-```Shell
-curl --request GET \
-  --url 'http://localhost:8080/actor?select=actor_id,first_name,last_name&filter=first_name=="PENELOPE"&page=0&size=2&sort=actor_id&sort=first_name,DESC' \
-  --header 'Accept-Profile: sakila' \
-  --header 'User-Agent: insomnia/8.4.5'
-```
-**HTTPie**
-
-```Shell
-http GET 'http://localhost:8080/actor?select=actor_id,first_name,last_name&filter=first_name=="PENELOPE"&page=0&size=2&sort=actor_id&sort=first_name,DESC' \
-  Accept-Profile:sakila \
-  User-Agent:insomnia/8.4.5
+In addition to the `LIMIT` clause, the `OFFSET` clause can be used to skip a specified number of rows before starting to return results.
+Here’s an example of how to use the `LIMIT` and `OFFSET` clause:
 
 
 
-| Parameter Name | Description                                               |
-|----------------|-----------------------------------------------------------|
-| page           | Page you want to retrieve, 0 indexed and defaults to 0.   |
-| size           | Size of the page you want to retrieve, defaults to 20.    |
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/film?offset=20&limit=10' \
+        --header 'User-Agent: insomnia/8.6.1'
 
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/film?offset=20&limit=10' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
 
+</Tabs>
 
+The query above will skip 20 rows and then fetch the next 10 rows.
 
+:::warning
 
-# Request parameters for Sorting
+If `OFFSET` is specified without `LIMIT`, then it will be ignored.
 
-| Parameter Name | Description                                               |
-|----------------|-----------------------------------------------------------|
-| sort           | Properties that should be sorted by in the format property,property(,ASC|DESC). Default sort direction is ascending. Use multiple sort parameters if you want to switch directions, e.g. ?sort=firstname&sort=lastname,asc.  |
-
+:::
