@@ -14,8 +14,8 @@ const config = {
     defer: true,
     async: false,
   }],
-  title: 'Open Source REST DATA API Platform.',
-  tagline: 'Accelerate development of intelligent applications on top of AI powered databases and LLM services.',
+  title: 'Open Source DATA Platform for Gen AI Applications.',
+  tagline: 'Accelerate development of secured, intelligent applications with your data by 30x',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
