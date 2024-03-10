@@ -1,0 +1,40 @@
+---
+sidebar_position: 6
+---
+
+# How to update rows in a table?
+
+
+
+
+
+This PATCH operation updates the film with id = 1001 which was inserted earlier. Filter is optional. In this case it will update all the rows in the table. Hence, use PATCH update with care.
+
+```Shell
+curl --request PATCH \
+  --url 'http://localhost:8080/film?filter=film_id%3D%3D1001' \
+  --header 'Content-Profile: sakila' \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/8.4.5' \
+  --data '{
+
+	"rental_rate" : 1.99,
+	"length" : 92
+
+}'
+```
+**HTTPie**
+
+```Shell
+echo '{
+
+	"rental_rate" : 1.99,
+	"length" : 92
+
+}' |  \
+  http PATCH 'http://localhost:8080/film?filter=film_id%3D%3D1001' \
+  Content-Profile:sakila \
+  Content-Type:application/json \
+  User-Agent:insomnia/8.4.5
+```
+
