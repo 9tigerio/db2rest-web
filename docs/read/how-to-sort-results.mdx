@@ -10,9 +10,21 @@ on the generated SQL query. The general syntax of the `sort` parameter is shown 
 
 :::info
 
-sort=[Column_name];[Sort_Direction]
+sort=[Column_name];[Sort_Direction],[Column_name];[Sort_Direction],[Column_name];[Sort_Direction]...
 
 :::
+
+The `sort` parameter takes a list of `Column_name` and optional `Sort_Direction` separated by `,`.
+
+:::tip
+
+**Sort_Direction**
+
+    - has two values `ASC` (Ascending) and `DESC` (Descending).
+    - `ASC` is the default value.
+
+:::
+
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
