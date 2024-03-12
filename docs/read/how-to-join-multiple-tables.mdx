@@ -16,7 +16,7 @@ SQL JOIN types include:
     - INNER JOIN (also known as a ‘simple’ JOIN). This is the most common type of JOIN.
     - LEFT JOIN (or LEFT OUTER JOIN)
     - RIGHT JOIN (or RIGHT OUTER JOIN)
-    - FULL JOIN (or FULL OUTER JOIN)
+    - ~FULL JOIN (or FULL OUTER JOIN)~ **NOT SUPPORTED**
     - Self JOIN
     - Cross JOIN.
 
@@ -33,7 +33,8 @@ The key attributes of request body is described below:
 | 1   | table     | Y         | Table to join with the root table.                                                                  |
 | 2   | fields    | N         | List of fields to retrieve from join tables                                                         |
 | 3   | type      | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER` |
-| 3   | on        | N         | Join columns.                                                                                       |
+| 4   | on        | N         | Join columns.                                                                                       |
+| 5   | withTable | N         | Join with another table.                                                                            |
 
 
 
@@ -90,6 +91,64 @@ Content-Length: 174
 
 
 ```
+
+### Inner Join - Multiple Tables
+
+The example below joins multiple tables to retrieve data. In this case the `film` table is joined with
+junction/join table `film_actor` and `actor` to retrieve the list of film with the actors involved.
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url http://localhost:8080/film/_expand \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '[
+            {
+                "table": "film_actor",
+
+                "fields" : ["film_id"],
+
+                "on" : ["film_id==film_id"]
+            },
+            {
+                "table": "actor",
+
+                "fields" : ["actor_id","first_name", "last_name"],
+
+                "on" : ["actor_id==actor_id"]
+            }
+        ]
+        '
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[
+            {
+                "table": "film_actor",
+
+                "fields" : ["film_id"],
+
+                "on" : ["film_id==film_id"]
+            },
+            {
+                "table": "actor",
+
+                "fields" : ["actor_id","first_name", "last_name"],
+
+                "on" : ["actor_id==actor_id"]
+            }
+        ]
+        ' |  \
+        http POST http://localhost:8080/film/_expand \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
 
 
 
@@ -269,3 +328,274 @@ Content-Length: 741
     ]
 ```
 
+
+## Self Join
+
+A self join is a regular join, but the table is joined with itself.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url 'http://localhost:8080/film/_expand?fields=title' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '[
+            {
+                "table": "film",
+
+                "fields" : ["title", "release_year:releaseYear"],
+
+                "on" : ["film_id==prequel_film_id"]
+            }
+        ]
+        '
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[
+            {
+                "table": "film",
+
+                "fields" : ["title", "release_year:releaseYear"],
+
+                "on" : ["film_id==prequel_film_id"]
+            }
+        ]
+        ' |  \
+        http POST 'http://localhost:8080/film/_expand?fields=title' \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### Self Join - with compound condition
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url 'http://localhost:8080/film/_expand?fields=title' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '[
+            {
+                "table": "film",
+
+                "fields" : ["title", "release_year"],
+
+                "on" : ["film_id==prequel_film_id","release_year=lt=release_year"]
+            }
+        ]
+        '
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[
+        {
+            "table": "film",
+
+            "fields" : ["title", "release_year"],
+
+            "on" : ["film_id==prequel_film_id","release_year=lt=release_year"]
+        }
+        ]
+        ' |  \
+        http POST 'http://localhost:8080/film/_expand?fields=title' \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### Self Join - with compound condition and filter
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url 'http://localhost:8080/film/_expand?fields=title:name&filter=rental_duration==4' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '[
+        {
+            "table": "film",
+
+            "fields" : ["title:prequelTitle", "release_year"],
+
+            "on" : ["film_id==prequel_film_id","release_year=lt=release_year"],
+
+            "filter" : "release_year=gt=2020"
+        }
+        ]
+        '
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[
+        {
+            "table": "film",
+
+            "fields" : ["title:prequelTitle", "release_year"],
+
+            "on" : ["film_id==prequel_film_id","release_year=lt=release_year"],
+
+            "filter" : "release_year=gt=2020"
+        }
+        ]
+        ' |  \
+        http POST 'http://localhost:8080/film/_expand?fields=title:name&filter=rental_duration==4' \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+
+## Cross Join
+
+
+A cross join returns the Cartesian product of rows from the tables included in the join. It does not require any join condition.
+In other words, it will combine each row from the first table with each row from the second table.
+
+
+:::danger
+
+This is potentially an expensive and dangerous operation since it can lead to a large data explosion.
+
+:::
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        $ curl 'http://localhost:8080/tops/_expand' -i -X POST \
+        -H 'Content-Type: application/json' \
+        -H 'Accept: application/json' \
+        -d '[{"table":"bottoms","fields":["bottom_item","color:botColor","size:botSize"]}]'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        $ echo '[{"table":"bottoms","fields":["bottom_item","color:botColor","size:botSize"]}]' | http POST 'http://localhost:8080/tops/_expand' \
+        'Content-Type:application/json' \
+        'Accept:application/json'
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+
+## Combine Inner and Outer Join
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url 'http://localhost:8080/film/_expand?fields=title:name' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '[
+                {
+                    "table": "language",
+
+                    "fields" : ["language_id:langId", "name:langName"],
+
+                    "on" : ["language_id==language_id"]
+                },
+                {
+
+                    "table": "language",
+                    "withTable" : "film",
+                    "type" : "LEFT",
+                    "fields" : ["language_id:altLangId", "name:altLangName"],
+
+                    "on" : ["original_language_id==language_id"]
+                }
+            ]
+        '
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[
+                {
+                    "table": "language",
+
+                    "fields" : ["language_id:langId", "name:langName"],
+
+                    "on" : ["language_id==language_id"]
+                },
+                {
+
+                    "table": "language",
+                    "withTable" : "film",
+                    "type" : "LEFT",
+                    "fields" : ["language_id:altLangId", "name:altLangName"],
+
+                    "on" : ["original_language_id==language_id"]
+                }
+            ]
+        ' |  \
+        http POST 'http://localhost:8080/film/_expand?fields=title:name' \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+This will return the following result: (truncated)
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 730
+
+
+[
+	{
+		"name": "ACADEMY DINOSAUR",
+		"langId": 1,
+		"langName": "English",
+		"altLangId": null,
+		"altLangName": null
+	},
+	{
+		"name": "ACE GOLDFINGER",
+		"langId": 1,
+		"langName": "English",
+		"altLangId": null,
+		"altLangName": null
+	},
+	{
+		"name": "ADAPTATION HOLES",
+		"langId": 1,
+		"langName": "English",
+		"altLangId": null,
+		"altLangName": null
+	},
+	{
+		"name": "AFFAIR PREJUDICE",
+		"langId": 1,
+		"langName": "English",
+		"altLangId": null,
+		"altLangName": null
+	},
+    ......
+]
+
+```
