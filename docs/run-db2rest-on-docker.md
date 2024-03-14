@@ -28,6 +28,12 @@ Now in the terminal window run the following command:
 $ docker run -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhrubo/db2rest:latest
 ``` 
 
+Example: 
+
+```Shell
+docker run -e DB_URL=jdbc:mysql://host.docker.internal:3306/sakila -e DB_USER=root -e DB_PASSWORD=root321  kdhrubo/db2rest:latest
+``` 
+
 | Sl# |Parameter Name| Description                           | Example                                                                                                                                                  |
 |-----|--------------|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1.  | DB URL       | JDBC URL conneciton string            | - MySQL : jdbc:mysql://host.docker.internal:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://host.docker.internal:5432/sakila?currentSchema=public |
