@@ -29,3 +29,16 @@ Click on the connection string button and it will open the details in a new pane
 
 ![Connection details](./assets/connection-detail.png "Connection details")
 
+
+### Connect to Tembo with DB2Rest
+
+Now open your terminal and run the command below to connect to Tembo from your local setup.
+
+```Shell
+
+$ export DB_URL=jdbc:postgresql://org-db2rest-inst-db2rest.data-1.use1.tembo.io:5432/postgres?currentSchema=public
+$ export DB_USER=postgres
+$ export DB_PASSWORD=jXpb2jmKkJRalkE9
+$ java -jar db2rest-0.2.2-RC3.jar
+
+```
