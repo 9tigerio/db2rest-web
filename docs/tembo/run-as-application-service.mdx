@@ -147,26 +147,24 @@ import TabItem from '@theme/TabItem';
             }
                 ],
                 "volumes": [
-            {
-                "ephemeral": {
-                "volumeClaimTemplate": {
-                "spec": {
-                "accessModes": [
-                "ReadWriteOnce"
-                ],
-                "resources": {
-                "requests": {
-                "storage": "2Gi"
-            }
-            }
-            }
-            }
-            },
-                "name": "db2rest-vol"
-            }
+                    {
+                        "ephemeral": {
+                            "volumeClaimTemplate": {
+                            "spec": {
+                                "accessModes": ["ReadWriteOnce"],
+                                "resources": {
+                                    "requests": {
+                                        "storage": "2Gi"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "name": "db2rest-vol"
+                    }
                 ]
-            }
-            }
+                }
+                }
             }
                 ]
     }' |  \
@@ -175,6 +173,39 @@ import TabItem from '@theme/TabItem';
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
 
+
+        ```
+    </TabItem>
+
+
+</Tabs>
+
+
+Use either (cURL)[https://curl.se] or (httpie)[https://httpie.io]  to execute the commands above. If everything goes well, then Tembo API
+will respond with HTTP 202 (ACCEPTED) status code. This means within seconds DB2Rest is going to run as an application service with Tembo PostgreSQL instance.
+
+## Verify DB2Rest Application Service
+
+It is very easy to verify DB2Rest application service with the actuator endpoint as shown below:
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url https://[TEMBO_DB_INSTANCE_ENDPOINT]/actuator/health \
+        --header 'Authorization: [JWT_TOKEN]' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET https://[TEMBO_DB_INSTANCE_ENDPOINT]/actuator/health \
+        Authorization: [JWT_TOKEN] \
+        User-Agent:insomnia/8.6.1
 
         ```
     </TabItem>
