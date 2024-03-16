@@ -214,6 +214,27 @@ It is very easy to verify DB2Rest application service with the actuator endpoint
 </Tabs>
 
 
+The actuator health check service in DB2Rest will return the following response:
+
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+	"status": "UP",
+	"groups": [
+		"liveness",
+		"readiness"
+	]
+}
+
+```
+
+The `status` attribute shows that, the application service is ready to handle database operations.
+
+
 ## Query DB2Rest Application Service
 
 In the previous tutorial [integrate with Temp](https://db2rest.com/docs/tembo/integrate-with-tembo-pg/), the `employee` table was created on
@@ -250,6 +271,8 @@ running as an application service on Tembo.
 
 
 </Tabs>
+
+
 
 The DB2Rest application service will respond with the only row, that was inserted in the `employee` table.
 
