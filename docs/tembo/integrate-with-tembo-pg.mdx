@@ -44,3 +44,16 @@ $ java -jar db2rest-0.2.2-RC3.jar
 ```
 
 ![DB2Rest Connected](./assets/db2rest-start-jar.png "DB2Rest Connected")
+
+
+### Connect to Tembo with DB2Rest Docker Image
+
+```Shell
+
+$ export DB_URL=jdbc:postgresql://org-db2rest-inst-db2rest.data-1.use1.tembo.io:5432/postgres?currentSchema=public
+$ export DB_USER=postgres
+$ export DB_PASSWORD=jXpb2jmKkJRalkE9
+$ docker run -e DB_URL=${DB_URL}  -e DB_USER=${DB_USER}  -e DB_PASSWORD=${DB_PASSWORD}  kdhrubo/db2rest:latest
+
+```
+
