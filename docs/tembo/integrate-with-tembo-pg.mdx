@@ -53,7 +53,7 @@ $ java -jar db2rest-0.2.2-RC3.jar
 $ export DB_URL=jdbc:postgresql://org-db2rest-inst-db2rest.data-1.use1.tembo.io:5432/postgres?currentSchema=public
 $ export DB_USER=postgres
 $ export DB_PASSWORD=jXpb2jmKkJRalkE9
-$ docker run -e DB_URL=${DB_URL}  -e DB_USER=${DB_USER}  -e DB_PASSWORD=${DB_PASSWORD}  kdhrubo/db2rest:latest
+$ docker run -p 8080:8080 -e DB_URL=${DB_URL}  -e DB_USER=${DB_USER}  -e DB_PASSWORD=${DB_PASSWORD}  kdhrubo/db2rest:latest
 
 ```
 
@@ -74,3 +74,56 @@ CREATE TABLE employee (
 );
 
 ```
+
+### Create an employee
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url http://localhost:8080/employee \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+
+            "first_name" : "Salman",
+            "last_name" : "Khan",
+            "email" : "sk@skfilms.com",
+            "created_on" : "2015-04-14T11:07:36.639Z"
+
+        }'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+
+    }' |  \
+        http POST http://localhost:8080/employee \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+    {
+      "row": 1,
+      "keys": {
+        "id": 3
+      }
+    }
+
+```
+
