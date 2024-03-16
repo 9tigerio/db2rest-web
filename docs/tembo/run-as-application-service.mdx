@@ -1,31 +1,183 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Run DB2Rest as Tembo Application Service
 
-Docusaurus is a **static-site-generator** (also called **[Jamstack](https://jamstack.org/)**).
+Tembo allows running DB2Rest right next to the PostGreSQL instance as an application service. This is very secure (backed by
+secure API Gateway) and because of close-proximity to the database provides exceptional performance. More details of Tembo
+application service can be read (here)[https://tembo.io/docs/category/application-services]
 
-It builds your site as simple **static HTML, JavaScript and CSS files**.
+## Deploy DB2Rest as Application Service
 
-## Build your site
+DB2Rest docker image can be used to deploy and run as an application service on Tembo Cloud. The Tembo REST API can be
+called (for now) to deploy the image. In order to use the API, a JSON Web Token (JWT)[https://jwt.io] or API Key has to be created
+(here)[https://cloud.tembo.io/generate-jwt]. The same API Key will be used later to test the setup. Hence, it is important to save this token.
 
-Build your site **for production**:
+### Invoke Tembo API
 
-```bash
-npm run build
-```
 
-The static files are generated in the `build` folder.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Deploy your site
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
 
-Test your production build locally:
+        curl --request PATCH \
+        --url https://api.tembo.io/api/v1/orgs/<TEMBO_ORG_ID>/instances/<TEMBO_DB_INSTANCE_ID> \
+        --header 'Authorization: <JWT_TOKEN>' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+        "app_services": [
+                {
+                    "custom": {
+                    "image": "registry.hub.docker.com/kdhrubo/db2rest",
+                    "name": "db2rest",
+                    "routing": [
+                        {
+                            "port": 8080,
+                            "ingressPath": "/"
+                        }
+                    ],
+                    "env": [
+                        {
+                            "name": "DB_URL",
+                            "value": "<JDBC_URL>"
+                        },
+                        {
+                            "name": "DB_USER",
+                            "value": "<DB_USER>"
+                        },
+                        {
+                            "name": "DB_PASSWORD",
+                            "value": "<DB_PASSWORD>"
+                        }
+                    ],
+                    "resources": {
+                        "requests": {
+                        "cpu": "500m",
+                        "memory": "1500Mi"
+                    },
+                    "limits": {
+                        "cpu": "4000m",
+                        "memory": "1500Mi"
+                    }
+                    },
+                    "storage": {
+                        "volumeMounts": [
+                            {
+                            "name": "db2rest-vol",
+                            "mountPath": "/tmp"
+                            }
+                        ],
+                    "volumes": [
+                        {
+                            "ephemeral": {
+                            "volumeClaimTemplate": {
+                            "spec": {
+                            "accessModes": [
+                            "ReadWriteOnce"
+                            ],
+                            "resources": {
+                            "requests": {
+                            "storage": "2Gi"
+                        }
+                        }
+                        }
+                        }
+                        },
+                         "name": "db2rest-vol"
+                    }
+                    ]
+                    }
+                    }
+                    }
+                    ]
+                    }'
 
-```bash
-npm run serve
-```
 
-The `build` folder is now served at [http://localhost:3000/](http://localhost:3000/).
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
 
-You can now deploy the `build` folder **almost anywhere** easily, **for free** or very small cost (read the **[Deployment Guide](https://docusaurus.io/docs/deployment)**).
+        echo '{
+        "app_services": [
+            {
+                "custom": {
+                "image": "registry.hub.docker.com/kdhrubo/db2rest",
+                "name": "db2rest",
+                "routing": [
+            {
+                "port": 8080,
+                "ingressPath": "/"
+            }
+                ],
+                "env": [
+            {
+                "name": "DB_URL",
+                "value": "<JDBC_URL>"
+            },
+            {
+                "name": "DB_USER",
+                "value": "<DB_USER>"
+            },
+            {
+                "name": "DB_PASSWORD",
+                "value": "<DB_USER>"
+            }
+                ],
+                "resources": {
+                "requests": {
+                "cpu": "500m",
+                "memory": "1500Mi"
+            },
+                "limits": {
+                "cpu": "4000m",
+                "memory": "1500Mi"
+            }
+            },
+                "storage": {
+                "volumeMounts": [
+            {
+                "name": "db2rest-vol",
+                "mountPath": "/tmp"
+            }
+                ],
+                "volumes": [
+            {
+                "ephemeral": {
+                "volumeClaimTemplate": {
+                "spec": {
+                "accessModes": [
+                "ReadWriteOnce"
+                ],
+                "resources": {
+                "requests": {
+                "storage": "2Gi"
+            }
+            }
+            }
+            }
+            },
+                "name": "db2rest-vol"
+            }
+                ]
+            }
+            }
+            }
+                ]
+    }' |  \
+        http PATCH https://api.tembo.io/api/v1/orgs/<TEMBO_ORG_ID>/instances/<TEMBO_DB_INSTANCE_ID> \
+        Authorization:<JWT_TOKEN> \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+
+
+        ```
+    </TabItem>
+
+
+</Tabs>
