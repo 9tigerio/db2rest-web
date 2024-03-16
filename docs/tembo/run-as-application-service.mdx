@@ -226,7 +226,7 @@ running as an application service on Tembo.
         ```bash
 
         curl --request GET \
-        --url https://[TEMBO_DB_INSTANCE_ENDPOINT]/actuator/health \
+        --url https://[TEMBO_DB_INSTANCE_ENDPOINT]/employee \
         --header 'Authorization: [JWT_TOKEN]' \
         --header 'User-Agent: insomnia/8.6.1'
 
@@ -240,8 +240,32 @@ running as an application service on Tembo.
         Authorization: [JWT_TOKEN] \
         User-Agent:insomnia/8.6.1
 
+
+        http GET https://[TEMBO_DB_INSTANCE_ENDPOINT]/employee \
+        Authorization: [JWT_TOKEN] \
+        User-Agent:insomnia/8.6.1
+
         ```
     </TabItem>
 
 
 </Tabs>
+
+The DB2Rest application service will respond with the only row, that was inserted in the `employee` table.
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"id": 3,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
+
+```
