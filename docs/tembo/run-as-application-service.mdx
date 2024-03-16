@@ -181,7 +181,7 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 
 
-Use either (cURL)[https://curl.se] or (httpie)[https://httpie.io]  to execute the commands above. If everything goes well, then Tembo API
+Use either [cURL](https://curl.se) or [httpie](https://httpie.io)  to execute the commands above. If everything goes well, then Tembo API
 will respond with HTTP 202 (ACCEPTED) status code. This means within seconds DB2Rest is going to run as an application service with Tembo PostgreSQL instance.
 
 ## Verify DB2Rest Application Service
@@ -215,3 +215,33 @@ It is very easy to verify DB2Rest application service with the actuator endpoint
 
 
 ## Query DB2Rest Application Service
+
+In the previous tutorial [integrate with Temp](https://db2rest.com/docs/tembo/integrate-with-tembo-pg/), the `employee` table was created on
+Tembo PostgreSQL instance and a new row was inserted using DB2Rest running locally. Now the same table can be queried using the DB2Rest
+running as an application service on Tembo.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url https://[TEMBO_DB_INSTANCE_ENDPOINT]/actuator/health \
+        --header 'Authorization: [JWT_TOKEN]' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET https://[TEMBO_DB_INSTANCE_ENDPOINT]/actuator/health \
+        Authorization: [JWT_TOKEN] \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+
+</Tabs>
