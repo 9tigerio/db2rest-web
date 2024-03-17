@@ -146,3 +146,22 @@ Transfer-Encoding: chunked
 ```
 
 The `status` attribute shows that, the application service is ready to handle database operations.
+
+
+### Create Table
+
+Next, create a table using any database tool. Our favorite tool is [Dbeaver](https://dbeaver.io/).
+
+```SQL
+
+CREATE TABLE employee (
+	id serial4 NOT NULL,
+	first_name varchar(50) NOT NULL,
+	last_name varchar(50) NOT NULL,
+	email varchar(255) NOT NULL,
+	created_on timestamp NOT NULL,
+	CONSTRAINT employee_email_key UNIQUE (email),
+	CONSTRAINT employee_pkey PRIMARY KEY (id)
+);
+
+```
