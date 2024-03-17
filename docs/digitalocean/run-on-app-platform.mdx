@@ -40,7 +40,7 @@ The example below shows the dashboard of a managed PostgreSQL database created o
 ![PostgreSQL Database](./assets/pgsql-instance.png "PostgreSQL Database")
 
 
-# Create app service
+## Create app service
 
 DB2Rest can now be deployed as an app service and connect to the database created in the previous step.
 In order to get started, click on any of the buttons as shown in the image below:
@@ -49,7 +49,6 @@ In order to get started, click on any of the buttons as shown in the image below
 
 This will open the `Create App` form.
 
-## Fill out Create App form
 
 In this form set the values as listed below.
     1. Service Provider - Select `Docker Hub`
@@ -75,6 +74,12 @@ In the `Environment` screen, set the values for the following environment variab
     - DB_PASSWORD
 
 ![Set Environment](./assets/set-env.png "Set Environment")
+
+Click on `Save` to save the environment variables. Then click on the `Next` button twice to reach the `Review` page.
+
+![Final Review](./assets/review.png "Final Review")
+
+On the `Review` page, click on `Create Resources` to provision DB2Rest as an app service.
 
 :::tip
 
