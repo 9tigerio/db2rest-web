@@ -89,3 +89,60 @@ The values needed for the environment are available in the database dashboard.
 
 
 ![DB Environment Variables](./assets/db-env-variables.png "DB Environment Variables")
+
+
+## Test DB2Rest App Service
+
+Once the deployment is successfully completed, it is time to test the application service.
+
+
+![Successful deployment](./assets/deployed.png "Successful deployment")
+
+
+### Check DB2Rest Health
+
+It is very easy to verify DB2Rest application service with the actuator endpoint as shown below:
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'https://seashell-app-47ctm.ondigitalocean.app/actuator/health?=' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'https://seashell-app-47ctm.ondigitalocean.app/actuator/health?=' \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+
+</Tabs>
+
+
+The actuator health check service in DB2Rest will return the following response:
+
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+	"status": "UP",
+	"groups": [
+		"liveness",
+		"readiness"
+	]
+}
+
+```
+
+The `status` attribute shows that, the application service is ready to handle database operations.
