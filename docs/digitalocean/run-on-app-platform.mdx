@@ -226,6 +226,44 @@ The `status` attribute shows that, the application service is ready to handle da
 
 ```
 
+### Read Row
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url https://seashell-app-47ctm.ondigitalocean.app/employee \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET https://seashell-app-47ctm.ondigitalocean.app/employee \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+    [
+        {
+            "id": 1,
+            "first_name": "Salman",
+            "last_name": "Khan",
+            "email": "sk@skfilms.com",
+            "created_on": "2015-04-14T11:07:36.639+00:00"
+        }
+    ]
+
+```
+
 
 ## Secure the deployment
 
