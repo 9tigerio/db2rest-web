@@ -1,31 +1,38 @@
 ---
-sidebar_position: 5
+sidebar_position: 1
+title: Run DB2Rest on DigitalOcean App Platform
+description: Step by step tutorial on how to run DB2Rest on DigitalOcean Cloud.
+image: ./assets/run-on-digitalocean.png
+keywords:
+  - digitalocean
+  - postgresql
+  - app platform
+
 ---
 
-# Deploy your site
+# Run DB2Rest on DigitalOcean
 
-Docusaurus is a **static-site-generator** (also called **[Jamstack](https://jamstack.org/)**).
+![Run on DigitalOcean](./assets/run-on-digitalocean.png "Run on DigitalOcean")
 
-It builds your site as simple **static HTML, JavaScript and CSS files**.
+It is easy to run DB2Rest on [DigitalOcean App Platform](https://www.digitalocean.com/products/app-platform) using the Docker image.
+It is also possible to run DB2Rest on [droplets](https://www.digitalocean.com/products/droplets) or virtual machines(VM).
 
-## Build your site
+# DigitalOcean managed database
 
-Build your site **for production**:
+[DigitalOcean](https://www.digitalocean.com/) provides managed database service for :
+    - PostgreSQL
+    - MySQL
+    - MongoDB
+    - Redis
 
-```bash
-npm run build
-```
+DB2Rest currently supports `PostgreSQL` and `MySQL`.
 
-The static files are generated in the `build` folder.
 
-## Deploy your site
+## Create PostGreSQL database
 
-Test your production build locally:
+Follow the tutorials below to launch either `PostgreSQL` or `MySQL` database service.
 
-```bash
-npm run serve
-```
+ - [PostgreSQL Quickstart](https://docs.digitalocean.com/products/databases/postgresql/getting-started/quickstart/).
+ - [MySQL Quickstart](https://docs.digitalocean.com/products/databases/mysql/getting-started/quickstart/).
 
-The `build` folder is now served at [http://localhost:3000/](http://localhost:3000/).
 
-You can now deploy the `build` folder **almost anywhere** easily, **for free** or very small cost (read the **[Deployment Guide](https://docusaurus.io/docs/deployment)**).
