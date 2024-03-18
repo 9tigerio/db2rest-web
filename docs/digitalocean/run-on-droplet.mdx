@@ -63,6 +63,12 @@ $ chmod +x db2rest-0.2.2-RC3.jar
 
 ## Enable Droplet IP on Database Firewall
 
+The droplet IP address must be enabled on the database firewall/trusted sources. Otherwise, it will not be able to connect to the
+database. Go to the dashboard of the database created in the [previous tutorial](
+https://db2rest.com/docs/digitalocean/run-on-app-platform#create-database) and then in the `Settings` tab.
+
+Click on `Edit` in the `Trusted Sources` section.
+
 ![Enable droplet on DB firewall](./assets/enable-droplet-on-db-firewall.png "Enable droplet on DB firewall")
 
 
