@@ -23,3 +23,61 @@ The droplet should be created in the same DigitalOcean region in which the datab
 
 :::
 
+![Droplet console](./assets/droplet-console.png "Droplet console")
+
+## Install Java 21
+
+DB2Rest requires Java 21 to run. It makes use of virtual threads allowing very high scaling with minimal resources.
+Installing Java 21 on Ubuntu Droplet is very easy and only takes a single command
+
+```Shell
+$ apt install openjdk-21-jre-headless
+```
+
+Jav 21 runtime will be installed within few seconds.
+
+### Verify JRE
+
+Run the command below to verify that Java Runtime 21 has been successfully installed.
+
+```Shell
+$ java -version
+```
+
+
+## Get DB2Rest
+
+Next download DB2Rest using the following command:
+
+```Shell
+$ wget https://download.db2rest.com/db2rest-0.2.2-RC3.jar
+```
+
+In order to make the downloaded jar executable run the command below:
+
+```Shell
+$ chmod +x db2rest-0.2.2-RC3.jar
+```
+
+
+
+## Enable Droplet IP on Database Firewall
+
+![Enable droplet on DB firewall](./assets/enable-droplet-on-db-firewall.png "Enable droplet on DB firewall")
+
+
+## Run DB2Rest
+
+
+
+
+
+## Test DB2Rest
+
+
+## Query using DB2Rest
+
+
+
+
+
