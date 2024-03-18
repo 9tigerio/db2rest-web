@@ -55,7 +55,7 @@ This will print the Java version as shown below:
 
 ![Verify Java](./assets/verify-java.png "Verify Java")
 
-## Get DB2Rest
+## Download DB2Rest
 
 Next download DB2Rest using the following command:
 
@@ -110,12 +110,96 @@ $ java -jar db2rest-0.2.2-RC3.jar
 
 ![Run on Droplet](./assets/run-on-droplet.png "Run on Droplet")
 
+DB2Rest is started in few seconds and APIs are ready.
+
 ## Test DB2Rest
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[DROPLET_IP]:8080/actuator/health \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://[DROPLET_IP]:8080/actuator/health \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The actuator health check service in DB2Rest will return the following response:
+
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+	"status": "UP"
+}
+
+```
+
+:::info
+
+The response is slightly different from when, DB2Rest runs in a container platform like DigitalOcean App platform.
+
+:::
 
 ## Query using DB2Rest
 
 
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[DROPLET_IP]:8080/employee \
+        --header 'User-Agent: insomnia/8.6.1'
 
 
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
 
+        http GET http://[DROPLET_IP]:8080/employee \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+The response is:
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"id": 1,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
+
+```
