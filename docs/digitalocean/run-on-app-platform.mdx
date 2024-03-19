@@ -67,8 +67,8 @@ CREATE TABLE employee (
 
 ## Create app service
 
-DB2Rest can now be deployed as an app service and connect to the database created in the previous step.
-In order to get started, click on any of the buttons as shown in the image below:
+DB2Rest can now be deployed as an app service on Digital Ocean's **App Platform** and connect to your database created in the previous step.
+In order to get started, click on the buttons as shown in the image below:
 
 ![Create App](./assets/create-app.png "Create App")
 
@@ -173,7 +173,7 @@ Transfer-Encoding: chunked
 
 ```
 
-The `status` attribute shows that, the application service is ready to handle database operations.
+The `status` attribute shows that the application service is ready to handle database operations.
 
 
 ### Insert Row
@@ -269,17 +269,26 @@ The `status` attribute shows that, the application service is ready to handle da
 
 In this deployment, the app service and database are not in the same [Virtual Private Cloud or VPC](https://docs.digitalocean.com/products/networking/vpc/).
 It is not [secure connectivity](https://docs.digitalocean.com/products/databases/postgresql/how-to/secure/) even though SSL is turned on.
-It is imperative to restrict access to the database from external sources. The database dashboard already shows warning.
+
+:::warning
+
+It is imperative to restrict access to the database from external sources. The database dashboard already shows this warning.
+
+:::
 
 ![Successful database](./assets/secure-db.png "Secure database")
 
 Click on the link `Secure this database cluster by restricting access` to go the settings page (also available in the `Settings` tab)
-to set the `Trusted sources`. Click on 'Edit' and select the app service as the only service to connect to the database.
+to set the `Trusted sources`. Click on `Edit` and select the app service as the only service to connect to the database.
 
 
 ![Add trusted resources](./assets/add-trusted-resources.png "Add trusted resources")
 
 Once the DB2Rest service (named `seashell-app` by DigitalOcean) is selected, click `Save`.
-Now the database instance is safe and only allowed connection request from trusted sources.
+Now the database instance is safe and will only allow connection requests from configured trusted sources.
 
 ![Secured database](./assets/secured-db.png "Secured database")
+
+Finally, refer to the DB2Rest documentation for further learning and exploring API features.
+
+For help, visit us on [Slack](https://db2rest.slack.com/) or our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions)
