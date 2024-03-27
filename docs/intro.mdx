@@ -34,14 +34,26 @@ Oracle JDK 21 can be downloaded and installed for various operating systems by f
 
 Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So it's super easy to get up and running under a minute. 
 
-In order to download the latest edition **{siteConfig.customFields.version}** of DB2Rest click [here](https://download.db2rest.com/db2rest-{x_version}.jar "here").
+The latest version of DB2Rest - **{siteConfig.customFields.version}** can be downloaded from the link below:
+
+:::info[Download Link]
+
+**{siteConfig.customFields.download_url}**
+
+:::
+
+:::warning[Download Link for Legacy Oracle 9i]
+
+**{siteConfig.customFields.download_url_oracle_9i}**
+
+:::
 
 ### Run DB2Rest.
 
 DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
 
 ```Shell
-$ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.2.0.jar
+$ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.2.3.jar
 ``` 
 
 Replace the values for the following parameters:
@@ -55,7 +67,7 @@ Replace the values for the following parameters:
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
 
-### Verify DB2Rest
+### Verify DB2Rest Installation
 
 The actuator endpoint can be used to test the installation.
 

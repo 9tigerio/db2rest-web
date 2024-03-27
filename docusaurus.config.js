@@ -43,7 +43,9 @@ const config = {
 
   customFields: {
     version: 'V-0.2.3',
-    x_version: '0.2.3'
+    download_url: 'https://download.db2rest.com/db2rest-0.2.3.jar',
+    download_jar: 'db2rest-0.2.3.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-0.2.3.jar'
   },
 
   presets: [
