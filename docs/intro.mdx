@@ -1,17 +1,18 @@
 ---
 sidebar_position: 1
 ---
+import siteConfig from '/docusaurus.config.js';
 
 # Getting Started with DB2Rest
 
-Let's discover **DB2Rest in less than 10 minutes**.
+Let's discover **DB2Rest in less than 10 minutes** by running the Jar distribution.
 
-# Run On Premise / On Virtual Machines (VM) 
+## Run On Premise / On Virtual Machines (VM)
 
-In order to deploy DB2Rest on bare metal box or a VM on any cloud like [Amazon EC2](https://aws.amazon.com/pm/ec2/) 
+In order to deploy DB2Rest on a laptop/PC/Mac, bare metal box or a VM on any cloud like [Amazon EC2](https://aws.amazon.com/pm/ec2/)
 or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follow the steps below:
 
-## Minimum System Requirements
+### Minimum System Requirements
 
     - Java 21
     - 2-4 GB RAM/Memory.
@@ -20,7 +21,8 @@ DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 
 for high scalability. Hence, DB2Rest can handling very high volume of requests even on a single node. 
 
 
-## 1. Install JDK 21+
+
+### Install JDK 21+
 
 Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
 
@@ -28,13 +30,13 @@ Open JDK can be downloaded from here - https://jdk.java.net/21/. This article fr
 
 Oracle JDK 21 can be downloaded and installed for various operating systems by following the instructions [here](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
 
-## 2. Download DB2Rest
+### Download DB2Rest
 
 Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So it's super easy to get up and running under a minute. 
 
-In order to download the latest edition(v-0.2.0) of DB2Rest click [here](https://download.db2rest.com/db2rest-0.2.0.jar "here").
+In order to download the latest edition **{siteConfig.customFields.version}** of DB2Rest click [here](https://download.db2rest.com/db2rest-{x_version}.jar "here").
 
-## 3. Run DB2Rest.
+### Run DB2Rest.
 
 DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
 
@@ -42,7 +44,7 @@ DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute
 $ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.2.0.jar
 ``` 
 
-Replace the values for the following:
+Replace the values for the following parameters:
 
 | Sl# | Parameter Name | Description                | Example                                                                                                                            |
 |-----|----------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -52,3 +54,49 @@ Replace the values for the following:
 
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
+
+### Verify DB2Rest
+
+The actuator endpoint can be used to test the installation.
+
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[IP_ADDRESS]:8080/actuator/health \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://[IP_ADDRESS]:8080/actuator/health \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The actuator health check service in DB2Rest will return the following response:
+
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+	"status": "UP"
+}
+
+```

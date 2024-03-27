@@ -29,6 +29,7 @@ const config = {
   organizationName: 'kdhrubo', // Usually your GitHub org/user name.
   projectName: 'db2rest', // Usually your repo name.
 
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -38,6 +39,11 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  customFields: {
+    version: 'V-0.2.3',
+    x_version: '0.2.3'
   },
 
   presets: [
