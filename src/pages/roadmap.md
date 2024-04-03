@@ -73,7 +73,7 @@ Updated: 3-April-2024
 - [ ] Batch export to file-system, S3, FTP, - Async or Scheduled 
 - [ ] Batch import from file-system, S3, FTP
 - [ ] DB2DB Replication
-- [*] Support Tembo 
+- [x] Support Tembo 
 - [ ] Support AWS Lightsail
 - [ ] Support deploy to Azure
 - [ ] GraphQL Support
