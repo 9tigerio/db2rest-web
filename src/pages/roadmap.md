@@ -74,3 +74,9 @@ Updated: 3-April-2024
 - [ ] Batch import from file-system, S3, FTP
 - [ ] DB2DB Replication
 - [*] Support Tembo 
+- [ ] Support AWS Lightsail
+- [ ] Support deploy to Azure
+- [ ] GraphQL Support
+- [ ] Grpc Support
+- [ ] Cloud/SaaS Launch
+- [ ] Enterprise Edition Launch for on prem or custom cloud. 
