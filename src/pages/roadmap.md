@@ -6,11 +6,12 @@ hide_table_of_contents: true
 
 # Roadmap
 
+Updated: 3-April-2024
 
-- [*] Support for Oracle 
+- [x] Support for Oracle - *DONE*
 - [ ] Support for SQL Server 
-- [ ] Support for MongoDB
-- [ ] Change data capture (CDC) with Webhooks to notify of database changes
+- [ ] Support for MongoDB - In progress
+- [ ] Change data capture (CDC) with Webhooks to notify of database changes [Enterprise]
 - [ ] JSON data type support
 - [x] Stored procedure, stored function calls - *DONE*
 - [ ] Support for tenant id column for multi-tenancy
@@ -18,28 +19,28 @@ hide_table_of_contents: true
 - [x] New Documentation Website with Docusaurus - [Website](https://db2rest.com)
 - [x] Custom SQL query Execution via HTTP POST **DONE**
 - [x] Count query support - *DONE*
-- [ ] Exists query support
+- [x] Exists query support
 - [ ] Data access control
-- [ ] Data Privacy, Encryption, Masking for read and update.
-- [x] TSID support
-- [ ] Data transformation (some features possibly ENTERPRISE EDITION)
-- [x] Multi-table implicit Join - with one to many based on select path.
-- [ ] Outer Join
-- [ ] Cross Join
-- [ ] Support - DB Sharding (ENTERPRISE EDITION)
+- [ ] Data Privacy, Encryption, Masking for read and update.[Enterprise]
+- [x] TSID support - *DONE*
+- [ ] Data transformation [Enterprise]
+- [x] Multi-table implicit Join - with one to many based on select path. - *DONE*
+- [x] Outer Join  *DONE*
+- [x] Cross Join
+- [ ] Support - DB Sharding [Enterprise]
 - [ ] Support - Rate Limiting
-- [ ] Audit columns handling - created date, last updated date, created by, last updated by
-- [ ] Audit table / data diff handling
-- [ ] Optimistic Lock - version column
+- [ ] Audit columns handling - created date, last updated date, created by, last updated by [Enterprise]
+- [ ] Audit table / data diff handling [Enterprise]
+- [ ] Optimistic Lock - version column 
 - [ ] Optimistic Lock - timestamp column
 - [x] Offset & limit pagination - *DONE*
-- [ ] SEEK method for pagination
+- [ ] SEEK method for pagination 
 - [ ] Caching - Redis support (Requested on Redit)
-- [*] Open API specification 3.x 
+- [x] Open API specification 3.x 
 - [ ] Aggregate function
 - [ ] mTLS/Certificate auth
-- [ ] JWT/JWKS support (ENTERPRISE EDITION)
-- [ ] API Key support - unkey.dev or custom - Coming Feb 2024
+- [ ] JWT/JWKS support 
+- [x] API Key support - unkey.dev  - *DONE*
 - [ ] Open policy agent support (ENTERPRISE EDITION)
 - [ ] OSO support (ENTERPRISE EDITION)
 - [ ] Integration with AWS KMS, Hashicorp Vault
@@ -50,7 +51,7 @@ hide_table_of_contents: true
 - [ ] Youtube videos
 - [ ] Native binary image - simplify installation
 - [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8
-- [ ] Deploy to Digital Ocean
+- [x] Deploy to Digital Ocean
 - [ ] Deploy to GCP
 - [ ] Deploy to Koyeb
 - [ ] Deploy to Render
@@ -62,3 +63,14 @@ hide_table_of_contents: true
 - [ ] Angular Integration
 - [ ] Vaadin Integration
 - [ ] Pre- and Post-processing Hooks
+- [ ] Schema evolution
+- [ ] DB Replication/Synchronization
+- [ ] Change data capture
+- [ ] MongoDB support
+- [ ] Vector DB support
+- [ ] API Key auth
+- [ ] Basic Auth
+- [ ] Batch export to file-system, S3, FTP, - Async or Scheduled 
+- [ ] Batch import from file-system, S3, FTP
+- [ ] DB2DB Replication
+- [*] Support Tembo 
