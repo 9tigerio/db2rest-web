@@ -6,43 +6,28 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 3-April-2024
+Updated: 6-April-2024
 
-- [x] Support for Oracle - *DONE*
+## In Progress
+
+- [ ] Support for MongoDB
+
+## Planned 
+(participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)
+
+- [ ] Embed Jasper reports 
 - [ ] Support for SQL Server 
-- [ ] Support for MongoDB - In progress
-- [ ] Change data capture (CDC) with Webhooks to notify of database changes [Enterprise]
 - [ ] JSON data type support
-- [x] Stored procedure, stored function calls - *DONE*
 - [ ] Support for tenant id column for multi-tenancy
-- [x] Twitter Handle - DONE [DB2Rest](https://twitter.com/DB2Rest)
-- [x] New Documentation Website with Docusaurus - [Website](https://db2rest.com)
-- [x] Custom SQL query Execution via HTTP POST **DONE**
-- [x] Count query support - *DONE*
-- [x] Exists query support
 - [ ] Data access control
-- [ ] Data Privacy, Encryption, Masking for read and update.[Enterprise]
-- [x] TSID support - *DONE*
-- [ ] Data transformation [Enterprise]
-- [x] Multi-table implicit Join - with one to many based on select path. - *DONE*
-- [x] Outer Join  *DONE*
-- [x] Cross Join
-- [ ] Support - DB Sharding [Enterprise]
 - [ ] Support - Rate Limiting
-- [ ] Audit columns handling - created date, last updated date, created by, last updated by [Enterprise]
-- [ ] Audit table / data diff handling [Enterprise]
 - [ ] Optimistic Lock - version column 
 - [ ] Optimistic Lock - timestamp column
-- [x] Offset & limit pagination - *DONE*
 - [ ] SEEK method for pagination 
 - [ ] Caching - Redis support (Requested on Redit)
-- [x] Open API specification 3.x 
 - [ ] Aggregate function
 - [ ] mTLS/Certificate auth
 - [ ] JWT/JWKS support 
-- [x] API Key support - unkey.dev  - *DONE*
-- [ ] Open policy agent support (ENTERPRISE EDITION)
-- [ ] OSO support (ENTERPRISE EDITION)
 - [ ] Integration with AWS KMS, Hashicorp Vault
 - [ ] Observability - Data dog (requested by a financial company)
 - [ ] HTTP2 support - (requested by a financial company)
@@ -51,7 +36,6 @@ Updated: 3-April-2024
 - [ ] Youtube videos
 - [ ] Native binary image - simplify installation
 - [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8
-- [x] Deploy to Digital Ocean
 - [ ] Deploy to GCP
 - [ ] Deploy to Koyeb
 - [ ] Deploy to Render
@@ -73,10 +57,36 @@ Updated: 3-April-2024
 - [ ] Batch export to file-system, S3, FTP, - Async or Scheduled 
 - [ ] Batch import from file-system, S3, FTP
 - [ ] DB2DB Replication
-- [x] Support Tembo 
 - [ ] Support AWS Lightsail
 - [ ] Support deploy to Azure
 - [ ] GraphQL Support
 - [ ] Grpc Support
 - [ ] Cloud/SaaS Launch
-- [ ] Enterprise Edition Launch for on prem or custom cloud. 
+- [ ] Enterprise Edition Launch for on prem or custom cloud (ENTERPRISE EDITION)
+- [ ] Change data capture (CDC) with Webhooks to notify of database changes (ENTERPRISE EDITION)
+- [ ] Data Privacy, Encryption, Masking for read and update.(ENTERPRISE EDITION)
+- [ ] Data transformation (ENTERPRISE EDITION)
+- [ ] Support - DB Sharding (ENTERPRISE EDITION)
+- [ ] Audit table / data diff handling (ENTERPRISE EDITION)
+- [ ] Open policy agent support (ENTERPRISE EDITION)
+- [ ] OSO support (ENTERPRISE EDITION)
+- [ ] Audit columns handling - created date, last updated date, created by, last updated by (ENTERPRISE EDITION)
+
+## Completed / Done
+
+- [x] Support for Oracle
+- [x] Support Tembo
+- [x] Deploy to Digital Ocean
+- [x] Multi-table implicit Join - with one to many based on select path.
+- [x] Outer Join
+- [x] Cross Join
+- [x] TSID support
+- [x] API Key support - unkey.dev
+- [x] Open API specification 3.x 
+- [x] Offset & limit pagination
+- [x] Twitter Handle - [DB2Rest](https://twitter.com/DB2Rest)
+- [x] New Documentation Website with Docusaurus - [Website](https://db2rest.com)
+- [x] Custom SQL query Execution via HTTP POST
+- [x] Count query support
+- [x] Exists query support
+- [x] Stored procedure, stored function calls
