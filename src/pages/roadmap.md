@@ -41,8 +41,6 @@ Updated: 6-April-2024
 - [ ] Deploy to Render
 - [ ] Ability to insert into multiple tables
 - [ ] Batch loading of remote files
-- [ ] Support Database View
-- [ ] Support for Database materialized view
 - [ ] React Integration
 - [ ] Angular Integration
 - [ ] Vaadin Integration
@@ -71,6 +69,8 @@ Updated: 6-April-2024
 - [ ] Open policy agent support (ENTERPRISE EDITION)
 - [ ] OSO support (ENTERPRISE EDITION)
 - [ ] Audit columns handling - created date, last updated date, created by, last updated by (ENTERPRISE EDITION)
+- [ ] GUI - Database visualization and query (ENTERPRISE EDITION)
+- [ ] Reporting - (ENTERPRISE EDITION)
 
 ## Completed / Done
 
@@ -90,3 +90,5 @@ Updated: 6-April-2024
 - [x] Count query support
 - [x] Exists query support
 - [x] Stored procedure, stored function calls
+- [x] Support Database View
+- [x] Support for Database materialized view
