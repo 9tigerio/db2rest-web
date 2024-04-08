@@ -5,7 +5,7 @@ sidebar_position: 4
 # How to apply column filtering on a table?
 
 Column filtering is the ability to specify exactly the columns from the table that should be retrieved in a query.
-The columns can be specified as a comma separated list with the `select` request parameter.
+The columns can be specified as a comma separated list with the `fields` request parameter.
 
 The query below shows how to retrieve only the `title`,`description` and `release_year` columns from the specified `film` table.
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/film?select=title,description,release_year' \
+        --url 'http://localhost:8080/film?fields=title,description,release_year' \
         --header 'Accept-Profile: sakila' \
         --header 'User-Agent: insomnia/8.4.5'
 
@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http GET 'http://localhost:8080/film?select=title,description,release_year' \
+        http GET 'http://localhost:8080/film?fields=title,description,release_year' \
         Accept-Profile:sakila \
         User-Agent:insomnia/8.4.5
         ```
