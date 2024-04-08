@@ -2,12 +2,12 @@
 sidebar_position: 4
 ---
 
-# How to apply column filtering on table?
+# How to apply column filtering on a table?
 
 Column filtering is the ability to specify exactly the columns from the table that should be retrieved in a query.
-The columns can be specified as a comma separated list as `fields` request parameter.
+The columns can be specified as a comma separated list with the `select` request parameter.
 
-The query below shows how to retrieve only the `title`,`description` and `release_year` columns.
+The query below shows how to retrieve only the `title`,`description` and `release_year` columns from the specified `film` table.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -29,7 +29,6 @@ import TabItem from '@theme/TabItem';
         User-Agent:insomnia/8.4.5
         ```
     </TabItem>
-
 </Tabs>
 
 
@@ -49,12 +48,12 @@ Transfer-Encoding: chunked
 		"description": "A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China",
 		"release_year": "2006-01-01"
 	},
-    ....
+    ## continued...
 ]
 
 ```
 
-This query will:
+The above query will:
     - fetch all the rows from the table.
     - each row will include *only the specified columns* from the table.
 
