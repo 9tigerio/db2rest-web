@@ -14,7 +14,7 @@ DB2Rest supports the following RSQL operators.
 | >           | >             | greater than            | [X]       |
 | =gt=        | >             | greater than            | [X]       |
 | >=          | >=            | greater than or equal   | [X]       |
-| =gt=        | >             | greater than or equal   | [X]       |
+| =ge=        | >             | greater than or equal   | [X]       |
 | \<          | \<             | less than               | [X]       |
 | =lt=        | \<             | less than               | [X]       |
 | \<=          | \<=            | less than or equal      | [X]       |
