@@ -48,7 +48,6 @@ Updated: 6-April-2024
 - [ ] Schema evolution
 - [ ] DB Replication/Synchronization
 - [ ] Change data capture
-- [ ] MongoDB support
 - [ ] Vector DB support
 - [ ] API Key auth
 - [ ] Basic Auth
