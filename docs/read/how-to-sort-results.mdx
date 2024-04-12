@@ -1,0 +1,54 @@
+---
+sidebar_position: 13
+---
+
+# How to sort results?
+
+
+It is possible order the results retrieved by DB2Rest using the `sort` request parameter. This will apply `ORDER BY`
+on the generated SQL query. The general syntax of the `sort` parameter is shown below:
+
+:::info
+
+sort=[Column_name];[Sort_Direction],[Column_name];[Sort_Direction],[Column_name];[Sort_Direction]...
+
+:::
+
+The `sort` parameter takes a list of `Column_name` and optional `Sort_Direction` separated by `,`.
+
+:::tip
+
+**Sort_Direction**
+
+    - has two values `ASC` (Ascending) and `DESC` (Descending).
+    - `ASC` is the default value.
+
+:::
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/film?sort=title,rental_duration;desc' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/film?sort=title,rental_duration;desc' \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+In the above example, `film`s are sorted by the column `title` in ascending order and then by column `rental_duration`
+in descending order.

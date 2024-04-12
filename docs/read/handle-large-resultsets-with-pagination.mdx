@@ -1,0 +1,105 @@
+---
+sidebar_position: 12
+---
+
+# How to handle large result-sets with Pagination?
+
+Sometimes the result of a query execution can fetch many records. It is inefficient to fetch a large number of row.
+It can generate a lot of network traffic as the consuming application may not require all the records.
+DB2Rest implements offset pagination to support limiting the results of a query.
+
+## The LIMIT clause
+
+The simplest and most straightforward way to limit the number of rows returned by a query is to use the `LIMIT` clause.
+The `LIMIT` clause allows you to specify the maximum number of rows that you want returned from your query.
+
+Here’s an example of how to use the `LIMIT` clause:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/film?limit=5&fields=title,release_year:year' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/film?limit=5&fields=title,release_year:year' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+This query will return the first 5 rows from the `film` table.
+Note that the order in which the rows are returned depends on the order specified in the `SORT` clause (if one is present).
+If no `SORT` clause is present, the order of the rows is undefined.
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+[
+	{
+		"title": "ACADEMY DINOSAUR",
+		"year": 2006
+	},
+	{
+		"title": "ACE GOLDFINGER",
+		"year": 2006
+	},
+	{
+		"title": "ADAPTATION HOLES",
+		"year": 2006
+	},
+	{
+		"title": "AFFAIR PREJUDICE",
+		"year": 2006
+	},
+    {
+		"title": "AFFAIR PREJUDICE 2",
+		"year": 2010
+	}
+]
+
+```
+
+
+## Using LIMIT With OFFSET
+
+In addition to the `LIMIT` clause, the `OFFSET` clause can be used to skip a specified number of rows before starting to return results.
+Here’s an example of how to use the `LIMIT` and `OFFSET` clause:
+
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request GET \
+        --url 'http://localhost:8080/film?offset=20&limit=10' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http GET 'http://localhost:8080/film?offset=20&limit=10' \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+The query above will skip 20 rows and then fetch the next 10 rows.
+
+:::warning
+
+If `OFFSET` is specified without `LIMIT`, then it will be ignored.
+
+:::

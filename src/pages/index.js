@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Instant REST Data API. Boost development time by 30x <head />">
+      description="Open Source REST DATA API for Databases. Build Intelligent Applications Faster <head />">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

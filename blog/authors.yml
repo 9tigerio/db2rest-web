@@ -1,17 +1,12 @@
-endi:
-  name: Endilie Yacop Sucipto
-  title: Maintainer of Docusaurus
-  url: https://github.com/endiliey
-  image_url: https://github.com/endiliey.png
+dhrubo:
+  name: Dhrubo K
+  title: Maintainer of DB2Rest
+  url: https://github.com/kdhrubo
+  #image_url: https://github.com/endiliey.png
 
-yangshun:
-  name: Yangshun Tay
-  title: Front End Engineer @ Facebook
-  url: https://github.com/yangshun
-  image_url: https://github.com/yangshun.png
 
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
+bharath:
+  name: bharath K
+  title: Committer of DB2Rest
+  url: https://github.com/bharath8121
+  #image_url: https://github.com/endiliey.png

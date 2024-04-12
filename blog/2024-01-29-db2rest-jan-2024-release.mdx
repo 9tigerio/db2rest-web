@@ -1,0 +1,40 @@
+---
+slug: jan-2024-release
+title: DB2Rest - 0.0.9 has been released
+authors: [dhrubo]
+tags: [db2rest,release]
+---
+
+![Jan 2024 Release](./jan-2024.png)
+
+After a month of code crunching, I am pleased to announce that DB2Rest - 0.0.9 has been released.
+Some of the key changes are listed below.
+
+## What's Change
+
+* Support for sort.
+* Replaced jOOQ with Mybatis Dynamic SQL for typesafe SQL creation.
+* Support added for remote procedure calls - invoke stored procedures and functions over REST.
+* Improve error reporting based on Problem detail specification.
+* Support for custom SQL query execution.
+* Support TSID column for primary key for both single or bulk records insert.
+* Support both number and string based TSID auto-generation for any database.
+* Bulk insert now supports both JSON and CSV content or records.
+* Implicit multi table join based on path.
+* Support - find one row.
+* 52 new integration tests added.
+* DELETE success operation now returns 204 (subject to change)
+* Add data type conversion support for Java to SQL (ongoing)
+
+Besides these changes we have created several automations to ensure better documentation and thoroughly tested releases going forward.
+For example we have integrated Spring REST Docs with integration tests to auto generate examples and keep documentation in sync with code.
+New Github Action has been added to ensure tests are always run for code push.
+
+
+## Whats's Next
+
+Next release with we will improve the existing features to be more robust, bulk uploads and security features. This release is
+expected to arrive end of February 2024.
+The documentation is still behind schedule and work is underway to improve and add more documentation soon.
+
+

@@ -1,0 +1,151 @@
+---
+sidebar_position: 1
+---
+
+# Insert a Single Row
+
+A single row can be inserted in a database table using HTTP POST method along with a request body.
+The request body is a JSON object. Each key in the JSON attribute should map to a column in the table.
+
+## Example Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url http://localhost:8080/actor \
+        --header 'Content-Type: application/json' \
+        --data '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan"
+
+    }'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan"
+
+    }' |  \
+        http POST http://localhost:8080/actor \
+        Content-Type:application/json
+        ```
+    </TabItem>
+
+
+</Tabs>
+
+
+:::tip Default Value Handling
+
+If the column has a default value, and the key is not supplied in the JSON, then database will set the default value.
+However, if the column (with default value) is not nullable and the key is supplied with `null` value, insert operation will fail.
+
+:::
+
+## HTTP Response
+
+
+<Tabs>
+    <TabItem value="mySQL" label="MySQL" default>
+        ```http
+        HTTP/1.1 201
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+
+        {
+            "row": 1,
+            "keys": {
+                "GENERATED_KEY": 201
+            }
+        }
+        ```
+    </TabItem>
+    <TabItem value="pgSQL" label="PostgreSQL">
+        ```http
+        HTTP/1.1 201
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+
+        {
+            "row": 1,
+            "keys": {
+                "actor_id": 202
+            }
+        }
+
+        ```
+    </TabItem>
+
+
+</Tabs>
+
+
+On successful creation of the row in the table, DB2Rest responds with HTTP code 201. The response payload
+attribute `rows` indicate the number of rows created in the table. Along with the number of rows the response payload
+also contains `keys` attribute which contains the values of the generated primary key columns.
+
+## Error handling
+
+The following request payload will result in an error as the column `city` is not part of the `actor` table.
+
+    ```json
+    {
+        "first_name" : "Salman",
+        "last_name" : "Khan" ,
+        "city" : "Mumbai"
+    }
+    ```
+
+:::info
+
+DB2Rest has built-in support for various API and database access best-practices. In order to report API errors consistently,
+it implements
+[RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807).
+
+:::
+
+### Error Response
+
+This will result in error response with HTTP status code 404 as shown in the listing below. This indicates that column is not part of the table
+`actor`.
+
+```json
+{
+	"type": "https://db2rest.com/error/missing-column",
+	"title": "Missing Column Error",
+	"status": 404,
+	"detail": "Missing column actor.city",
+	"instance": "/actor",
+	"errorCategory": "Missing-Column",
+	"timestamp": "2024-02-20T08:39:33.046483Z"
+}
+```
+
+In case the table `actor` does not exist in the database and hence the attempt to insert data in a
+non-existent table results in error. This missing table error is also reported with HTTP 404 status code.
+
+The error response payload is shown below:
+
+```json
+{
+    "type": "https://db2rest.com/error/missing-table",
+    "title": "Missing Table Error",
+    "status": 404,
+    "detail": "Missing table actors",
+    "instance": "/actors",
+    "errorCategory": "Missing-Table",
+    "timestamp": "2024-02-20T08:43:20.022163Z"
+}
+```
+
+
+
+
