@@ -24,6 +24,9 @@ const config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
+  // Added and set to false because Cloudflare Pages does not support trailing slashes
+  trailingSlash: false,
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'kdhrubo', // Usually your GitHub org/user name.
