@@ -1,0 +1,34 @@
+---
+slug: feb-2024-cloudflare-d1-release-release
+title: DB2Rest - 0.2.0 available with Cloudflare D1 Support
+authors: [dhrubo]
+tags: [db2rest,release]
+---
+
+![February 2024 Cloudflare D1 Support](./cloudflare-d1-feb-24.png)
+
+As a maintainer of open source projects it's not always possible to support feature requests instantly.
+We were just getting started on supporting Vector databases and embeddings for March release.
+However, when one of the collaborators came with a pressing need to support [Cloudflare D1](https://developers.cloudflare.com/d1/)
+for a startup, we decided to take a look. Initially we were a bit hesitant, because D1 is meant to be used from
+[Cloudflare Workers](https://developers.cloudflare.com/workers/) and [Pages](https://developers.cloudflare.com/workers/).
+
+After initial analysis we figured out that it is possible to support this database and CRUD, in few days.
+The core framework is extremely pluggable now to support any database in just few days or even less. Really great work by the team.
+This was also an opportunity for us to refactor the core engine now to make it ready to support non-relational databases.
+I promise, that [MongoDB](https://www.mongodb.com/) support will arrive later this year.
+
+
+## What's Change
+
+    - Support for Cloudflare D1 - Query, Filter, Insert, Update, Delete.
+    - Refactoring the core to pave way for non-relational databases.
+
+## Whats's Next
+
+Ok we are now back into simplifying AI/ML support around [PostgreSQL](https://www.postgresql.org/) with [PostgresML](https://postgresml.org/) and [pgvector](https://github.com/pgvector/pgvector).
+Besides, this we will work on documentation, which is lagging. March 2024, is few hours away, knowing the team, we can
+deliver bit more as well....
+
+
+

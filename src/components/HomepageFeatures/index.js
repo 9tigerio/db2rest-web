@@ -23,6 +23,15 @@ const FeatureList = [
       </>
     ),
   },
+    {
+        title: 'Unlock Legacy Data',
+        Svg: require('@site/static/img/undraw_chilling_re_4iq9.svg').default,
+        description: (
+            <>
+                DB2Rest can securely unlock legacy databases. Thus you can rapidly innovate and modernize by building new applications, integration and machine learning datasets.
+            </>
+        ),
+    },
   
   {
     title: 'Blazing Fast',
@@ -43,15 +52,7 @@ const FeatureList = [
       </>
     ),
   },
-  {
-    title: 'Unlock Legacy Data',
-    Svg: require('@site/static/img/undraw_chilling_re_4iq9.svg').default,
-    description: (
-      <>
-        DB2Rest can securely unlock legacy databases. Thus you can rapidly innovate and modernize by building new applications, integration and machine learning datasets. 
-      </>
-    ),
-  },
+
   {
     title: 'Run Anywhere',
     Svg: require('@site/static/img/undraw_world_re_768g.svg').default,

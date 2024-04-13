@@ -1,0 +1,114 @@
+---
+sidebar_position: 1
+---
+import siteConfig from '/docusaurus.config.js';
+
+# Getting Started with DB2Rest
+
+Let's discover **DB2Rest in less than 10 minutes** by running the Jar distribution.
+
+## Run On Premise / On Virtual Machines (VM)
+
+In order to deploy DB2Rest on a laptop/PC/Mac, bare metal box or a VM on any cloud like [Amazon EC2](https://aws.amazon.com/pm/ec2/)
+or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follow the steps below:
+
+### Minimum System Requirements
+
+    - Java 21
+    - 2-4 GB RAM/Memory.
+
+DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 21 and makes uses of Java Virtual Thread feature
+for high scalability. Hence, DB2Rest can handling very high volume of requests even on a single node. 
+
+
+
+### Install JDK 21+
+
+Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
+
+Open JDK can be downloaded from here - https://jdk.java.net/21/. This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21 provides a step by step guide to install OpenJDK 21 on Windows platform.
+
+Oracle JDK 21 can be downloaded and installed for various operating systems by following the instructions [here](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
+
+### Download DB2Rest
+
+Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So it's super easy to get up and running under a minute. 
+
+The latest version of DB2Rest - **{siteConfig.customFields.version}** can be downloaded from the link below:
+
+:::info[Download Link]
+
+**{siteConfig.customFields.download_url}**
+
+:::
+
+:::warning[Download Link for Legacy Oracle 9i]
+
+**{siteConfig.customFields.download_url_oracle_9i}**
+
+:::
+
+### Run DB2Rest.
+
+DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
+
+```Shell
+$ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.2.3.jar
+``` 
+
+Replace the values for the following parameters:
+
+| Sl# | Parameter Name | Description                | Example                                                                                                                            |
+|-----|----------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| 1.  | DB URL         | JDBC URL connection string | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/sakila?currentSchema=public |
+| 2.  | User           | Database user              |                                                                                                                                    |
+| 3.  | Password       | Database password          |                                                                                                                                    |       
+
+
+Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
+
+### Verify DB2Rest Installation
+
+The actuator endpoint can be used to test the installation.
+
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[IP_ADDRESS]:8080/actuator/health \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://[IP_ADDRESS]:8080/actuator/health \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The actuator health check service in DB2Rest will return the following response:
+
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+	"status": "UP"
+}
+
+```

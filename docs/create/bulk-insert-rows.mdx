@@ -1,0 +1,203 @@
+---
+sidebar_position: 2
+---
+
+# Bulk Insert Rows
+
+Bulk insert of rows works like single row insert. The difference is bulk insert works with multiple records.
+The payload can be a JSON array of objects or lines in CSV format. Irrespective of the data type, the
+number of keys in the JSON object or CSV rows must be same.
+
+With bulk insert, several rows can be inserted in a single network request. DB2Rest further optimizes the record insertion.
+All the rows are batched and send to database as a single INSERT statement.
+
+:::tip Bulk Insert Scenarios / Use-Cases
+
+     - Data migration / Batch processing - Insert large data-set in chunks of `n` records. Ex - file processing.
+     - Front end multi row inserts - application can create records of same type - Order containing Line items.
+
+:::
+
+
+:::warning
+
+The batch size is currently not configurable. This will be available in a future release. Hence, it is recommended
+to send `10-15` rows at a time for efficient processing.
+
+:::
+
+## Example Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://localhost:8080/actor/bulk \
+        --header 'Content-Type: application/json'
+        --data '[
+            {
+
+                "first_name" : "Shahrukh",
+                "last_name" : "Khan"
+            },
+            {
+
+                "first_name" : "Hrithik",
+                "last_name" : "Roshan"
+            }
+        ]
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '[
+            {
+
+                "first_name" : "Shahrukh",
+                "last_name" : "Khan"
+            },
+            {
+
+                "first_name" : "Hrithik",
+                "last_name" : "Roshan"
+            }
+        ]
+        ' |  \
+        http POST http://localhost:8080/actor/bulk \
+        Content-Type:application/json
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+:::tip Default Value Handling
+
+If the column has a default value, and the key is not supplied in the JSON, then database will set the default value.
+However, if the column (with default value) is not nullable and the key is supplied with `null` value, entire insert operation will fail.
+
+:::
+
+## HTTP Response
+
+<Tabs>
+    <TabItem value="pg" label="PostgreSQL" default>
+        ```http
+
+
+        HTTP/1.1 201
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+        {
+            "rows": [1,1],
+            "keys": [
+                    {
+                        "actor_id": 205
+                    },
+                    {
+                        "actor_id": 206
+                    }
+            ]
+        }
+
+        ```
+
+    </TabItem>
+    <TabItem value="mysql" label="MySQL">
+        ```http
+        HTTP/1.1 201
+        Content-Type: application/json
+        Transfer-Encoding: chunked
+
+        {
+            "rows": [1,1],
+            "keys": [
+                {
+                    "GENERATED_KEY": 202
+                },
+                {
+                    "GENERATED_KEY": 203
+                }
+            ]
+        }
+
+
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+On successful creation of the rows in the table, DB2Rest responds with HTTP code 201. The response payload has an
+attribute `rows`. It is an array containing the numbers of rows affected by each insert statement in the batch.
+The response payload also returns the keys generated for each new row saved in the database.
+
+
+## Error handling
+
+The following request payload will result in an error as the column `city` is not part of the `actor` table.
+
+    ```json
+    [
+        {
+
+            "first_name" : "Shahid",
+            "last_name" : "Kapoor",
+            "city" : "Mumbai"
+        },
+
+        {
+
+            "first_name" : "Kartik",
+            "last_name" : "Aryan",
+            "city" : "Mumbai"
+        }
+    ]
+    ```
+
+:::info
+
+DB2Rest has built-in support for various API and database access best-practices. In order to report API errors consistently,
+it implements
+[RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807).
+
+:::
+
+### Error Response
+
+This will result in error response with HTTP status code 404 as shown in the listing below.
+
+```json
+{
+	"type": "https://db2rest.com/error/missing-column",
+	"title": "Missing Column Error",
+	"status": 404,
+	"detail": "Missing column actor.city",
+	"instance": "/actor/bulk",
+	"errorCategory": "Missing-Column",
+	"timestamp": "2024-02-20T10:48:22.777339Z"
+}
+```
+
+In this case none of the two records will be saved in the database.
+
+## Transaction Management
+
+In the error scenario above, the second record has error. However, DB2Rest will reject both records and nothing
+gets saved in the database. This is because DB2Rest handles [ACID](https://en.wikipedia.org/wiki/ACID) transaction properties.
+This ensures either the entire batch is saved or nothing is saved.
+
+:::info
+
+DB2Rest co-ordinates transaction management with the database. It is applicable for both single and multiple records.
+In both cases DB2Rest ensures data is rolled back in case of an error.
+
+:::

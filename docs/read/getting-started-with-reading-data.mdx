@@ -7,6 +7,15 @@ sidebar_position: 3
 The easiest way to retrieve data from a table is to send a GET request with the table name.
 
 
+
+:::info[Table Access Rules]
+
+    - If the database user/role has permission to access the table then it will be considered for query.
+    - In case the user has access to multiple schama, the table name must be unique if DB2Rest is not running in multi-tenant mode.
+
+:::
+
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -80,11 +89,11 @@ This query will:
 This is not ideal, if the table has many records as it will result in a [full table scan](https://en.wikipedia.org/wiki/Full_table_scan) and lot of data transported over
 the network. It may also result in time-outs. DB2Rest can solve these problems by:
 
-1. **Vertical filtering** - Allowing specifying the names of the columns that should be included in the result-set.
-2. **Horizontal filtering** - Apply filtering criteria on the table records to retrieves only the matching records.
-3. **Pagination** - Retrieve only a subset of the table records that match the horizontal filtering. For example,
-if the horizontal filters match 35 records and requested page size is 10, then this means 4 pages of records - where first
-three pages contain 10 records and the last one has 5 records. However, this will also result in 4 different requests.
+1. **Column filtering** - Allowing specifying the names of the columns that should be included in the result-set.
+2. **Row filtering** - Apply filtering criteria on the table rows to retrieves only the matching rows.
+3. **Pagination** - Retrieve only a subset of the table rows that match the horizontal filtering. For example,
+if the row filters match 35 rows and requested page size is 10, then this means 4 pages of rows - where first
+three pages contain 10 rows and the last one has 5 row. In order to browse through these rows, 4 separate requests have to be made.
 
 The next sections will discuss filtering in greater detail.
 

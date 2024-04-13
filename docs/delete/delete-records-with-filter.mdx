@@ -1,0 +1,56 @@
+---
+sidebar_position: 2
+---
+
+# Delete Records with Filter
+
+A single record or row can be deleted from a database table using HTTP `DELETE` method along with a filter.
+This filter should uniquely identify one record in the table.
+
+
+:::danger
+
+In case the filter matches multiple records, all of them will be deleted.
+
+:::
+
+## Example Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request DELETE \
+        --url http://localhost:8080/film&filter=id==1 \
+        --header 'Content-Profile: sakila' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.4.5'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        http DELETE http://localhost:8080/film&filter=id==1 \
+        Content-Profile:sakila \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.4.5
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+
+
+## HTTP Response
+
+TODO
+
+
+
+
+## Error handling
+
+TODO
+

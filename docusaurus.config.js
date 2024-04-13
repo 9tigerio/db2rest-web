@@ -14,8 +14,8 @@ const config = {
     defer: true,
     async: false,
   }],
-  title: 'No-Code REST API for Databases in Minutes.',
-  tagline: 'Don\'t write any database access code, Install DB2Rest instead.',
+  title: 'Open Source DATA Platform for Gen AI Applications.',
+  tagline: 'Accelerate development of secured, intelligent applications with your data by 30x',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
@@ -32,6 +32,7 @@ const config = {
   organizationName: 'kdhrubo', // Usually your GitHub org/user name.
   projectName: 'db2rest', // Usually your repo name.
 
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -43,6 +44,13 @@ const config = {
     locales: ['en'],
   },
 
+  customFields: {
+    version: 'V-0.2.3',
+    download_url: 'https://download.db2rest.com/db2rest-0.2.3.jar',
+    download_jar: 'db2rest-0.2.3.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-0.2.3.jar'
+  },
+
   presets: [
     [
       'classic',
@@ -52,15 +60,15 @@ const config = {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          //editUrl:
+            // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          //editUrl:
+           // 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -72,8 +80,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/db2-rest-card.png',
       navbar: {
         title: 'DB2Rest',
         logo: {
@@ -85,7 +94,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Docs',
+            label: 'Documentation',
           },
           {to: '/why-you-need-db2rest', label: 'Why DB2Rest?', position: 'left'},
           {to: '/blog', label: 'Blog', position: 'left'},
@@ -142,9 +151,11 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} DB2Rest. Built with Docusaurus.`,
       },
+      
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['java'],
       },
 
       algolia: {
@@ -176,6 +187,17 @@ const config = {
   
         //... other Algolia params
       },
+
+      /*
+      announcementBar: {
+        id: 'support_us',
+        content:
+            'We are updating our documentation <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
+        backgroundColor: '#DAF7A6',
+        textColor: '#091E42',
+        isCloseable: false,
+      },
+      */
 
     }),
 };

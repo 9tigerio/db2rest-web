@@ -1,8 +1,8 @@
 {
-  "label": "Query Record(s)",
-  "position": 3,
+  "label": "Read Rows(s)",
+  "position": 20,
   "link": {
     "type": "generated-index",
-    "description": "Learn how to read data using DB2Rest."
+    "description": "Learn how to read data from Table, View and Materialized View."
   }
 }
