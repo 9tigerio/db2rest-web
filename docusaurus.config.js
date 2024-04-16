@@ -163,7 +163,7 @@ const config = {
         appId: 'L530QZ3HMR',
   
         // Public API key: it is safe to commit it
-        apiKey: 'b8afe966e42747fee6ffc2434cff7cd3',
+        apiKey: '26f85fb21b0abe3d16adcf32ab61cfd3',
   
         indexName: 'db2rest',
   
