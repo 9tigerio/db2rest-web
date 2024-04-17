@@ -175,7 +175,7 @@ import TabItem from '@theme/TabItem';
         ```bash
 
         curl --request GET \
-        --url 'https://seashell-app-47ctm.ondigitalocean.app/actuator/health?=' \
+        --url 'https://marine-lissi-homi.koyeb.app/actuator/health?=' \
         --header 'User-Agent: insomnia/8.6.1'
 
 
@@ -184,7 +184,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="httpie" label="HTTPie">
         ```bash
 
-        http GET 'https://seashell-app-47ctm.ondigitalocean.app/actuator/health?=' \
+        http GET 'https://marine-lissi-homi.koyeb.app/actuator/health?=' \
         User-Agent:insomnia/8.6.1
 
         ```
@@ -202,11 +202,7 @@ Content-Type: application/json
 Transfer-Encoding: chunked
 
 {
-	"status": "UP",
-	"groups": [
-		"liveness",
-		"readiness"
-	]
+	"status": "UP"
 }
 
 ```
@@ -221,7 +217,7 @@ The `status` attribute shows that the application service is ready to handle dat
         ```bash
 
         curl --request POST \
-        --url https://seashell-app-47ctm.ondigitalocean.app/employee \
+        --url https://marine-lissi-homi.koyeb.app/employee \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '{
@@ -245,7 +241,7 @@ The `status` attribute shows that the application service is ready to handle dat
         "created_on" : "2015-04-14T11:07:36.639Z"
 
     }' |  \
-        http POST https://seashell-app-47ctm.ondigitalocean.app/employee \
+        http POST https://marine-lissi-homi.koyeb.app/employee \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -255,12 +251,12 @@ The `status` attribute shows that the application service is ready to handle dat
 
 #### HTTP Response
 ```json lines
-    {
-      "row": 1,
-      "keys": {
-        "id": 3
-      }
-    }
+{
+	"row": 1,
+	"keys": {
+		"id": 1
+	}
+}
 
 ```
 
@@ -272,7 +268,7 @@ The `status` attribute shows that the application service is ready to handle dat
         ```bash
 
         curl --request GET \
-        --url https://seashell-app-47ctm.ondigitalocean.app/employee \
+        --url https://marine-lissi-homi.koyeb.app/employee \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
@@ -280,7 +276,7 @@ The `status` attribute shows that the application service is ready to handle dat
     <TabItem value="httpie" label="HTTPie">
         ```bash
 
-        http GET https://seashell-app-47ctm.ondigitalocean.app/employee \
+        http GET https://marine-lissi-homi.koyeb.app/employee \
         User-Agent:insomnia/8.6.1
 
         ```
@@ -290,14 +286,14 @@ The `status` attribute shows that the application service is ready to handle dat
 
 #### HTTP Response
 ```json lines
-    [
-        {
-            "id": 1,
-            "first_name": "Salman",
-            "last_name": "Khan",
-            "email": "sk@skfilms.com",
-            "created_on": "2015-04-14T11:07:36.639+00:00"
-        }
-    ]
+[
+	{
+		"id": 1,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
 
 ```
