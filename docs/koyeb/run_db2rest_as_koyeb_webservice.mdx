@@ -20,8 +20,8 @@ keywords:
 # What is a Koyeb Service ?
 
 Koyeb service is an application that can run as a web application, API accessible publicly over internet or private like a background worker.
-Services can part of a microservices application or a single monolithic application.
-The platform makes it easy to deploy such service from Git repositories or using a Docker image. For more information on Koyeb service refer
+Services can be part of a microservices application or a single monolithic application.
+The platform makes it easy to deploy such services from Git repositories or using a Docker image. For more information on Koyeb service refer
 to this [link.](https://www.koyeb.com/docs/reference/services)
 
 :::tip
@@ -62,7 +62,7 @@ DB2Rest provides a [public docker image](https://hub.docker.com/repository/docke
 
 ### Docker Image
 
-Now on the `Docker image`, page provide path to the DB2Rest docker image and click on `Next`.
+Now on the `Docker image` page provide the path to the DB2Rest docker image and click on `Next`.
 
 :::info[DB2Rest Public Docker Image]
 
@@ -102,7 +102,7 @@ in the same region as the database.
 
 ### Instance
 
-In this example a free instance is selected for demonstration. Expand this section and select compute, memory and disk capacity appropriate for
+In this example a free instance is selected for demonstration. Expand this section and select compute, memory, and disk capacity appropriate for
 your deployment.
 
 ### Scaling
@@ -118,7 +118,7 @@ As of writing this article, Koyeb does not support scale to zero.
 
 ### Exposed Ports
 
-In this case the port `8080` is selected (instead of default `8000`). However, multiple ports can be selected (including remote debugging port) for the application service.
+In this case port `8080` is selected (instead of default `8000`). However, multiple ports can be selected (including remote debugging port) for the application service.
 
 ![Exposed Ports](./assets/exposed_ports.png "Exposed Ports")
 
@@ -133,11 +133,11 @@ The health check configuration should be changed to point to the DB2Rest actuato
 The app and service names can be changed, however in this case default values are applied.
 
 
-Finally click on the `Deploy` button on the top of the section.
+Finally click on the `Deploy` button at the top of the section.
 
 ### Deployment Status
 
-On successful deployment, healthy instance shows up.
+On successful deployment, a healthy status for the instance shows.
 
 ![Deployment Status](./assets/deployment_success.png "Deployment Status")
 
@@ -150,7 +150,7 @@ The deployment logs can be reviewed to verify successful deployment.
 
 Key things to note in the log are:
 
-- All health checks are passing and instance is ready to process requests.
+- All health checks are passing and the instance is ready to process requests.
 - DB2Rest is successfully started and actuator is available.
 - DB2Rest is connected to the database and has successfully loaded the meta-data about the `employee` table created in the
 [Create Database on Koyeb](https://db2rest.com/docs/koyeb/create-database-on-koyeb) guide.
