@@ -11,7 +11,7 @@ keywords:
 
 ---
 
-# Create Database on Koyeb
+# What is Koyeb?
 
 ![Run on Koyeb](./assets/run-on-koyeb.png "Run on Koyeb")
 
@@ -22,9 +22,12 @@ account login to Koyeb to access the control panel.
 ![Koyeb Landing](./assets/koyeb_landing.png "Koyeb Landing Page")
 
 
+## Create Database on Koyeb
+
 On the Koyeb dashboard click on the `Databases` tab.
 
 ![Koyeb Dashboard](./assets/koyeb_dashboard.png "Koyeb Dashboard")
+
 
 
 Now on the `Database` dashboard page , click on `Create Database Service` button.
@@ -50,3 +53,27 @@ The list of databases on Koyeb are shown below:
 
 ![Koyeb databases](./assets/list_postgresql_database_koyeb.png "Koyeb databases")
 
+
+### Create Table
+
+Next, create a table using any database tool. Our favorite tool is [Dbeaver](https://dbeaver.io/).
+
+:::info
+
+The connection details are available on the database dashboard.
+
+:::
+
+```SQL
+
+CREATE TABLE employee (
+	id serial4 NOT NULL,
+	first_name varchar(50) NOT NULL,
+	last_name varchar(50) NOT NULL,
+	email varchar(255) NOT NULL,
+	created_on timestamp NOT NULL,
+	CONSTRAINT employee_email_key UNIQUE (email),
+	CONSTRAINT employee_pkey PRIMARY KEY (id)
+);
+
+```
