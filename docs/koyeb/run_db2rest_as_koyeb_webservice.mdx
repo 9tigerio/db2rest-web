@@ -142,6 +142,15 @@ On successful deployment, healthy instance shows up.
 ![Deployment Status](./assets/deployment_success.png "Deployment Status")
 
 
-### Logs
+### Logs & Events
 
 The deployment logs can be reviewed to verify successful deployment.
+
+![Logs & Events](./assets/logs_events.png "Logs & Events")
+
+Key things to note in the log are:
+
+- All health checks are passing and instance is ready to process requests.
+- DB2Rest is successfully started and actuator is available.
+- DB2Rest is connected to the database and has successfully loaded the meta-data about the `employee` table created in the
+[Create Database on Koyeb](https://db2rest.com/docs/koyeb/create-database-on-koyeb) guide.
