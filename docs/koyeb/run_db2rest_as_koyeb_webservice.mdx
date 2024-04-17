@@ -17,7 +17,7 @@ keywords:
 ![Run on Koyeb](./assets/run-on-koyeb.png "Run on Koyeb")
 
 
-## What is a Koyeb Service ?
+# What is a Koyeb Service ?
 
 Koyeb service is an application that can run as a web application, API accessible publicly over internet or private like a background worker.
 Services can part of a microservices application or a single monolithic application.
@@ -33,7 +33,7 @@ It is very easy to auto-scale a service on Koyeb. Reference is below:
 :::
 
 
-## Create Koyeb App
+# Create Koyeb App
 
 In order to create Koyeb App, click on the `Apps` tab.
 
@@ -46,7 +46,7 @@ On the `Apps` dashboard click on `Create App` button.
 
 This will show the `Deploy a new project on Koyeb` page.
 
-### Deploy a new project
+## Deploy a new project
 
 On the `Deploy a project on Koyeb` page there are options to:
 
@@ -55,14 +55,14 @@ On the `Deploy a project on Koyeb` page there are options to:
 
 ![Deploy a new project](./assets/deploy_new_project_on_koyeb.png "Deploy a new project")
 
-#### Select Deployment method
+### Select Deployment method
 
 DB2Rest provides a [public docker image](https://hub.docker.com/repository/docker/kdhrubo/db2rest). This can be used to deploy as Koyeb service. Hence, select `Docker` as the deployment method.
 
 
-#### Docker Image
+### Docker Image
 
-Now on the `Docker image`, page provide path to the DB2Rest docker image.
+Now on the `Docker image`, page provide path to the DB2Rest docker image and click on `Next`.
 
 :::info[DB2Rest Public Docker Image]
 
@@ -72,4 +72,8 @@ docker.io/kdhrubo/db2rest:latest
 
 
 ![DB2Rest Docker image](./assets/db2rest_docker_image.png "DB2Rest Docker image")
+
+This will show the `Configure service and deploy` screen. On this screen some configuration needs to be edited as described in the next sections.
+
+#### Environment Variables
 
