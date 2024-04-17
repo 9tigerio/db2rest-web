@@ -118,8 +118,9 @@ As of writing this article, Koyeb does not support scale to zero.
 
 ### Exposed Ports
 
-In this case the default port `8000` is selected. However multiple ports can be selected (including remote debugging port) for the application service.
+In this case the port `8080` is selected (instead of default `8000`). However, multiple ports can be selected (including remote debugging port) for the application service.
 
+![Exposed Ports](./assets/exposed_ports.png "Exposed Ports")
 
 ### Health checks
 
@@ -129,7 +130,18 @@ The health check configuration should be changed to point to the DB2Rest actuato
 
 ### App and Service names
 
-Finally, the app and service names can be changed, however in this case default values are applied.
+The app and service names can be changed, however in this case default values are applied.
 
 
 Finally click on the `Deploy` button on the top of the section.
+
+### Deployment Status
+
+On successful deployment, healthy instance shows up.
+
+![Deployment Status](./assets/deployment_success.png "Deployment Status")
+
+
+### Logs
+
+The deployment logs can be reviewed to verify successful deployment.
