@@ -75,6 +75,9 @@ docker.io/kdhrubo/db2rest:latest
 
 This will show the `Configure service and deploy` screen. On this screen some configuration needs to be edited as described in the next sections.
 
+![Configure service and deploy](./assets/configure_service_deployment.png "Configure service and deploy")
+
+
 ### Environment Variables
 
 The following environment variables are required:
@@ -90,4 +93,37 @@ These values are available from the connection details tab (Java tab) as shown b
 The environment variables can be configured as shown below. All the values are set as type `Plaintext`.
 
 ![Configured Environment Variables](./assets/configured_environment_variables.png "Configured Environment Variables")
+
+### Regions
+
+In this case the service is going to be deployed in the `Frankfurt` region. The [DB2Rest](https://db2rest.com) service should be deployed
+in the same region as the database.
+
+
+### Instance
+
+In this example a free instance is selected for demonstration. Expand this section and select compute, memory and disk capacity appropriate for
+your deployment.
+
+### Scaling
+
+Change the number of instances to suit your application needs.
+
+:::warning
+
+As of writing this article, Koyeb does not support scale to zero.
+
+:::
+
+
+### Exposed Ports
+
+In this case the default port `8000` is selected. However multiple ports can be selected (including remote debugging port) for the application service.
+
+
+### Health checks
+
+The health check configuration should be changed to point to the DB2Rest actuator end point for health status check as shown below.
+
+![Health checks](./assets/health_check.png "Health checks")
 
