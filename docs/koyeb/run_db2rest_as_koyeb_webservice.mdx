@@ -44,9 +44,32 @@ On the `Apps` dashboard click on `Create App` button.
 
 ![Create App](./assets/create_app.png "Create App")
 
+This will show the `Deploy a new project on Koyeb` page.
 
 ### Deploy a new project
 
-This will show the `Deploy a new project on Koyeb` page.
+On the `Deploy a project on Koyeb` page there are options to:
+
+- Github : deploy from a Github repository.
+- Docker : deploy from a Docker image.
 
 ![Deploy a new project](./assets/deploy_new_project_on_koyeb.png "Deploy a new project")
+
+#### Select Deployment method
+
+DB2Rest provides a [public docker image](https://hub.docker.com/repository/docker/kdhrubo/db2rest). This can be used to deploy as Koyeb service. Hence, select `Docker` as the deployment method.
+
+
+#### Docker Image
+
+Now on the `Docker image`, page provide path to the DB2Rest docker image.
+
+:::info[DB2Rest Public Docker Image]
+
+docker.io/kdhrubo/db2rest:latest
+
+:::
+
+
+![DB2Rest Docker image](./assets/db2rest_docker_image.png "DB2Rest Docker image")
+
