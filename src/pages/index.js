@@ -39,7 +39,9 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+          <!--
         <CustomersSection />
+            -->
       </main>
     </Layout>
   );
