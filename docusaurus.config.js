@@ -14,8 +14,8 @@ const config = {
     defer: true,
     async: false,
   }],
-  title: 'Open Source DATA Platform for Gen AI Applications.',
-  tagline: 'Accelerate development of secured, intelligent applications with your data by 30x',
+  title: 'Open Source Instant Rest Data API for databases.',
+  tagline: 'Accelerate development of secured, intelligent applications by 30x',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
