@@ -15,7 +15,7 @@ const config = {
     async: false,
   }],
   title: 'Open Source Instant Rest Data API for databases.',
-  tagline: 'Accelerate development of secured, intelligent applications by 30x',
+  tagline: 'Unlock data, Accelerate development of secured, intelligent applications by 30x',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
