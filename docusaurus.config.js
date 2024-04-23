@@ -82,7 +82,7 @@ const config = {
     ({
 
       // Replace with your project's social card
-      image: 'img/db2-rest-card.png',
+      image: 'img/db2rest-new-banner.png',
       navbar: {
         title: 'DB2Rest',
         logo: {
