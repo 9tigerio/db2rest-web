@@ -33,9 +33,7 @@ function HomepageHeader() {
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Open Source REST DATA API for Databases. Build Intelligent Applications Faster <head />">
+    <Layout>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
