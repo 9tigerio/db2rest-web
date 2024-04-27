@@ -52,7 +52,6 @@ Updated: 27-April-2024
 - [ ] Basic Auth
 - [ ] Batch export to file-system, S3, FTP, - Async or Scheduled 
 - [ ] Batch import from file-system, S3, FTP
-- [ ] DB2DB Replication
 - [ ] Support AWS Lightsail
 - [ ] Support deploy to Azure
 - [ ] GraphQL Support
