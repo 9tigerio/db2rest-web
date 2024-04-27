@@ -28,7 +28,7 @@ Now in the terminal window run the following command:
 $ docker run -p 8080:8080 -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhrubo/db2rest:latest
 ``` 
 
-:::note
+:::info
 
 DB2Rest internally starts on port 8080 by default, but is not exposed automatically on startup.
 To expose the default service port 8080, use the `-p` option on docker run, such as `-p 8080:8080` or an alternative port such as `-p 1234:8080`
