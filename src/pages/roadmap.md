@@ -6,7 +6,7 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 6-April-2024
+Updated: 27-April-2024
 
 ## In Progress
 
@@ -37,7 +37,6 @@ Updated: 6-April-2024
 - [ ] Native binary image - simplify installation
 - [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8
 - [ ] Deploy to GCP
-- [ ] Deploy to Koyeb
 - [ ] Deploy to Render
 - [ ] Ability to insert into multiple tables
 - [ ] Batch loading of remote files
@@ -91,3 +90,4 @@ Updated: 6-April-2024
 - [x] Stored procedure, stored function calls
 - [x] Support Database View
 - [x] Support for Database materialized view
+- [X] Deploy to Koyeb
