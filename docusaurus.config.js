@@ -45,10 +45,10 @@ const config = {
   },
 
   customFields: {
-    version: 'V-0.3.0',
-    download_url: 'https://download.db2rest.com/db2rest-0.3.0.jar',
-    download_jar: 'db2rest-0.3.0.jar',
-    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-0.3.0.jar'
+    version: 'V-0.3.1-FIXED',
+    download_url: 'https://download.db2rest.com/db2rest-0.3.1-FIXED.jar',
+    download_jar: 'db2rest-0.3.1-FIXED.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-0.3.1-FIXED.jar'
   },
 
   presets: [
@@ -96,7 +96,10 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
+          /*
           {to: '/why-you-need-db2rest', label: 'Why DB2Rest?', position: 'left'},
+
+           */
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/roadmap', label: 'Roadmap', position: 'left'},
           {
