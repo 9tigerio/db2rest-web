@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_fireworks_re_2xi7.svg').default,
     description: (
       <>
-        Programming database access layer involves writing lots of boilerplate code. It is often combined with onnection leak, transactional inconsistency, inefficient data batching, 
+        Programming database access layer involves writing lots of boilerplate code. It is often combined with connection leak, transactional inconsistency, inefficient data batching, 
         data leak and SQL injection issues. With DB2Rest never worry about these concerns again.    
       </>
     ),
