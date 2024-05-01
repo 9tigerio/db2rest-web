@@ -25,9 +25,15 @@ It is assumed that a MySQL server has already been installed, started, and popul
 Now in the terminal window run the following command:
 
 ```Shell
-$ docker run -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhrubo/db2rest:latest
+$ docker run -p 8080:8080 -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhrubo/db2rest:latest
 ``` 
 
+:::info
+
+DB2Rest internally starts on port 8080 by default, but is not exposed automatically on startup.
+To expose the default service port 8080, use the `-p` option on docker run, such as `-p 8080:8080` or an alternative port such as `-p 1234:8080`
+
+:::
 
 | Sl# | Parameter Name | Description                | Example                                                                                                                                                  |
 |-----|----------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -35,4 +41,4 @@ $ docker run -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhr
 | 2.  | DB_USER        | Database user              |                                                                                                                                                          |
 | 3.  | DB_PASSWORD    | Database password          |                                                                                                                                                          |     
 
-This will start DB2Rest within seconds ready with to server API requests on the MySQL database. 
+This will start DB2Rest within seconds ready to serve API requests on the MySQL database.
