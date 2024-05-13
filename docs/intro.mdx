@@ -13,7 +13,11 @@ Let's discover **DB2Rest in less than 10 minutes** by running the Jar distributi
 In order to deploy DB2Rest on a laptop/PC/Mac, bare metal box or a VM on any cloud like [Amazon EC2](https://aws.amazon.com/pm/ec2/)
 or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follow the steps below:
 
-### Minimum System Requirements
+### Pre-requisite
+
+    - PostgreSQL or MySQL is installed and running.
+
+### Minimum System Requirements for DB2REST
 
     - Java 21
     - 2-4 GB RAM/Memory.
@@ -55,17 +59,21 @@ The latest version of DB2Rest - **{siteConfig.customFields.version}** can be dow
 
 ### Run DB2Rest.
 
-DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
+Open terminal and execute the command below:
 
 ```Shell
-$ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.3.1-FIXED.jar
+
+
+$ java -DDB_URL=[DB_URL] -DDB_USER=[DB_USER] -DDB_PASSWORD=[DB_PASSWORD] -jar **{siteConfig.customFields.download_url}**
+
+
 ``` 
 
 Replace the values for the following parameters:
 
 | Sl# | Parameter Name | Description                | Example                                                                                                                            |
 |-----|----------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| 1.  | DB URL         | JDBC URL connection string | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/sakila?currentSchema=public |
+| 1.  | DB_URL         | JDBC URL connection string | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/sakila?currentSchema=public |
 | 2.  | User           | Database user              |                                                                                                                                    |
 | 3.  | Password       | Database password          |                                                                                                                                    |       
 
