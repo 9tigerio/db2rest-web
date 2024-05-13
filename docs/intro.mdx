@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 import siteConfig from '/docusaurus.config.js';
+import CodeBlock from '@theme/CodeBlock';
+
 
 # Getting Started with DB2Rest
 
@@ -68,7 +70,7 @@ $ java -DDB_URL=[DB_URL] -DDB_USER=[DB_USER] -DDB_PASSWORD=[DB_PASSWORD] -jar ${
 
 
 ``` 
-<CodeBlock>{`Hello ${siteConfig.customFields.download_url}`}</CodeBlock>
+<CodeBlock language="bash">${siteConfig.customFields.download_url}</CodeBlock>
 
 Replace the values for the following parameters:
 
