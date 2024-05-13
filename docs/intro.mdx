@@ -63,18 +63,16 @@ The latest version of DB2Rest - **{siteConfig.customFields.version}** can be dow
 
 Open terminal and execute the command below:
 
-<CodeBlock language="jsx">
-    $ java -DDB_URL=[DB_URL] -DDB_USER=[DB_USER] -DDB_PASSWORD=[DB_PASSWORD] -jar {siteConfig.customFields.download_jar}
-</CodeBlock>
+<CodeBlock language="jsx">$ java -DDB_URL=[DB_URL] -DDB_USER=[DB_USER] -DDB_PASSWORD=[DB_PASSWORD] -jar {siteConfig.customFields.download_jar}</CodeBlock>
 
 
 Replace the values for the following parameters:
 
-| Sl# | Parameter Name | Description                | Example                                                                                                                            |
-|-----|----------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| 1.  | DB_URL         | JDBC URL connection string | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/sakila?currentSchema=public |
-| 2.  | User           | Database user              |                                                                                                                                    |
-| 3.  | Password       | Database password          |                                                                                                                                    |       
+| Sl# | Parameter Name | Description                | Example                                                                                                                                |
+|-----|----------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| 1.  | DB_URL         | JDBC URL connection string | - MySQL : `jdbc:mysql://localhost:3306/sakila`     <br/> - PostgreSQL : `jdbc:postgresql://localhost:5432/sakila?currentSchema=public` |
+| 2.  | DB_USER        | Database user              |                                                                                                                                        |
+| 3.  | DB_PASSWORD    | Database password          |                                                                                                                                        |
 
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
@@ -82,7 +80,6 @@ Once this command is executed, within a few seconds, DB2Rest is ready to service
 ### Verify DB2Rest Installation
 
 The actuator endpoint can be used to test the installation.
-
 
 
 import Tabs from '@theme/Tabs';
@@ -124,3 +121,4 @@ Transfer-Encoding: chunked
 }
 
 ```
+The `status` value of `UP` confirms that the service is up and running.
