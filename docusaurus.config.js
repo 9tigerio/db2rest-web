@@ -45,10 +45,10 @@ const config = {
   },
 
   customFields: {
-    version: 'V-0.3.1-FIXED',
-    download_url: 'https://download.db2rest.com/db2rest-0.3.1-FIXED.jar',
-    download_jar: 'db2rest-0.3.1-FIXED.jar',
-    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-0.3.1-FIXED.jar'
+    version: 'V-1.0.6',
+    download_url: 'https://download.db2rest.com/db2rest-1.0.6.jar',
+    download_jar: 'db2rest-1.0.6.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.0.6.jar'
   },
 
   presets: [
@@ -189,6 +189,15 @@ const config = {
         searchPagePath: 'search',
   
         //... other Algolia params
+      },
+
+      announcementBar: {
+        id: 'support_us',
+        content:
+            'We are updating the documentation to the latest release 1.0.6+.',
+        backgroundColor: '#DAF7A6',
+        textColor: '#091E42',
+        isCloseable: false,
       },
 
       /*

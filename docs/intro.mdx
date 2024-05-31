@@ -2,37 +2,80 @@
 sidebar_position: 1
 ---
 import siteConfig from '/docusaurus.config.js';
+import CodeBlock from '@theme/CodeBlock';
+
 
 # Getting Started with DB2Rest
 
 Let's discover **DB2Rest in less than 10 minutes** by running the Jar distribution.
+
 
 ## Run On Premise / On Virtual Machines (VM)
 
 In order to deploy DB2Rest on a laptop/PC/Mac, bare metal box or a VM on any cloud like [Amazon EC2](https://aws.amazon.com/pm/ec2/)
 or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follow the steps below:
 
-### Minimum System Requirements
+### Pre-requisite
+
+    - PostgreSQL/MySQL is installed and running.
+    - ```employee``` table is created.
+
+The script for creating the employee table is listed below:
+
+**PostgreSQL**
+
+```sql
+CREATE TABLE employee (
+    id serial4 NOT NULL,
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    email varchar(255) NOT NULL,
+    created_on timestamp NOT NULL,
+    CONSTRAINT employee_email_key UNIQUE (email),
+    CONSTRAINT employee_pkey PRIMARY KEY (id)
+);
+```
+
+**MySQL**
+
+```sql
+CREATE TABLE `employee` (
+  `emp_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`emp_id`)
+);
+```
+
+You can use your favorite SQL client to execute these scripts.
+
+
+### Minimum System Requirements for DB2REST
 
     - Java 21
     - 2-4 GB RAM/Memory.
 
 DB2Rest needs Java Runtime 21+ to run. This is because it is compiled with Java 21 and makes uses of Java Virtual Thread feature
-for high scalability. Hence, DB2Rest can handling very high volume of requests even on a single node. 
-
+for high scalability. With [virtual thread](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html) DB2Rest can handle very high volume of requests even on a single machine.
 
 
 ### Install JDK 21+
 
 Download JDK 21 or above. There are many flavors of JDK available from different vendors like Oracle, AWS, OpenJDK. 
 
-Open JDK can be downloaded from here - https://jdk.java.net/21/. This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21 provides a step by step guide to install OpenJDK 21 on Windows platform.
+Open JDK can be downloaded from here - https://jdk.java.net/21/.
+This article from https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Java-21
+provides a step by step guide to install OpenJDK 21 on Windows platform.
+For other operating system refer to this article https://www.freecodecamp.org/news/install-openjdk-free-java-multi-os-guide/ for guidance.
 
 Oracle JDK 21 can be downloaded and installed for various operating systems by following the instructions [here](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
 
 ### Download DB2Rest
 
-Now that you have successfully downloaded, installed and verified Java 21, the next step is to get DB2Rest. DB2Rest is shipped as a single executable Java Archive or jar file So it's super easy to get up and running under a minute. 
+After successful installation of JDK 21+, the next step is to get download DB2Rest.
+DB2Rest is shipped as a single executable Java Archive or jar file. Hence, it is super easy to get up and running quickly.
 
 The latest version of DB2Rest - **{siteConfig.customFields.version}** can be downloaded from the link below:
 
@@ -50,27 +93,34 @@ The latest version of DB2Rest - **{siteConfig.customFields.version}** can be dow
 
 ### Run DB2Rest.
 
-DB2Rest is just 60Mb and is immediately runnable. Fire up a terminal and execute the command below:
+Open terminal and set the following environment variables as shown below.
 
-```Shell
-$ java -DDB_URL=[DB Url] -DDB_PASSWORD=[Password] -DDB_USER=[User] -jar db2rest-0.3.1-FIXED.jar
-``` 
+```bash
+
+$ export DB_USER=[DB_USER]
+$ export DB_PASSWORD=[DB_PASSWORD]
+$ export DB_URL=[DB_URL]
+
+````
 
 Replace the values for the following parameters:
 
-| Sl# | Parameter Name | Description                | Example                                                                                                                            |
-|-----|----------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| 1.  | DB URL         | JDBC URL connection string | - MySQL : jdbc:mysql://localhost:3306/sakila     <br/> - PostgreSQL : jdbc:postgresql://localhost:5432/sakila?currentSchema=public |
-| 2.  | User           | Database user              |                                                                                                                                    |
-| 3.  | Password       | Database password          |                                                                                                                                    |       
+| Sl# | Parameter Name | Description                | Example                                                                                                                                |
+|-----|----------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| 1.  | DB_URL         | JDBC URL connection string | - MySQL : `jdbc:mysql://localhost:3306/sakila`     <br/> - PostgreSQL : `jdbc:postgresql://localhost:5432/sakila?currentSchema=public` |
+| 2.  | DB_USER        | Database user              |                                                                                                                                        |
+| 3.  | DB_PASSWORD    | Database password          |                                                                                                                                        |
 
+
+Then execute the command below to start DB2Rest:
+
+<CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.  
 
 ### Verify DB2Rest Installation
 
 The actuator endpoint can be used to test the installation.
-
 
 
 import Tabs from '@theme/Tabs';
@@ -112,3 +162,99 @@ Transfer-Encoding: chunked
 }
 
 ```
+The `status` value of `UP` confirms that the service is up and running.
+
+
+## Test Drive DB2Rest
+
+### Insert Row
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://localhost:8080/v1/rdbms/db/employee \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+    }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+
+    }' |  \
+        http POST http://localhost:8080/v1/rdbms/db/employee \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+{
+	"row": 1,
+	"keys": {
+		"id": 1
+	}
+}
+
+```
+
+### Read Row
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://localhost:8080/v1/rdbms/db/employee \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://localhost:8080/v1/rdbms/db/employee \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+[
+	{
+		"id": 1,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
+
+```
+
+Finally, refer to the DB2Rest documentation for further learning and exploring API features.
+
+For help, visit us on [Discord](https://discord.gg/gytFPNW656) or our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions)
