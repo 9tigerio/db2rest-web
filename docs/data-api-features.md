@@ -50,7 +50,7 @@ sidebar_position: 5
 **Multiple Database Support**
 
 - [x] Ability to run on both relational and non-relational databases. 
-- [x] <span class="color-primary">Ability to run multiple database in single instance of DB2Rest.</span>
+- [x] <span class="ifm-color-primary">Ability to run multiple database in single instance of DB2Rest.</span>
 
 
 **Database Support**
