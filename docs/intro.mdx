@@ -17,14 +17,14 @@ or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follo
 
 ### Pre-requisite
 
-    - PostgreSQL is installed and running.
+    - PostgreSQL/MySQL is installed and running.
     - ```employee``` table is created.
 
 The script for creating the employee table is listed below:
 
+**PostgreSQL**
+
 ```sql
-
-
     CREATE TABLE employee (
         id serial4 NOT NULL,
         first_name varchar(50) NOT NULL,
@@ -35,8 +35,23 @@ The script for creating the employee table is listed below:
         CONSTRAINT employee_pkey PRIMARY KEY (id)
     );
 
-
 ```
+
+**MySQL**
+
+```sql
+CREATE TABLE `employee` (
+  `emp_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`emp_id`)
+);
+```
+
+You can use your favorite SQL client to execute these scripts.
+
 
 ### Minimum System Requirements for DB2REST
 
