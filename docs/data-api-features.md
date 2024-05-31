@@ -8,6 +8,7 @@ sidebar_position: 5
 
 - [x] Single record.
 - [x] Bulk records.
+- [ ] Bulk file uploads.
 
 **Query (Read)**
 
@@ -17,9 +18,9 @@ sidebar_position: 5
 - [x] Join
 - [x] Pagination - Limit & Offset
 - [x] Sort / Order by
-- [ ] Group By
 - [x] Count
-
+- [ ] Group By
+- [ ] Data Exports - csv, excel
 
 **Edit**
 
