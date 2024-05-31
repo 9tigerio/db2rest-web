@@ -47,8 +47,12 @@ sidebar_position: 5
 
 - [x] Multiple schema support
 
+**Multiple Database Support**
+
+- [x] Ability to run on both relational and non-relational databases. 
+- [x] <span class="color-primary">Ability to run multiple database in single instance of DB2Rest.<span>
+
+
 **Database Support**
 
 - [x] Multiple Database support
-
-
