@@ -191,6 +191,15 @@ const config = {
         //... other Algolia params
       },
 
+      announcementBar: {
+        id: 'support_us',
+        content:
+            'We are updating the documentation to the latest release 1.0.6+.',
+        backgroundColor: '#DAF7A6',
+        textColor: '#091E42',
+        isCloseable: false,
+      },
+
       /*
       announcementBar: {
         id: 'support_us',
