@@ -1,5 +1,5 @@
 {
-  "label": "Support Multiple Databases",
+  "label": "Working with View and Materialized View",
   "position": 200,
   "link": {
     "type": "generated-index",

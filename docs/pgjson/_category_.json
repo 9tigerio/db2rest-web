@@ -1,5 +1,5 @@
 {
-  "label": "Support Multiple Databases",
+  "label": "Support PostgreSQL JSON columns",
   "position": 200,
   "link": {
     "type": "generated-index",
