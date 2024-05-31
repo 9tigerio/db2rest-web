@@ -1,0 +1,8 @@
+{
+  "label": "Data and API Security",
+  "position": 50,
+  "link": {
+    "type": "generated-index",
+    "description": "Guide to delete record(s) in a table using DB2Rest."
+  }
+}
