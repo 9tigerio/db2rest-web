@@ -17,7 +17,26 @@ or [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets), follo
 
 ### Pre-requisite
 
-    - PostgreSQL or MySQL is installed and running.
+    - PostgreSQL is installed and running.
+    - ```employee``` table is created.
+
+The script for creating the employee table is listed below:
+
+```sql
+
+
+    CREATE TABLE employee (
+        id serial4 NOT NULL,
+        first_name varchar(50) NOT NULL,
+        last_name varchar(50) NOT NULL,
+        email varchar(255) NOT NULL,
+        created_on timestamp NOT NULL,
+        CONSTRAINT employee_email_key UNIQUE (email),
+        CONSTRAINT employee_pkey PRIMARY KEY (id)
+    );
+
+
+```
 
 ### Minimum System Requirements for DB2REST
 
