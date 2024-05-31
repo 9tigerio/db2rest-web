@@ -2,6 +2,10 @@
 sidebar_position: 2
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
+
+
 # Run on Docker
 
 This tutorial shows how you can get started with **DB2Rest in less than 10 minutes** on Docker.
@@ -27,6 +31,13 @@ Now in the terminal window run the following command:
 ```Shell
 $ docker run -p 8080:8080 -e DB_URL=[DB URL] -e DB_USER=[User] -e DB_PASSWORD=[Password] kdhrubo/db2rest:latest
 ``` 
+<CodeBlock language="bash">
+
+$ docker run -p 8080:8080 -e DB_URL=[DB_URL] -e DB_USER=[DB_USER] -e DB_PASSWORD=[DB_PASSWORD] kdhrubo/db2rest:latest
+
+</CodeBlock>
+
+
 
 :::info
 

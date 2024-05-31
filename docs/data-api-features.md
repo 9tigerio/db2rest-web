@@ -14,13 +14,11 @@ sidebar_position: 5
 - [x] Row Filtering with rSQL DSL.
 - [x] Column Selection
 - [x] Rename Columns / Alias
-- [x] Join - Inner
-- [x] Include Join Columns
+- [x] Join
 - [x] Pagination - Limit & Offset
-- [X] Sort / Order by
+- [x] Sort / Order by
 - [ ] Group By
-- [ ] Count
-- [ ] Join column filter
+- [x] Count
 
 
 **Edit**
@@ -48,5 +46,9 @@ sidebar_position: 5
 **Schema Support**
 
 - [x] Multiple schema support
+
+**Database Support**
+
+- [x] Multiple Database support
 
 
