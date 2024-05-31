@@ -25,16 +25,15 @@ The script for creating the employee table is listed below:
 **PostgreSQL**
 
 ```sql
-    CREATE TABLE employee (
-        id serial4 NOT NULL,
-        first_name varchar(50) NOT NULL,
-        last_name varchar(50) NOT NULL,
-        email varchar(255) NOT NULL,
-        created_on timestamp NOT NULL,
-        CONSTRAINT employee_email_key UNIQUE (email),
-        CONSTRAINT employee_pkey PRIMARY KEY (id)
-    );
-
+CREATE TABLE employee (
+    id serial4 NOT NULL,
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    email varchar(255) NOT NULL,
+    created_on timestamp NOT NULL,
+    CONSTRAINT employee_email_key UNIQUE (email),
+    CONSTRAINT employee_pkey PRIMARY KEY (id)
+);
 ```
 
 **MySQL**
@@ -164,3 +163,98 @@ Transfer-Encoding: chunked
 
 ```
 The `status` value of `UP` confirms that the service is up and running.
+
+
+## Test Drive DB2Rest
+
+### Insert Row
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url https://marine-lissi-homi.koyeb.app/employee \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+    }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+
+    }' |  \
+        http POST https://marine-lissi-homi.koyeb.app/employee \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+{
+	"row": 1,
+	"keys": {
+		"id": 1
+	}
+}
+
+```
+
+### Read Row
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url https://marine-lissi-homi.koyeb.app/employee \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET https://marine-lissi-homi.koyeb.app/employee \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+[
+	{
+		"id": 1,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
+
+```
+
+Finally, refer to the DB2Rest documentation for further learning and exploring API features.
+
+For help, visit us on [Discord](https://discord.gg/gytFPNW656) or our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions)
