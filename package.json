@@ -1,6 +1,6 @@
 {
-  "name": "db-2-rest-web",
-  "version": "1.0.0",
+  "name": "db2rest-web",
+  "version": "1.0.6",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
