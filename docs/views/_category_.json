@@ -1,0 +1,8 @@
+{
+  "label": "Support Multiple Databases",
+  "position": 200,
+  "link": {
+    "type": "generated-index",
+    "description": "Guide on connecting and working with multiple databases."
+  }
+}

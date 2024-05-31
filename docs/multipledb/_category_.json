@@ -1,0 +1,8 @@
+{
+  "label": "Support for View and Materialized Views",
+  "position": 300,
+  "link": {
+    "type": "generated-index",
+    "description": "Guide on working with View and Materialized Views."
+  }
+}
