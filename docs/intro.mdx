@@ -60,9 +60,21 @@ The latest version of DB2Rest - **{siteConfig.customFields.version}** can be dow
 
 ### Run DB2Rest.
 
-Open terminal and execute the command below:
+Open terminal and set the following environment variables as shown below.
 
-<CodeBlock language="jsx">$ java -DDB_URL=[DB_URL] -DDB_USER=[DB_USER] -DDB_PASSWORD=[DB_PASSWORD] -jar {siteConfig.customFields.download_jar}</CodeBlock>
+```bash
+
+$ export DB_USER=[DB_USER]
+
+$ export DB_PASSWORD=[DB_PASSWORD]
+
+$ export DB_URL=[DB_URL]
+
+````
+
+execute the command below:
+
+<CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
 
 
 Replace the values for the following parameters:
