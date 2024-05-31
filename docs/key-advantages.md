@@ -11,5 +11,5 @@ sidebar_position: 4
     - Support for advanced custom queries, bulk data insert, and remote stored procedure calls.
     - Best practices for transaction management, connection pooling, encryption, security - RBAC / data entitlement.
     - Deploy and run anywhere - on-premise, VM, Kubernetes, or any cloud.
-    - Zero downtime - adjusts to your evolving database schema.
+    - Zero Downtime - adjusts to your evolving database schema.
     - Compatible with DevOps processes. 
