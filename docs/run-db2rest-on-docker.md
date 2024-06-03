@@ -59,9 +59,7 @@ After the download is completed, follow the steps outlined [here](https://docs.d
 ## 2. Run DB2Rest
 
 Now launch a terminal window to run the DB2Rest docker image. DB2Rest docker image is available on [Dockerhub](https://hub.docker.com/repository/docker/kdhrubo/db2rest/general).
-It is assumed that a MySQL server has already been installed, started, and populated with Sakila database objects and data. MySQL Community Edition (CE) is available for download [here](https://dev.mysql.com/downloads/).
-
-Now in the terminal run the following command:
+In the terminal run the following command:
 
 ```shell
 $ docker run -p 8080:8080 -e DB_URL=[DB_URL] -e DB_USER=[DB_USER] -e DB_PASSWORD=[DB_PASSWORD] kdhrubo/db2rest:latest
