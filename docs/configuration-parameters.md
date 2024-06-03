@@ -18,3 +18,18 @@ sidebar_position: 3
 | 10. | TIME_FORMAT                | Time format                                                                                            | <ul><li>`HH:mm:ss`(default)</li></ul>                                                                                                         |
 | 11. | DATE_FORMAT                | Date format                                                                                            | <ul><li>`yyyy-MM-dd`(default)</li></ul>                                                                                                       |
 | 12. | DATE_TIME_FORMAT           | Date time format                                                                                       | <ul><li>`yyyy-MM-dd HH:mm:ss`(default)</li></ul>                                                                                              |
+
+
+
+:::note
+
+Date time format parameter is only applicable for output / response. 
+
+:::
+
+
+:::info
+
+In case request attributes, only ISO data-time formats are supported. 
+
+:::
