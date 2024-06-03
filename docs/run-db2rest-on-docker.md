@@ -5,7 +5,7 @@ sidebar_position: 2
 import CodeBlock from '@theme/CodeBlock';
 
 
-# Getting started with DB2Rest on Docker
+# Run DB2Rest on Docker
 
 This tutorial shows how you can get started with **DB2Rest in less than 10 minutes** on Docker.
 
