@@ -93,7 +93,7 @@ import TabItem from '@theme/TabItem';
         ```bash
 
         curl --request GET \
-        --url http://[IP_ADDRESS]:8080/actuator/health \
+        --url http://[IP_ADDRESS]:[PORT]/actuator/health \
         --header 'User-Agent: insomnia/8.6.1'
 
 
@@ -102,7 +102,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="httpie" label="HTTPie">
         ```bash
 
-        http GET http://[IP_ADDRESS]:8080/actuator/health \
+        http GET http://[IP_ADDRESS]:[PORT]/actuator/health \
         User-Agent:insomnia/8.6.1
 
         ```
@@ -136,7 +136,7 @@ The `status` value of `UP` confirms that the service is up and running.
         ```bash
 
         curl --request POST \
-        --url http://localhost:8080/v1/rdbms/db/employee \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '{
@@ -160,7 +160,7 @@ The `status` value of `UP` confirms that the service is up and running.
         "created_on" : "2015-04-14T11:07:36.639Z"
 
     }' |  \
-        http POST http://localhost:8080/v1/rdbms/db/employee \
+        http POST http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -187,7 +187,7 @@ The `status` value of `UP` confirms that the service is up and running.
         ```bash
 
         curl --request GET \
-        --url http://localhost:8080/v1/rdbms/db/employee \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
@@ -195,7 +195,7 @@ The `status` value of `UP` confirms that the service is up and running.
     <TabItem value="httpie" label="HTTPie">
         ```bash
 
-        http GET http://localhost:8080/v1/rdbms/db/employee \
+        http GET http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
         User-Agent:insomnia/8.6.1
 
         ```
