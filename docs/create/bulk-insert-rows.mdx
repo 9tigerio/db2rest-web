@@ -4,19 +4,25 @@ sidebar_position: 2
 
 # Bulk Insert Rows
 
-Bulk insert of rows works like single row insert. The difference is bulk insert works with multiple records.
+Bulk insert saves more than one records/rows in the database.
 The payload can be a JSON array of objects or lines in CSV format. Irrespective of the data type, the
 number of keys in the JSON object or CSV rows must be same.
+
+:::info
 
 With bulk insert, several rows can be inserted in a single network request. DB2Rest further optimizes the record insertion.
 All the rows are batched and send to database as a single INSERT statement.
 
-:::tip Bulk Insert Scenarios / Use-Cases
+:::
+
+
+
+## Bulk Insert Scenarios / Use-Cases
 
      - Data migration / Batch processing - Insert large data-set in chunks of `n` records. Ex - file processing.
      - Front end multi row inserts - application can create records of same type - Order containing Line items.
 
-:::
+
 
 
 :::warning
