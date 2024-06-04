@@ -15,27 +15,34 @@ import TabItem from '@theme/TabItem';
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
+
         curl --request POST \
-        --url http://localhost:8080/actor \
+        --url http://localhost:8080/v1/rdbms/pgdb/actor \
         --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
         --data '{
 
-        "first_name" : "Salman",
-        "last_name" : "Khan"
+            "first_name" : "Salman",
+            "last_name" : "Khan"
 
-    }'
+        }'
+
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
+
         echo '{
 
         "first_name" : "Salman",
         "last_name" : "Khan"
 
     }' |  \
-        http POST http://localhost:8080/actor \
-        Content-Type:application/json
+        http POST http://localhost:8080/v1/rdbms/pgdb/actor \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+
+
         ```
     </TabItem>
 
@@ -88,9 +95,8 @@ However, if the column (with default value) is not nullable and the key is suppl
 </Tabs>
 
 
-On successful creation of the row in the table, DB2Rest responds with HTTP code 201. The response payload
-attribute `rows` indicate the number of rows created in the table. Along with the number of rows the response payload
-also contains `keys` attribute which contains the values of the generated primary key columns.
+On successful creation of the row in the table, DB2Rest responds with HTTP code [201](https://http.dev/201). The response payload
+attribute `rows` indicate the number of rows created in the table. The `keys` attribute contains the values of the generated primary key columns.
 
 ## Error handling
 
