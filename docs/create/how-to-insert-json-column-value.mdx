@@ -1,11 +1,35 @@
 ---
-sidebar_position: 6
+sidebar_position: 3
 ---
 
 # How to insert JSON Column Value?
 
 
-TODO
+DB2Rest can save JSON data in JSON/JSONB column of a PostgreSQL database table. It can also save in MySQL columns of data type JSON.
+In order to test, create the tables as shown below.
+
+**PostgreSQL**
 
 
+```sql
+CREATE TABLE products (
+    id serial4 NOT NULL,
+    "name" varchar(100),
+    extra_info jsonb NULL,
+    CONSTRAINT products_pkey PRIMARY KEY (id)
+);
+```
+
+
+**MySQL**
+
+```sql
+CREATE TABLE `products` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `extra_info` json DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+);
+```
 
