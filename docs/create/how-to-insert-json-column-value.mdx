@@ -33,3 +33,62 @@ CREATE TABLE `products` (
 );
 ```
 
+## Insert Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://localhost:8080/v1/rdbms/pgdb/products \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
+        --data '{
+            "name": "Big egg",
+            "extra_info": { "expiry_date": "2025-12-31", "exportable": true }
+        }'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+        "name": "Big egg",
+        "extra_info": { "expiry_date": "2025-12-31", "exportable": true }
+    }' |  \
+        http POST http://localhost:8080/v1/rdbms/pgdb/products \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+        ```
+    </TabItem>
+
+
+</Tabs>
+
+
+
+## HTTP Response
+
+
+<Tabs>
+    <TabItem value="mySQL" label="MySQL" default>
+        TODO
+    </TabItem>
+    <TabItem value="pgSQL" label="PostgreSQL">
+        ```http
+        {
+            "row": 1,
+            "keys": {
+            "id": 3
+        }
+        }
+
+        ```
+    </TabItem>
+
+
+</Tabs>
