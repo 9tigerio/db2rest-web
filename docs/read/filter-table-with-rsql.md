@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Filter table with RSQL 
+# Introduction to Filtering with RSQL 
 
 DB2Rest uses RSQL or REST SQL to filter data in the database tables. RSQL is very easy to learn and write filtering queries.
 
