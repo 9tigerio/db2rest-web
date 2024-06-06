@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Supported RSQL Operators
@@ -8,19 +8,19 @@ sidebar_position: 2
 DB2Rest supports the following RSQL operators. 
 
 
-| Operator    | Postgresql    | Description             | Supported |
-|-------------|---------------|-------------------------|-----------|
-| ==          | =             | equals                  | [X]       |
-| >           | >             | greater than            | [X]       |
-| =gt=        | >             | greater than            | [X]       |
-| >=          | >=            | greater than or equal   | [X]       |
-| =ge=        | >             | greater than or equal   | [X]       |
-| \<          | \<             | less than               | [X]       |
-| =lt=        | \<             | less than               | [X]       |
-| \<=          | \<=            | less than or equal      | [X]       |
-| =le=        | \<=            | less than or equal      | [X]       |
-| =in=        | in           | in                      | [X]       |
-| =out=       | not in            | not in                  | [X]       |
-| =like=      | like          | like                    | [X]       |
-| =startWith= | like          | start with ex - Joy%    | [X]       |
-| =endWith=   | like          | start with ex - %Ful    | [X]       |
+| Operator    | Postgresql | Description           | Supported |
+|-------------|------------|-----------------------|-----------|
+| ==          | =          | equals                | [X]       |
+| >           | >          | greater than          | [X]       |
+| =gt=        | >          | greater than          | [X]       |
+| >=          | >=         | greater than or equal | [X]       |
+| =ge=        | >          | greater than or equal | [X]       |
+| \<          | \<         | less than             | [X]       |
+| =lt=        | \<         | less than             | [X]       |
+| \<=         | \<=        | less than or equal    | [X]       |
+| =le=        | \<=        | less than or equal    | [X]       |
+| =in=        | in         | in                    | [X]       |
+| =out=       | not in     | not in                | [X]       |
+| =like=      | like       | like                  | [X]       |
+| =startWith= | like       | start with ex - Joy%  | [X]       |
+| =endWith=   | like       | start with ex - %Ful  | [X]       |

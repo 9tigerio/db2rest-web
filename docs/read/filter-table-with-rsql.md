@@ -1,10 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Introduction to RSQL 
+# Filter table with RSQL 
 
-DB2Rest uses RSQL or REST SQL to query database tables. RSQL is very easy to learn and write filtering queries.
+DB2Rest uses RSQL or REST SQL to filter data in the database tables. RSQL is very easy to learn and write filtering queries.
 
 RSQL is a query language for parametrized filtering of entries in RESTful APIs. It’s based on [FIQL](https://datatracker.ietf.org/doc/html/draft-nottingham-atompub-fiql-00 "Feed Item Query Language") (Feed Item Query Language) – a URI-friendly syntax for expressing filters across the entries in an Atom Feed. FIQL is great for use in URI; there are no unsafe characters, so URL encoding is not required. On the other side, FIQL’s syntax is not very intuitive and URL encoding is not always a big deal, so RSQL also provides a friendlier syntax for logical operators and some of the comparison operators.
 
