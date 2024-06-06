@@ -4,6 +4,9 @@ sidebar_position: 15
 
 # Autogenerate Primary Key with TSID
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info
 
 Feature is only applicable for relational databases. It is not available for MongoDB.
@@ -74,6 +77,68 @@ Let's use a DB2Rest API endpoint to write to our `department` table and let DB2R
 ```sql
 CREATE TABLE department (
 	id varchar NOT NULL,
-	"name" varchar NOT NULL
+	"name" varchar NOT NULL,
+	CONSTRAINT department_pk PRIMARY KEY (id)
 );
 ```
+
+:::info
+
+The table must have column with primary key constraint.
+
+:::
+
+### HTTP Request
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/department?tsIdEnabled=true' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
+        --data '{
+
+         "name" : "Engineering"
+
+        }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "name" : "Engineering"
+
+    }' |  \
+        http POST 'http://localhost:8080/v1/rdbms/pgdb/department?tsIdEnabled=true' \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"row": 1,
+	"keys": {
+		"id": "0G8VG94AJ7NXV"
+	}
+}
+
+```
+
+
+:::info
+
+The `tsIdEnabled` request parameter must be set to `true`.
+
+:::
