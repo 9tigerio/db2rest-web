@@ -207,3 +207,78 @@ CREATE TABLE college (
 
 
 ## Auto Generating TSIDs for Bulk Insert
+
+TSID can be generated for bulk insert as well.
+
+### HTTP Request
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/department/bulk?tsIdEnabled=true' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
+        --data '[
+        {
+
+            "name" : "Finance"
+
+        },
+        {
+
+            "name" : "Marketing"
+        }
+
+        ]'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '[
+        {
+
+            "name" : "Finance"
+
+        },
+        {
+
+            "name" : "Marketing"
+        }
+
+        ]' |  \
+        http POST 'http://localhost:8080/v1/rdbms/pgdb/department/bulk?tsIdEnabled=true' \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"rows": [
+		1,
+		1
+	],
+	"keys": [
+		{
+			"id": "0G8VZ6RF7YV1B"
+		},
+		{
+			"id": "0G8VZ6RFBYR1N"
+		}
+	]
+}
+
+```
+
+DB2Rest detected the data type of our existing id column and determined to use the String format for automatic TSID generation when writing the 2 new rows of data
+from our API POST request.
+We didn't have to write any special application code ourselves to do this or even setup a database stored procedure!
