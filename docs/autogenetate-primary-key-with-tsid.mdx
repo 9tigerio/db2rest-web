@@ -62,7 +62,7 @@ And when written as Text or a String they look like this:
 :::
 
 
-## Auto Generating TSIDs
+## Auto Generating TSIDs - Varchar Column
 
 DB2Rest can automatically generate TSID primary keys as it inserts data through its instant API into the database tables.
 It does this by auto detecting an existing primary key column in the table you are writing to and will use the datatype category (Integer-based or Text/String based)
@@ -136,9 +136,74 @@ The table must have column with primary key constraint.
 
 ```
 
-
 :::info
 
 The `tsIdEnabled` request parameter must be set to `true`.
 
 :::
+
+## Auto Generating TSIDs - Integer Column
+
+In case the primary key column was from `int` type family, DB2Rest will generate `integer` type TSID. DB2Rest is smart and knows about the type of the primary key column.
+
+**PostgreSQL**
+
+```sql
+CREATE TABLE college (
+	id int8 NOT NULL,
+	"name" varchar NOT NULL,
+	CONSTRAINT college_pk PRIMARY KEY (id)
+);
+```
+
+
+### HTTP Request
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/college?tsIdEnabled=true' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
+        --data '{
+
+        "name" : "ABC College"
+
+    }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "name" : "ABC College"
+
+    }' |  \
+        http POST 'http://localhost:8080/v1/rdbms/pgdb/college?tsIdEnabled=true' \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"row": 1,
+	"keys": {
+		"id": 586449754280387258
+	}
+}
+
+```
+
+
+## Auto Generating TSIDs for Bulk Insert
