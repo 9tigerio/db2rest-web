@@ -6,7 +6,7 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 27-April-2024
+Updated: 05-June-2024
 
 ## In Progress
 
@@ -15,10 +15,11 @@ Updated: 27-April-2024
 ## Planned 
 (participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)
 
-- [ ] Embed Jasper reports 
+
 - [ ] Support for SQL Server 
 - [ ] JSON data type support
-- [ ] Support for tenant id column for multi-tenancy
+- [ ] Multi-tenancy
+- [ ] Admin API - reload cache, change configuration at runtime etc.
 - [ ] Data access control
 - [ ] Support - Rate Limiting
 - [ ] Optimistic Lock - version column 
@@ -26,48 +27,46 @@ Updated: 27-April-2024
 - [ ] SEEK method for pagination 
 - [ ] Caching - Redis support (Requested on Redit)
 - [ ] Aggregate function
-- [ ] mTLS/Certificate auth
-- [ ] JWT/JWKS support 
+- [ ] mTLS/Certificate auth 
 - [ ] Integration with AWS KMS, Hashicorp Vault
 - [ ] Observability - Data dog (requested by a financial company)
 - [ ] HTTP2 support - (requested by a financial company)
-- [ ] Support for Grafana & Prometheus - (requested by a financial company)
-- [ ] Support AWS RDS Postgres, Aurora Postgres
+- [ ] Observability - Grafana & Prometheus - (requested by a financial company)
+- [ ] Documentation - Support AWS RDS Postgres, Aurora Postgres
 - [ ] Youtube videos
 - [ ] Native binary image - simplify installation
-- [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8
 - [ ] Deploy to GCP
 - [ ] Deploy to Render
-- [ ] Ability to insert into multiple tables
-- [ ] Batch loading of remote files
-- [ ] React Integration
-- [ ] Angular Integration
-- [ ] Vaadin Integration
+- [ ] Deploy to Fly.io
+- [ ] Documentation - Vue Integration
+- [ ] Documentation - React Integration
+- [ ] Documentation - Angular Integration
+- [ ] Documentation - Vaadin Integration
 - [ ] Pre- and Post-processing Hooks
-- [ ] Schema evolution
-- [ ] DB Replication/Synchronization
-- [ ] Change data capture
 - [ ] Vector DB support
+- [ ] JWT/JWKS support /OAuth
 - [ ] API Key auth
 - [ ] Basic Auth
-- [ ] Batch export to file-system, S3, FTP, - Async or Scheduled 
-- [ ] Batch import from file-system, S3, FTP
-- [ ] Support AWS Lightsail
-- [ ] Support deploy to Azure
+- [ ] RBAC
+- [ ] RBAC with Security Expression 
+- [ ] Documentation Deploy - AWS Lightsail
+- [ ] Documentation Deploy - to Azure 
 - [ ] GraphQL Support
 - [ ] Grpc Support
-- [ ] Cloud/SaaS Launch
-- [ ] Enterprise Edition Launch for on prem or custom cloud (ENTERPRISE EDITION)
+- [ ] Cloud/SaaS
+- [ ] Ability to insert/update into multiple tables in same transaction. (ENTERPRISE EDITION)
+- [ ] Schema evolution with Liquibase/Flyway (ENTERPRISE EDITION)
 - [ ] Change data capture (CDC) with Webhooks to notify of database changes (ENTERPRISE EDITION)
-- [ ] Data Privacy, Encryption, Masking for read and update.(ENTERPRISE EDITION)
-- [ ] Data transformation (ENTERPRISE EDITION)
-- [ ] Support - DB Sharding (ENTERPRISE EDITION)
+- [ ] Data Encryption, Masking(ENTERPRISE EDITION)
+- [ ] Sharding (ENTERPRISE EDITION)
 - [ ] Audit table / data diff handling (ENTERPRISE EDITION)
 - [ ] Open policy agent support (ENTERPRISE EDITION)
-- [ ] OSO support (ENTERPRISE EDITION)
 - [ ] Audit columns handling - created date, last updated date, created by, last updated by (ENTERPRISE EDITION)
-- [ ] GUI - Database visualization and query (ENTERPRISE EDITION)
-- [ ] Reporting - (ENTERPRISE EDITION)
+- [ ] Database visualization and query (ENTERPRISE EDITION)
+- [ ] Reporting / Jasper reports (ENTERPRISE EDITION)
+- [ ] Batch export to file-system, S3, FTP, - Async or Scheduled (ENTERPRISE EDITION)
+- [ ] Batch import from file-system, S3, FTP (ENTERPRISE EDITION)
+- [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8 (ENTERPRISE EDITION)
 
 ## Completed / Done
 
