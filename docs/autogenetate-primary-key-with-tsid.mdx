@@ -5,9 +5,23 @@ sidebar_position: 15
 # Autogenerate Primary Key with TSID
 
 
-## What is TSID
+DB2Rest supports a way to automatically create chronological sequences of the written data out of the box. It is made possible
+by generating Time-Sorted Unique Identifiers (TSID) for primary key columns during insert operation.
+This does not require any native database support.
 
-TODO
 
+## Benefits of TSIDs
 
+DB2Rest has a built-in ability to automatically create Time-Sorted Unique Identifiers (TSID) that offer benefits such as the following:
 
+    - Chronologically sorted like integers.
+    - Compact storage (14 bytes).
+    - Efficient indexing due to sequential nature.
+
+TSIDs combine the benefits of integers, UUIDs, and ULIDs and are a recommended alternative for primary key values.
+They borrow some structure from [Snowflake ID](https://en.wikipedia.org/wiki/Snowflake_ID)s and Instagram IDs.
+One of the additional benefits are that we get automatic date timestamping that we can use for things like sorting and data analysis later on.
+This can save us from adding an additional Date column in our schema for our database tables.
+We get a timestamp, a node (shard) id, and a sequence number, all in one! TSIDs come in handy when writing data about temporal entities or
+anything that is event-based, like comments, posts, transactions, etc. But they can also be used as a primary key for non-temporal data in your tables.
+This also makes data migration much easier.
