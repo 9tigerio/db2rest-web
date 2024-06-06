@@ -4,6 +4,12 @@ sidebar_position: 15
 
 # Autogenerate Primary Key with TSID
 
+:::info
+
+Feature is only applicable for relational databases. It is not available for MongoDB.
+
+:::
+
 
 DB2Rest supports a way to automatically create chronological sequences of the written data out of the box. It is made possible
 by generating Time-Sorted Unique Identifiers (TSID) for primary key columns during insert operation.
@@ -30,7 +36,9 @@ This also makes data migration much easier.
 ## Structure of TSIDs
 
 42-bit timestamp: Calculated using milliseconds from a reference date (e.g., 2020-01-01).
+
 10-bit machine ID: Unique identifier for the machine generating the TSID.
+
 12-bit sequence number: Ensures uniqueness within the same millisecond.
 
 
@@ -51,3 +59,21 @@ And when written as Text or a String they look like this:
 :::
 
 
+## Auto Generating TSIDs
+
+DB2Rest can automatically generate TSID primary keys as it inserts data through its instant API into the database tables.
+It does this by auto detecting an existing primary key column in the table you are writing to and will use the datatype category (Integer-based or Text/String based)
+to generate the appropriate TSID format (Long/Number or Text).
+
+
+Let's use a DB2Rest API endpoint to write to our `department` table and let DB2Rest worry about automatically creating our tables' primary keys for the row inserted.
+
+
+**PostgreSQL**
+
+```sql
+CREATE TABLE department (
+	id varchar NOT NULL,
+	"name" varchar NOT NULL
+);
+```
