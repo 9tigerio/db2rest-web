@@ -11,6 +11,10 @@ Updated: 05-June-2024
 ## In Progress
 
 - [ ] Support for MongoDB
+- [ ] JWT/JWKS support /OAuth
+- [ ] Basic Auth
+- [ ] RBAC
+- [ ] RBAC with Security Expression
 
 ## Planned 
 (participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)
@@ -44,11 +48,7 @@ Updated: 05-June-2024
 - [ ] Documentation - Vaadin Integration
 - [ ] Pre- and Post-processing Hooks
 - [ ] Vector DB support
-- [ ] JWT/JWKS support /OAuth
 - [ ] API Key auth
-- [ ] Basic Auth
-- [ ] RBAC
-- [ ] RBAC with Security Expression 
 - [ ] Documentation Deploy - AWS Lightsail
 - [ ] Documentation Deploy - to Azure 
 - [ ] GraphQL Support
