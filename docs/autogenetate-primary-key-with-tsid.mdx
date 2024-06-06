@@ -21,7 +21,33 @@ DB2Rest has a built-in ability to automatically create Time-Sorted Unique Identi
 TSIDs combine the benefits of integers, UUIDs, and ULIDs and are a recommended alternative for primary key values.
 They borrow some structure from [Snowflake ID](https://en.wikipedia.org/wiki/Snowflake_ID)s and Instagram IDs.
 One of the additional benefits are that we get automatic date timestamping that we can use for things like sorting and data analysis later on.
-This can save us from adding an additional Date column in our schema for our database tables.
+This can save us from adding an additional `Date` column in our schema for our database tables.
 We get a timestamp, a node (shard) id, and a sequence number, all in one! TSIDs come in handy when writing data about temporal entities or
 anything that is event-based, like comments, posts, transactions, etc. But they can also be used as a primary key for non-temporal data in your tables.
 This also makes data migration much easier.
+
+
+## Structure of TSIDs
+
+42-bit timestamp: Calculated using milliseconds from a reference date (e.g., 2020-01-01).
+10-bit machine ID: Unique identifier for the machine generating the TSID.
+12-bit sequence number: Ensures uniqueness within the same millisecond.
+
+
+:::note
+
+When stored as a Long, TSIDs look like this:
+
+38352658567418872
+
+:::
+
+:::note
+
+And when written as Text or a String they look like this:
+
+01226N0640J7Q
+
+:::
+
+
