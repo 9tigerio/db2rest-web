@@ -10,7 +10,6 @@ Updated: 05-June-2024
 
 ## In Progress
 
-- [ ] Support for MongoDB
 - [ ] JWT/JWKS support /OAuth
 - [ ] Basic Auth
 - [ ] RBAC
@@ -19,15 +18,12 @@ Updated: 05-June-2024
 ## Planned 
 (participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)
 
-
 - [ ] Support for SQL Server 
 - [ ] JSON data type support
 - [ ] Multi-tenancy
 - [ ] Admin API - reload cache, change configuration at runtime etc.
 - [ ] Data access control
 - [ ] Support - Rate Limiting
-- [ ] Optimistic Lock - version column 
-- [ ] Optimistic Lock - timestamp column
 - [ ] SEEK method for pagination 
 - [ ] Caching - Redis support (Requested on Redit)
 - [ ] Aggregate function
@@ -46,6 +42,10 @@ Updated: 05-June-2024
 - [ ] Documentation - React Integration
 - [ ] Documentation - Angular Integration
 - [ ] Documentation - Vaadin Integration
+- [ ] Documentation - MongoDB on premise
+- [ ] Documentation - MongoDB Atlas
+- [ ] Documentation - MongoDB DigitalOcean
+- [ ] Documentation - AWS DocumentDB
 - [ ] Pre- and Post-processing Hooks
 - [ ] Vector DB support
 - [ ] API Key auth
@@ -67,9 +67,11 @@ Updated: 05-June-2024
 - [ ] Batch export to file-system, S3, FTP, - Async or Scheduled (ENTERPRISE EDITION)
 - [ ] Batch import from file-system, S3, FTP (ENTERPRISE EDITION)
 - [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8 (ENTERPRISE EDITION)
+- [ ] Optimistic Lock - timestamp column,version column (ENTERPRISE EDITION)
 
 ## Completed / Done
 
+- [x] Support for MongoDB
 - [x] Support for Oracle
 - [x] Support Tembo
 - [x] Deploy to Digital Ocean
