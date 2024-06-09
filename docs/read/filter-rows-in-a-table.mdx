@@ -16,14 +16,14 @@ import TabItem from '@theme/TabItem';
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/actor?filter=last_name==Roshan' \
+        --url 'http://localhost:8080/v1/rdbms/db/actor?filter=last_name==Roshan' \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http GET 'http://localhost:8080/actor?filter=last_name==Roshan' \
+        http GET 'http://localhost:8080/v1/rdbms/db/actor?filter=last_name==Roshan' \
         User-Agent:insomnia/8.6.1
         ```
     </TabItem>
@@ -59,14 +59,14 @@ be applied on a number/integer column.
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/actor?filter=actor_id==206' \
+        --url 'http://localhost:8080/v1/rdbms/db/actor?filter=actor_id==206' \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http GET 'http://localhost:8080/actor?filter=actor_id==206' \
+        http GET 'http://localhost:8080/v1/rdbms/db/actor?filter=actor_id==206' \
         User-Agent:insomnia/8.6.1
         ```
     </TabItem>
@@ -104,14 +104,14 @@ It is possible to combine filter conditions as well. The example below shows an 
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/actor?filter=last_name==Roshan;actor_id==206' \
+        --url 'http://localhost:8080/v1/rdbms/db/actor?filter=last_name==Roshan;actor_id==206' \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http GET 'http://localhost:8080/actor?filter=last_name==Roshan;actor_id==206' \
+        http GET 'http://localhost:8080/v1/rdbms/db/actor?filter=last_name==Roshan;actor_id==206' \
         User-Agent:insomnia/8.6.1
         ```
     </TabItem>
