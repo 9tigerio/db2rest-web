@@ -2,7 +2,7 @@
 sidebar_position: 12
 ---
 
-# How to handle large result-sets with Pagination?
+# Handle large result-sets with Pagination?
 
 Sometimes the result of a query execution can fetch many records. It is inefficient to fetch a large number of row.
 It can generate a lot of network traffic as the consuming application may not require all the records.
@@ -22,14 +22,14 @@ import TabItem from '@theme/TabItem';
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/film?limit=5&fields=title,release_year:year' \
+        --url 'http://localhost:8080/v1/rdbms/db/film?limit=5&fields=title,release_year:year' \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http GET 'http://localhost:8080/film?limit=5&fields=title,release_year:year' \
+        http GET 'http://localhost:8080/v1/rdbms/db/film?limit=5&fields=title,release_year:year' \
         User-Agent:insomnia/8.6.1
         ```
     </TabItem>
@@ -82,7 +82,7 @@ Here’s an example of how to use the `LIMIT` and `OFFSET` clause:
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/film?offset=20&limit=10' \
+        --url 'http://localhost:8080/v1/rdbms/db/film?offset=20&limit=10' \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
