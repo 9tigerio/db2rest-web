@@ -2,6 +2,83 @@
 sidebar_position: 26
 ---
 
-# How to count the number of rows?
+# Count rows in a Resultset
 
-TODO
+It is very easy to count the number of records in a table or as a result of a query.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+## Count rows without filter
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://localhost:8080/v1/rdbms/pgdb/actor/count \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://localhost:8080/v1/rdbms/pgdb/actor/count \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"count": 12
+}
+
+```
+
+:::tip
+
+This query can be very slow if there are many rows in the table.
+
+:::
+
+## Count rows with filter
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/actor/count?filter=last_name==Khan' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/actor/count?filter=last_name==Khan' \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"count": 5
+}
+
+```
