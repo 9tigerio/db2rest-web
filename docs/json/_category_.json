@@ -1,0 +1,8 @@
+{
+  "label": "Support JSON data types",
+  "position": 200,
+  "link": {
+    "type": "generated-index",
+    "description": "Guide on working with JSON data types."
+  }
+}

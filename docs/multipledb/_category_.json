@@ -1,9 +1,9 @@
 {
 
-  "label": "Support Multiple Databases",
+  "label": "Connect Multiple Databases",
   "position": 200,
   "link": {
     "type": "generated-index",
-    "description": "Guide on working with View and Materialized Views."
+    "description": "Guide on how to connect and work with multiple databases."
   }
 }
