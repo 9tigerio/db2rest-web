@@ -1,0 +1,84 @@
+---
+sidebar_position: 25
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Query for a single row
+
+DB2Rest can fetch a single unique record with suitable filter condition. In this case the return type is a JSON object,
+instead of a list of objects.
+
+## Find one - Numeric filter
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/actor/one?filter=actor_id==1' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/actor/one?filter=actor_id==1' \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"actor_id": 1,
+	"first_name": "PENELOPE",
+	"last_name": "GUINESS",
+	"last_update": "2006-02-15T10:34:33.000+00:00"
+}
+
+```
+
+
+## Find one - Varchar filter
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/actor/one?filter=last_name==WAHLBERG' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/actor/one?filter=last_name==WAHLBERG' \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"actor_id": 2,
+	"first_name": "NICK",
+	"last_name": "WAHLBERG",
+	"last_update": "2006-02-15T10:34:33.000+00:00"
+}
+
+```
