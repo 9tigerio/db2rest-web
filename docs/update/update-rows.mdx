@@ -1,0 +1,112 @@
+---
+sidebar_position: 6
+---
+
+# How to update rows in a table?
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The records in a table can be updated with a PATCH request.
+
+## Update
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request PATCH \
+        --url http://localhost:8080/v1/rdbms/pgdb/film \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
+        --data '{
+
+        "original_language_id" : 1
+
+    }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "original_language_id" : 1
+
+    }' |  \
+        http PATCH http://localhost:8080/v1/rdbms/pgdb/film \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"rows": 4
+}
+
+```
+
+The request above updates all the rows in the table and sets the column `original_language_id` to the value `1`.
+
+:::danger
+
+Update without filter can change all rows.
+
+:::
+
+## Update with Filter
+
+It is easy to add filter to update only selected rows as shown in the request below.
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request PATCH \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/film?filter=film_id==1' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/9.2.0' \
+        --data '{
+
+        "rental_rate" : 1.99,
+        "length" : 92
+
+    }'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "rental_rate" : 1.99,
+        "length" : 92
+
+    }' |  \
+        http PATCH 'http://localhost:8080/v1/rdbms/pgdb/film?filter=film_id==1' \
+        Content-Type:application/json \
+        User-Agent:insomnia/9.2.0
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Response
+```json lines
+{
+	"rows": 1
+}
+
+```
+
+The filter condition applies to the primary key `film_id` of the `film` table. Hence, only a single record is updated
+by the update request with filter.
