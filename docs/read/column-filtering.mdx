@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request GET \
-        --url 'http://localhost:8080/film?fields=title,description,release_year' \
+        --url 'http://localhost:8080/v1/rdbms/db/film?fields=title,description,release_year' \
         --header 'Accept-Profile: sakila' \
         --header 'User-Agent: insomnia/8.4.5'
 
@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http GET 'http://localhost:8080/film?fields=title,description,release_year' \
+        http GET 'http://localhost:8080/v1/rdbms/db/film?fields=title,description,release_year' \
         Accept-Profile:sakila \
         User-Agent:insomnia/8.4.5
         ```
