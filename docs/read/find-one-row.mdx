@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 DB2Rest can fetch a single unique record with suitable filter condition. In this case the return type is a JSON object,
 instead of a list of objects.
 
-## Find one - Numeric filter
+## Find One - Numeric filter
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -47,7 +47,7 @@ instead of a list of objects.
 ```
 
 
-## Find one - Varchar filter
+## Find One - Varchar filter
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -82,3 +82,45 @@ instead of a list of objects.
 }
 
 ```
+
+## Find One - Error
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/actor/one?filter=last_name==ROSHAN' \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/actor/one?filter=last_name==ROSHAN' \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+### HTTP Error Response
+```json lines
+{
+	"type": "https://db2rest.com/error/generic-error",
+	"title": "Generic Data Access Error",
+	"status": 400,
+	"detail": "Incorrect result size: expected 1, actual 3",
+	"instance": "/v1/rdbms/pgdb/actor/one",
+	"errorCategory": "Data-access-error",
+	"timestamp": "2024-06-09T17:43:34.802133Z"
+}
+
+```
+
+The error message states that only 1 row was expected, but the database query returned 3 instead.
