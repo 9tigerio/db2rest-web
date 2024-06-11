@@ -5,10 +5,10 @@ import siteConfig from '/docusaurus.config.js';
 import CodeBlock from '@theme/CodeBlock';
 
 
-# Frequently Asked Questions
+# Frequently Asked Questions (FAQs)
 
 - [How can I handle same table/view names but in different databases?](#db-object-name-collision)
-- [How Frequently are Frequently Asked Questions Asked?](#how-frequently-are-frequently-asked-questions-asked)
+- [Can DB2Rest handle multiple physical databases?](#support_multiple_physical_databases)
 - [How much more black could this be?](#how-much-more-black-could-this-be)
 - [What are the chances of anything coming from Mars?](#what-are-the-chances-of-anything-coming-from-mars)
 - [What does FAQ stand for?](#what-does-faq-stand-for)
@@ -25,95 +25,50 @@ import CodeBlock from '@theme/CodeBlock';
 <a name="db-object-name-collision"></a>
 ## How can I handle same table/view names but in different databases?
 
-I think so, Brain. But would the villains really have gotten away with it, if it weren't for those pesky kids and their dog
+The DB2Rest database user account has access to multiple databases and these databases have tables or views that have same names.
 
-<cite>Pinky</cite>
+For example in a MySQL server 2 databases.
 
-<a name="how-frequently-are-frequently-asked-questions-asked"></a>
-## How Frequently are Frequently Asked Questions Asked?
+    - `DB1`
+    - `DB2`
 
-In fact, most *frequently asked questions* have never, and perhaps will
-never be asked.
+Both these databases have a table named `users`.
 
-> "89% of statistics are made up on the spot"
+So the schema looks like this
+    - `DB1.users`
+    - `DB2.users`
 
-— [*Vic Reeves*](https://www.linkedin.com/pulse/89-statistics-made-up-spot-vic-reeves-friend-llp/)
 
-> "73% of FAQ questions have never, in fact, been asked, and 71% never will be"
+In this case there is name collision i.e if no database/schema/catalog is not specified then the operation will fail.
+This can be resolved by specifying the schema/catalog as a header parameter.
 
-— [*Nick Radcliffe*](https://github.com/njr0/faqtory/blob/main/questions/frequency.question.md)
+    - For `GET` use header `Accept-Profile` to specify schema.
 
-<a name="how-much-more-black-could-this-be"></a>
-## How much more black could this be?
+Then two different tables can be queried.
 
-None. None more. Black.
+```
+GET /users HTTP/1.1
+Accept-Profile: DB1
+```
 
-<cite>Tufnel, Nigel</cite>
+```
+GET /users HTTP/1.1
+Accept-Profile: DB2
+```
+    - For `POST` use header `Content-Profile` to specify schema.
 
-<a name="what-are-the-chances-of-anything-coming-from-mars"></a>
-## What are the chances of anything coming from Mars?
+:::tip
 
-Around a million to one.
+In case of a join, specify the schema of the root table using `Accept-Profile`, where as schema for the other tables
+can be specified directly as `schemaName` attribute.
 
-<cite>Ogilvy</cite>
+:::
 
-<a name="what-does-faq-stand-for"></a>
-## What does FAQ stand for?
 
-FAQ stands for *Frequently Asked Questions*.
+<a name="support_multiple_physical_databases"></a>
+## Can DB2Rest handle multiple physical databases?
 
-<a name="what-happens-if-you-keep-using-signed-32-bit-integers-to-keep-track-of-time-in-2038"></a>
-## What happens if you keep using signed 32-bit integers to keep track of time in 2038?
-
-You'll experience an epoch fail.
-
-<a name="what-is-the-answer-to-the-ultimate-question-of-life,-the-universe,-and-everything"></a>
-## What is the answer to the Ultimate Question of Life, The Universe, and Everything?
-
-42
-
-<a name="what-python-version-does-faqtory-require"></a>
-## What Python version does FAQtory require?
-
-FAQtory requires Python3.7 or above.
-
-<a name="what's-the-difference-between-a-duck"></a>
-## What's the difference between a duck?
-
-One leg is both the same.
-
-<a name="when-you-are-in-front-of-a-a-minbari-fleet,-where-should-you-really-be-if-you-value-your-life"></a>
-## When you are in front of a a Minbari fleet, where should you really be if you value your life?
-
-Somewhere else.
-
-<cite>Delenn</cite>
-
-<a name="where-am-i"></a>
-## Where am I?
-
-In the village.
-
-<cite>Number 2</cite>
-
-<a name="who-built-faqtory"></a>
-## Who built FAQtory?
-
-FAQtory was built by [Will McGugan](https://www.willmcgugan.com).
-
-Will is the author of [Rich](https://github.com/Textualize/rich) and [Textual](https://textual.textualize.io).
-
-<a name="who-was-joan-of-arc"></a>
-## Who was Joan of Arc?
-
-Noah's wife.
-
-<cite>Theodore Logan</cite>
-
-<a name="who's-the-lady-with-the-log"></a>
-## Who's the lady with the log?
-
-The Log Lady.
+Yes DB2Rest can handle multiple physical databases.
 
 
 
