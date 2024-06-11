@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request DELETE \
-        --url http://localhost:8080/film \
+        --url http://localhost:8080/v1/rdbms/db/film \
         --header 'Content-Profile: sakila' \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.4.5'
@@ -31,7 +31,7 @@ import TabItem from '@theme/TabItem';
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        http DELETE http://localhost:8080/film \
+        http DELETE http://localhost:8080/v1/rdbms/db/film \
         Content-Profile:sakila \
         Content-Type:application/json \
         User-Agent:insomnia/8.4.5
@@ -39,14 +39,6 @@ import TabItem from '@theme/TabItem';
     </TabItem>
 
 </Tabs>
-
-
-
-
-## HTTP Response
-
-TODO
-
 
 
 
@@ -67,4 +59,3 @@ response payload.
 }
 ```
 
-TODO - add more error scenarios.

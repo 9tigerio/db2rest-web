@@ -6,7 +6,7 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 05-June-2024
+Updated: 10-June-2024
 
 ## In Progress
 
@@ -68,6 +68,7 @@ Updated: 05-June-2024
 - [ ] Batch import from file-system, S3, FTP (ENTERPRISE EDITION)
 - [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8 (ENTERPRISE EDITION)
 - [ ] Optimistic Lock - timestamp column,version column (ENTERPRISE EDITION)
+- [ ] Data Quality checks/reports (ENTERPRISE EDITION)
 
 ## Completed / Done
 
