@@ -35,13 +35,14 @@ otherwise the endpoint will only return 1 of the columns because of a column nam
 
 The key attributes of request body is described below:
 
-| Sl# | Attribute | Mandatory | Description                                                                                         |
-|-----|-----------|-----------|-----------------------------------------------------------------------------------------------------|
-| 1   | table     | Y         | Table to join with the root table.                                                                  |
-| 2   | fields    | N         | List of fields to retrieve from join tables                                                         |
-| 3   | type      | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER` |
-| 4   | on        | N         | Join columns.                                                                                       |
-| 5   | withTable | N         | Join with another table.                                                                            |
+| Sl# | Attribute  | Mandatory | Description                                                                                         |
+|-----|------------|-----------|-----------------------------------------------------------------------------------------------------|
+| 1   | schemaName | N         | Schema/Database catalog of the join table.                                                          |
+| 2   | table      | Y         | Table to join with the root table.                                                                  |
+| 3   | fields     | N         | List of columns to retrieve from join tables                                                        |
+| 4   | type       | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER` |
+| 5   | on         | N         | Join columns.                                                                                       |
+| 6   | withTable  | N         | Join with another table.                                                                            |
 
 
 
@@ -60,7 +61,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
-        $ curl 'http://localhost:8080/review/_expand' -i -X POST \
+        $ curl 'http://localhost:8080/v1/rdbms/db/review/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
         -d '[{"table":"film","fields":["title","release_year"],"type":"INNER","on":["film_id==film_id"]}]'
@@ -68,7 +69,7 @@ import TabItem from '@theme/TabItem';
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"film","fields":["title","release_year"],"type":"INNER","on":["film_id==film_id"]}]' | http POST 'http://localhost:8080/review/_expand' \
+        $ echo '[{"table":"film","fields":["title","release_year"],"type":"INNER","on":["film_id==film_id"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/review/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
@@ -108,7 +109,7 @@ junction/join table `film_actor` and `actor` to retrieve the list of film with t
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request POST \
-        --url http://localhost:8080/film/_expand \
+        --url http://localhost:8080/v1/rdbms/db/film/_expand \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '[
@@ -149,7 +150,7 @@ junction/join table `film_actor` and `actor` to retrieve the list of film with t
             }
         ]
         ' |  \
-        http POST http://localhost:8080/film/_expand \
+        http POST http://localhost:8080/v1/rdbms/db/film/_expand \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -170,7 +171,7 @@ The result is 0 records from the right side, if there is no match.
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
-        $ curl 'http://localhost:8080/users/_expand' -i -X POST \
+        $ curl 'http://localhost:8080/v1/rdbms/db/users/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
         -d '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"LEFT","on":["auid==auid"]}]'
@@ -178,7 +179,7 @@ The result is 0 records from the right side, if there is no match.
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"LEFT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/users/_expand' \
+        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"LEFT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/users/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
@@ -259,7 +260,7 @@ The result is 0 records from the left side, if there is no match.
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
-        $ curl 'http://localhost:8080/users/_expand' -i -X POST \
+        $ curl 'http://localhost:8080/v1/rdbms/db/users/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
         -d '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"RIGHT","on":["auid==auid"]}]'
@@ -267,7 +268,7 @@ The result is 0 records from the left side, if there is no match.
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"RIGHT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/users/_expand' \
+        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"RIGHT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/users/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
@@ -345,7 +346,7 @@ A self join is a regular join, but the table is joined with itself.
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request POST \
-        --url 'http://localhost:8080/film/_expand?fields=title' \
+        --url 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title' \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '[
@@ -372,7 +373,7 @@ A self join is a regular join, but the table is joined with itself.
             }
         ]
         ' |  \
-        http POST 'http://localhost:8080/film/_expand?fields=title' \
+        http POST 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title' \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -388,7 +389,7 @@ A self join is a regular join, but the table is joined with itself.
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request POST \
-        --url 'http://localhost:8080/film/_expand?fields=title' \
+        --url 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title' \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '[
@@ -415,7 +416,7 @@ A self join is a regular join, but the table is joined with itself.
         }
         ]
         ' |  \
-        http POST 'http://localhost:8080/film/_expand?fields=title' \
+        http POST 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title' \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -430,7 +431,7 @@ A self join is a regular join, but the table is joined with itself.
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request POST \
-        --url 'http://localhost:8080/film/_expand?fields=title:name&filter=rental_duration==4' \
+        --url 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title:name&filter=rental_duration==4' \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '[
@@ -461,7 +462,7 @@ A self join is a regular join, but the table is joined with itself.
         }
         ]
         ' |  \
-        http POST 'http://localhost:8080/film/_expand?fields=title:name&filter=rental_duration==4' \
+        http POST 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title:name&filter=rental_duration==4' \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -487,7 +488,7 @@ This is potentially an expensive and dangerous operation since it can lead to a 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
-        $ curl 'http://localhost:8080/tops/_expand' -i -X POST \
+        $ curl 'http://localhost:8080/v1/rdbms/db/tops/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
         -d '[{"table":"bottoms","fields":["bottom_item","color:botColor","size:botSize"]}]'
@@ -495,7 +496,7 @@ This is potentially an expensive and dangerous operation since it can lead to a 
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"bottoms","fields":["bottom_item","color:botColor","size:botSize"]}]' | http POST 'http://localhost:8080/tops/_expand' \
+        $ echo '[{"table":"bottoms","fields":["bottom_item","color:botColor","size:botSize"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/tops/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
@@ -511,7 +512,7 @@ This is potentially an expensive and dangerous operation since it can lead to a 
     <TabItem value="cURL" label="cURL" default>
         ```bash
         curl --request POST \
-        --url 'http://localhost:8080/film/_expand?fields=title:name' \
+        --url 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title:name' \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '[
@@ -556,7 +557,7 @@ This is potentially an expensive and dangerous operation since it can lead to a 
                 }
             ]
         ' |  \
-        http POST 'http://localhost:8080/film/_expand?fields=title:name' \
+        http POST 'http://localhost:8080/v1/rdbms/db/film/_expand?fields=title:name' \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
