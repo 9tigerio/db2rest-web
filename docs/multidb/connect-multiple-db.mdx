@@ -119,16 +119,16 @@ The `id` attribute set above will be used to query/modify data from the differen
 
 :::
 
-## Test Setup
+## Test Setup for PostGreSQL
 
-### Insert Row in PostGreSQL
+### Insert Row
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
 
         curl --request POST \
-        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB1/employee \
         --header 'Content-Type: application/json' \
         --header 'User-Agent: insomnia/8.6.1' \
         --data '{
@@ -152,7 +152,7 @@ The `id` attribute set above will be used to query/modify data from the differen
         "created_on" : "2015-04-14T11:07:36.639Z"
 
     }' |  \
-        http POST http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        http POST http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB1/employee \
         Content-Type:application/json \
         User-Agent:insomnia/8.6.1
         ```
@@ -179,7 +179,7 @@ The `id` attribute set above will be used to query/modify data from the differen
         ```bash
 
         curl --request GET \
-        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB1/employee \
         --header 'User-Agent: insomnia/8.6.1'
 
         ```
@@ -187,7 +187,97 @@ The `id` attribute set above will be used to query/modify data from the differen
     <TabItem value="httpie" label="HTTPie">
         ```bash
 
-        http GET http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        http GET http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB1/employee \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+[
+	{
+		"id": 1,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
+
+```
+
+## Test Setup for MySQL
+
+### Insert Row
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB2/employee \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+    }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+
+    }' |  \
+        http POST http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB2/employee \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+{
+	"row": 1,
+	"keys": {
+		"id": 1
+	}
+}
+
+```
+
+### Read Row
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB2/employee \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://[IP_ADDRESS]:[PORT]/v1/rdbms/DB2/employee \
         User-Agent:insomnia/8.6.1
 
         ```
