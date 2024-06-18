@@ -22,20 +22,7 @@ The first method to connect DB2Rest with multiple databases is similar to runnin
 The multiple database configuration can be set as environment variables.
 
 
-```bash
-export app.databases[0].id=DB1;
-export app.databases[0].password=homi2022;
-export app.databases[0].type=POSTGRESQ;
-export app.databases[0].url=jdbc:postgresql://localhost:5432/homidb;
-export app.databases[0].username=homi2022;
-
-export app.databases[1].id=DB2;
-export app.databases[1].password=@Kolkata84;
-export app.databases[1].type=MYSQL;
-export app.databases[1].url=jdbc:mysql://localhost:3306/sakila;
-export app.databases[1].username=root;
-````
-
+<CodeBlock language="jsx">$ SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"homi2022","password":"homi2022"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata84"}]}}' java -jar {siteConfig.customFields.download_jar}</CodeBlock>
 
 
 
