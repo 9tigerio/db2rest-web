@@ -99,6 +99,12 @@ app:
 The `application-{profile}.yml` file must be saved (in the same folder) along with the jar distribution of DB2REST.
 :::
 
+### Set Profile as Environment/System Property
+
+```bash
+$ export SPRING_PROFILES_ACTIVE={profile-from-file-name} # in this case `local`
+````
+
 ### Run the command
 
 <CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
