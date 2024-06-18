@@ -69,4 +69,36 @@ The JSON structure for the environment variable `SPRING_APPLICATION_JSON` is sho
 
 ## Use Configuration File
 
-In this method the configuration will be loaded via YAML file.
+In this method the configuration will be loaded from YAML file.
+
+### Create Yaml file
+
+Create a Yaml file with name format `application-{profile}.yml` - for example `application-local.yml` file as shown below. In this case, the
+profile name is `local`. In this way you can create profile files for `dev`, `prod` etc.
+
+```yaml
+
+app:
+  databases:
+    - id: DB1
+      type: POSTGRESQL
+      url: jdbc:postgresql://localhost:5432/homidb
+      username: root
+      password: "@Kolkata84"
+
+    - id: DB2
+      type: MYSQL
+      url: jdbc:mysql://localhost:3306/sakila
+      username: root
+      password: "@Kolkata84"
+
+```
+
+:::tip
+
+The `application-{profile}.yml` file must be saved (in the same folder) along with the jar distribution of DB2REST.
+:::
+
+### Run the command
+
+<CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
