@@ -21,8 +21,38 @@ a DB2Rest node can connect to a MySQL and PostgreSQL database.
 The first method to connect DB2Rest with multiple databases is similar to running with one database as described in the [getting started](../intro) section.
 The multiple database configuration can be set as environment variables.
 
+:::tip
 
-<CodeBlock language="jsx">$ SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"homi2022","password":"homi2022"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata84"}]}}' java -jar {siteConfig.customFields.download_jar}</CodeBlock>
+The environment variable `SPRING_APPLICATION_JSON` property combines database configurations and must be provided as a **JSON format in a single line**.
+
+:::
 
 
+<CodeBlock language="jsx">$ SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"root","password":"@Kolkata007"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata007"}]}}' java -jar {siteConfig.customFields.download_jar}</CodeBlock>
 
+The JSON structure for the environment variable `SPRING_APPLICATION_JSON` is shown below.
+
+```json lines
+
+{
+  "app": {
+    "databases": [
+      {
+        "id": "DB1",
+        "type": "POSTGRESQL",
+        "url": "jdbc:postgresql://localhost:5432/homidb",
+        "username": "root",
+        "password": "@Kolkata007"
+      },
+      {
+        "id": "DB2",
+        "type": "MYSQL",
+        "url": "jdbc:mysql://localhost:3306/sakila",
+        "username": "root",
+        "password": "@Kolkata007"
+      }
+    ]
+  }
+}
+
+```
