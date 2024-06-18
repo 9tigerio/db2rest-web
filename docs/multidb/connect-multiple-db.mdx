@@ -28,7 +28,9 @@ The environment variable `SPRING_APPLICATION_JSON` property combines database co
 :::
 
 
-<CodeBlock language="jsx">$ SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"root","password":"@Kolkata007"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata007"}]}}' java -jar {siteConfig.customFields.download_jar}</CodeBlock>
+<CodeBlock language="jsx">
+    $ SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"root","password":"@Kolkata007"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata007"}]}}' java -jar {siteConfig.customFields.download_jar}
+</CodeBlock>
 
 The JSON structure for the environment variable `SPRING_APPLICATION_JSON` is shown below.
 
