@@ -13,6 +13,9 @@ keywords:
 import siteConfig from '/docusaurus.config.js';
 import CodeBlock from '@theme/CodeBlock';
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Connect Multiple Databases
 
 One of the super features of DB2Rest is that one single instance can work with multiple separate databases. For example
@@ -108,3 +111,104 @@ $ export SPRING_PROFILES_ACTIVE={profile-from-file-name} # in this case `local`
 ### Run the command
 
 <CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
+
+
+:::danger
+
+The `id` attribute set above will be used to query/modify data from the different databases. Hence, ensure that it is unique.
+
+:::
+
+## Test Setup
+
+### Insert Row in PostGreSQL
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+    }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "first_name" : "Salman",
+        "last_name" : "Khan",
+        "email" : "sk@skfilms.com",
+        "created_on" : "2015-04-14T11:07:36.639Z"
+
+    }' |  \
+        http POST http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+{
+	"row": 1,
+	"keys": {
+		"id": 1
+	}
+}
+
+```
+
+### Read Row
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        --header 'User-Agent: insomnia/8.6.1'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://[IP_ADDRESS]:[PORT]/v1/rdbms/db/employee \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+#### HTTP Response
+```json lines
+[
+	{
+		"id": 1,
+		"first_name": "Salman",
+		"last_name": "Khan",
+		"email": "sk@skfilms.com",
+		"created_on": "2015-04-14T11:07:36.639+00:00"
+	}
+]
+
+```
+
+Finally, refer to the DB2Rest documentation for further learning and exploring API features.
+
+For help, visit us on [Discord](https://discord.gg/gytFPNW656) or our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions)
