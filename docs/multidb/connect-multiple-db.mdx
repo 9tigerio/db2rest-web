@@ -15,7 +15,6 @@ keywords:
 One of the super features of DB2Rest is that one single instance can work with multiple separate databases. For example
 a DB2Rest node can connect to a MySQL and PostgreSQL database.
 
-
 ## Use Environment Variables
 
 The first method to connect DB2Rest with multiple databases is similar to running with one database as described in the [getting started](../intro) section.
@@ -27,11 +26,16 @@ The environment variable `SPRING_APPLICATION_JSON` property combines database co
 
 :::
 
+### Set environment variable
 
+```bash
+$ export SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"root","password":"@Kolkata007"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata007"}]}}'
 ```
-$ SPRING_APPLICATION_JSON='{"app":{"databases":[{"id":"DB1","type":"POSTGRESQL","url":"jdbc:postgresql://localhost:5432/homidb","username":"root","password":"@Kolkata007"},{"id":"DB2","type":"MYSQL","url":"jdbc:mysql://localhost:3306/sakila","username":"root","password":"@Kolkata007"}]}}' java -jar {siteConfig.customFields.download_jar}
 
-```
+### Run the command
+
+<CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
+
 
 The JSON structure for the environment variable `SPRING_APPLICATION_JSON` is shown below.
 
@@ -59,3 +63,7 @@ The JSON structure for the environment variable `SPRING_APPLICATION_JSON` is sho
 }
 
 ```
+
+## Use Configuration File
+
+In this method the configuration will be loaded via YAML file.
