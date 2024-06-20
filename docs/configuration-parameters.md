@@ -19,6 +19,12 @@ sidebar_position: 3
 | 11. | DATE_FORMAT                | Date format                                                                                     | <ul><li>`yyyy-MM-dd`(default)</li></ul>                                                                                                       |
 | 12. | DATE_TIME_FORMAT           | Date time format                                                                                | <ul><li>`yyyy-MM-dd HH:mm:ss`(default)</li></ul>                                                                                              |
 
+:::tip
+
+If DB2Rest is connected to [multiple databases](./multidb/connect-multiple-db) do not use configurations 2-5. 
+Follow the guide for connecting to [multiple databases](./multidb/connect-multiple-db).
+
+:::
 
 
 :::info
