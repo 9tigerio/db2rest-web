@@ -6,7 +6,7 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 10-June-2024
+Updated: 20-June-2024
 
 ## In Progress
 
@@ -69,6 +69,9 @@ Updated: 10-June-2024
 - [ ] Support for scripting (extensibility) - Python, Apache Groovy, Javascript/VS8 (ENTERPRISE EDITION)
 - [ ] Optimistic Lock - timestamp column,version column (ENTERPRISE EDITION)
 - [ ] Data Quality checks/reports (ENTERPRISE EDITION)
+- [ ] Dataframe Capabilities (ENTERPRISE EDITION)
+- [ ] Natural Language to SQL (ENTERPRISE EDITION)
+- [ ] Ability to run ML algorithms (ENTERPRISE EDITION)
 
 ## Completed / Done
 
