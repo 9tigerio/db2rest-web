@@ -14,6 +14,7 @@ Updated: 02-July-2024
 - [ ] JSON data type support
 - [ ] Documentation Deploy - AWS Lightsail
 - [ ] Documentation Deploy - to Azure
+- [ ] Document Metrics & health check
 
 ## Planned 
 (participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)

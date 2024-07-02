@@ -91,6 +91,58 @@ users:
 
 ```
 
+:::warning
+
+Live reloading of this file is currently not supported.
+
+:::
+
 ## Role Based Access Control (RBAC)
 
-DB2Rest provides RBAC control when security is enabled. For
+DB2Rest supports RBAC control out of the box when security is enabled. It will first check the users to match the user and password.
+In case of a successful match, it will go ahead and check the resource being requested is in the `resourceRoles`. If a matching resource is found,
+it will verify that the user's roles matches the allowed role list for the resource. Then the gate is opened to access the database resource.
+
+Each request must provide the username and password in a *base64* encoded format as part of the `Authorization` header.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://localhost:8080/v1/rdbms/pgdb/actor \
+        --header 'Authorization: Basic cm9vdDoyMzQ1Ng==' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+
+            "first_name" : "Salman 456",
+            "last_name" : "Khan"
+        }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "first_name" : "Salman 456",
+        "last_name" : "Khan"
+
+    }' |  \
+        http POST http://localhost:8080/v1/rdbms/pgdb/actor \
+        Authorization:'Basic cm9vdDoyMzQ1Ng==' \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
