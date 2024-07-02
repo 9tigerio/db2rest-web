@@ -6,20 +6,19 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 20-June-2024
+Updated: 02-July-2024
 
 ## In Progress
 
 - [ ] JWT/JWKS support /OAuth
-- [ ] Basic Auth
-- [ ] RBAC
-- [ ] RBAC with Security Expression
+- [ ] JSON data type support
+- [ ] Documentation Deploy - AWS Lightsail
+- [ ] Documentation Deploy - to Azure
 
 ## Planned 
 (participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)
 
-- [ ] Support for SQL Server 
-- [ ] JSON data type support
+- [ ] Support for SQL Server
 - [ ] Multi-tenancy
 - [ ] Admin API - reload cache, change configuration at runtime etc.
 - [ ] Data access control
@@ -29,9 +28,7 @@ Updated: 20-June-2024
 - [ ] Aggregate function
 - [ ] mTLS/Certificate auth 
 - [ ] Integration with AWS KMS, Hashicorp Vault
-- [ ] Observability - Data dog (requested by a financial company)
 - [ ] HTTP2 support - (requested by a financial company)
-- [ ] Observability - Grafana & Prometheus - (requested by a financial company)
 - [ ] Documentation - Support AWS RDS Postgres, Aurora Postgres
 - [ ] Youtube videos
 - [ ] Native binary image - simplify installation
@@ -49,12 +46,10 @@ Updated: 20-June-2024
 - [ ] Pre- and Post-processing Hooks
 - [ ] Vector DB support
 - [ ] API Key auth
-- [ ] Documentation Deploy - AWS Lightsail
-- [ ] Documentation Deploy - to Azure 
 - [ ] GraphQL Support
 - [ ] Grpc Support
 - [ ] Cloud/SaaS
-- [ ] Ability to insert/update into multiple tables in same transaction. (ENTERPRISE EDITION)
+- [ ] Chain - Ability to insert/update into multiple tables in same transaction. (ENTERPRISE EDITION)
 - [ ] Schema evolution with Liquibase/Flyway (ENTERPRISE EDITION)
 - [ ] Change data capture (CDC) with Webhooks to notify of database changes (ENTERPRISE EDITION)
 - [ ] Data Encryption, Masking(ENTERPRISE EDITION)
@@ -95,3 +90,7 @@ Updated: 20-June-2024
 - [x] Support Database View
 - [x] Support for Database materialized view
 - [X] Deploy to Koyeb
+- [X] Observability - Data dog 
+- [X] Observability - Grafana & Prometheus 
+- [X] Basic Auth
+- [X] Role Based Access Control (RBAC)
