@@ -26,21 +26,69 @@ $ export AUTH_DATA_SOURCE = `file://${user.home}/git/db2rest/auth/auth-sample.ym
 ```
 
 
-## Error handling
+## Auth Data Components
 
-If delete operation is attempted when `ALLOW_SAFE_DELETE` is set to `false`, it will result in error as shown below in the
-response payload.
+### Name
+
+The first attribute in the auth data file is the `name`. It is the name of the data file or project.
+
+### Resource Roles
+
+In this section specify the protected resources or URI paths, HTTP method and the roles which are allowed to access this URI.
+
+### Excluded Resources
+
+In this section specify the resources which are not protected by DB2Rest security with the URI Paths and the HTTP method.
+
+### Users
+
+In this section specify the basic auth user-name, password and roles associated with a system or user accessing the database resources.
+
+
+## Sample Data File
+
+A sample auth data file is shown below:
 
 ```
-{
-"type": "https://github.com/kdhrubo/db2rest/delete-bad-request",
-"title": "Delete Operation Not allowed",
-"status": 400,
-"detail": "Invalid delete operation , safe set to true",
-"instance": "/film",
-"errorCategory": "Delete-Error",
-"timestamp": "2023-12-26T08:19:43.232283Z"
-}
+
+name: db2rest-security
+
+resourceRoles:
+  - resource: "/v1/rdbms/pgdb/actor/**"
+    method: post
+    roles:
+      - role2
+      - role3
+      - role4
+  - resource: "/api/v2/host"
+    method: get
+    roles:
+      - role2
+      - role3
+      - role4
+
+
+excludedResources:
+  - resource: "/v1/rdbms/**"
+    method: get
+  - resource: "/v1/rdbms/pgdb/factor"
+    method: post
+  - resource: "/v1/rdbms/**"
+    method: put
+  - resource: "/v1/rdbms/**"
+    method: delete
+
+users:
+  - username: admin
+    password: admin
+    roles: [role1,role6]
+  - username: root
+    password: 23456
+    roles: [role1,role4]
+  - username: tom
+    password: 32113
+    roles: [role3]
+
 ```
 
-TODO - add more error scenarios.
+## Role Based Access Control (RBAC)
