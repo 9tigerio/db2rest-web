@@ -5,49 +5,25 @@ sidebar_position: 1
 # Basic Auth
 
 
-DBRest supports basic auth to protect the API end points.
+DBRest supports basic auth to protect the API end points. By default, auth is disabled in DB2Rest. It can be enabled by setting the
+`ENABLE_AUTH` environment variable to `true`.
 
-:::warning
+:::info
 
-If the parameter - `ALLOW_SAFE_DELETE` is set to `true`, then this operation will fail with an error.
+If the parameter - `ENABLE_AUTH` is set to `true`, then authentication is enabled.
 
 :::
 
 
-## Example Request
+## Auth Data Source
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+The security data source is kept separate from application properties. Currently only file based datasource is supported.
+The absolute path of the data file can be specified with the `AUTH_DATA_SOURCE` configuration parameter.
+An example to set auth data source is shown below:
 
-<Tabs>
-    <TabItem value="cURL" label="cURL" default>
-        ```bash
-        curl --request DELETE \
-        --url http://localhost:8080/film \
-        --header 'Content-Profile: sakila' \
-        --header 'Content-Type: application/json' \
-        --header 'User-Agent: insomnia/8.4.5'
-        ```
-    </TabItem>
-    <TabItem value="httpie" label="HTTPie">
-        ```bash
-        http DELETE http://localhost:8080/film \
-        Content-Profile:sakila \
-        Content-Type:application/json \
-        User-Agent:insomnia/8.4.5
-        ```
-    </TabItem>
-
-</Tabs>
-
-
-
-
-## HTTP Response
-
-TODO
-
-
+```
+$ export AUTH_DATA_SOURCE = `file://${user.home}/git/db2rest/auth/auth-sample.yml`
+```
 
 
 ## Error handling

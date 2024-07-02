@@ -18,6 +18,11 @@ sidebar_position: 3
 | 10. | TIME_FORMAT                | Time format                                                                                     | <ul><li>`HH:mm:ss`(default)</li></ul>                                                                                                         |
 | 11. | DATE_FORMAT                | Date format                                                                                     | <ul><li>`yyyy-MM-dd`(default)</li></ul>                                                                                                       |
 | 12. | DATE_TIME_FORMAT           | Date time format                                                                                | <ul><li>`yyyy-MM-dd HH:mm:ss`(default)</li></ul>                                                                                              |
+| 13. | ENABLE_AUTH                | Enable authentication and authorization                                                         | <ul><li>`false`(default)</li><li>`true`</li></ul>                                                                                             |
+| 14. | AUTH_DATA_SOURCE           | Provide the absolute path of the auth data as a file.                                           | -                                                                                                                                             |
+
+
+
 
 :::tip
 
