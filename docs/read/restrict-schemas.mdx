@@ -4,81 +4,17 @@ sidebar_position: 27
 
 # Restrict Schemas
 
-By default DB2Rest will load all
+By default, DB2Rest will load all metadata from all schemas. In case the database under consideration has many schemas with
+many tables, then loading the metadata will slow down startup times. Also, it may not be feasible to expose tables from all
+schemas as REST API. In order to handle such cases, DB2Rest allows exposing tables from a select set of schemas.
 
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+In order to specify only a subset of schemas use the configuration parameter `INCLUDED_SCHEMAS`. The list can be specified as a comma separated string as shown below
 
+```bash
 
-## Count rows without filter
-
-<Tabs>
-    <TabItem value="cURL" label="cURL" default>
-        ```bash
-
-        curl --request GET \
-        --url http://localhost:8080/v1/rdbms/pgdb/actor/count \
-        --header 'User-Agent: insomnia/8.6.1'
-
-
-        ```
-    </TabItem>
-    <TabItem value="httpie" label="HTTPie">
-        ```bash
-
-        http GET http://localhost:8080/v1/rdbms/pgdb/actor/count \
-        User-Agent:insomnia/8.6.1
-
-        ```
-    </TabItem>
-
-</Tabs>
-
-
-### HTTP Response
-```json lines
-{
-	"count": 12
-}
+ export INCLUDED_SCHEMAS=public,hrms
 
 ```
 
-:::tip
-
-This query can be very slow if there are many rows in the table.
-
-:::
-
-## Count rows with filter
-
-<Tabs>
-    <TabItem value="cURL" label="cURL" default>
-        ```bash
-
-        curl --request GET \
-        --url 'http://localhost:8080/v1/rdbms/pgdb/actor/count?filter=last_name==Khan' \
-        --header 'User-Agent: insomnia/8.6.1'
-
-
-        ```
-    </TabItem>
-    <TabItem value="httpie" label="HTTPie">
-        ```bash
-
-        http GET 'http://localhost:8080/v1/rdbms/pgdb/actor/count?filter=last_name==Khan' \
-        User-Agent:insomnia/8.6.1
-
-        ```
-    </TabItem>
-
-</Tabs>
-
-
-### HTTP Response
-```json lines
-{
-	"count": 5
-}
-
-```
+In the example above only tables from the two schemas namely `public` and `hrms` will be available as REST APIs.
