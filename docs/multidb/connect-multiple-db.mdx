@@ -305,8 +305,35 @@ The `id` attribute set above will be used to query/modify data from the differen
 All the configuration parameters (except 2-5) mentioned in the configuration guide can be used in the external configuration file style.
 This will override the default values of these parameters.
 
-
 :::
+
+
+## Restrict Schema
+
+Just like single database, it is also possible to restrict schema for metadata loading in case of multiple databases.
+
+```yaml
+
+app:
+  databases:
+    - id: DB1
+      type: POSTGRESQL
+      url: jdbc:postgresql://localhost:5432/homidb
+      username: root
+      password: "@Kolkata84"
+      schemas:
+       - public
+       - hrms
+
+    - id: DB2
+      type: MYSQL
+      url: jdbc:mysql://localhost:3306/sakila
+      username: root
+      password: "@Kolkata84"
+
+```
+
+As shown in the example above, the `schemas` field can be specified as a list. In this case, only tables from the two schemas namely `public` and `hrms` will be accessible as REST APIs.
 
 Finally, refer to the DB2Rest documentation for further learning and exploring API features.
 
