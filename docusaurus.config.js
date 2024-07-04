@@ -191,6 +191,7 @@ const config = {
         //... other Algolia params
       },
 
+
       announcementBar: {
         id: 'support_us',
         content:
