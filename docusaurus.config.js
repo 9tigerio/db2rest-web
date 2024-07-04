@@ -194,7 +194,7 @@ const config = {
       announcementBar: {
         id: 'support_us',
         content:
-            'We are updating the documentation to the latest release 1.0.9+.',
+            'We are updating the documentation to the latest release 1.1.1.',
         backgroundColor: '#DAF7A6',
         textColor: '#091E42',
         isCloseable: false,
