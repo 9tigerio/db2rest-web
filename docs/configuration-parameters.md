@@ -20,7 +20,7 @@ sidebar_position: 3
 | 12. | DATE_TIME_FORMAT           | Date time format                                                                                | <ul><li>`yyyy-MM-dd HH:mm:ss`(default)</li></ul>                                                                                              |
 | 13. | ENABLE_AUTH                | Enable authentication and authorization                                                         | <ul><li>`false`(default)</li><li>`true`</li></ul>                                                                                             |
 | 14. | AUTH_DATA_SOURCE           | Provide the absolute path of the auth data as a file.                                           | -                                                                                                                                             |
-
+| 15. | DEFAULT_FETCH_LIMIT        | Limits the number of rows that will be retrieved for a read query.                              | 100                                                                                                                                           |
 
 
 

@@ -103,3 +103,8 @@ The query above will skip 20 rows and then fetch the next 10 rows.
 If `OFFSET` is specified without `LIMIT`, then it will be ignored.
 
 :::
+
+## The Global LIMIT
+
+By default, DB2Rest puts a limit of 100 for read queries. The value can be changed by setting the value of the `DEFAULT_FETCH_LIMIT` configuration parameer.
+It is advised to set this value low (max 20) for optimal performance.
