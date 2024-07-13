@@ -47,6 +47,7 @@ export default function Home() {
             name: 'DB2Rest',
             url: 'https://db2rest.com/',
             logo: 'https://db2rest.com/img/logo-db2rest.png',
+            image: 'https://db2rest.com/img/logo-db2rest.png',
             sameAs: ['https://twitter.com/db2rest'],
             knowsAbout: 'REST API, Databases, Low-code, API Platforms, Java, SQL, Web Development, Open Source Software',
             foundingDate: '2023',
@@ -60,6 +61,13 @@ export default function Home() {
               description: 'Open source software that creates an instant low-code REST DATA API for databases. Connect any database, run anywhere.',
               brand: 'DB2Rest',
               url: 'https://github.com/kdhrubo/db2rest',
+              keywords: 'REST API, Open Source, Low-code, Database',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+                availability: 'https://schema.org/OnlineOnly',
+              },
               audience: {
                 '@type': 'Audience',
                 audienceType: 'Web Developers',
@@ -74,7 +82,10 @@ export default function Home() {
               applicationSubCategory: 'Database API',
               featureList: 'Oracle, PostgreSQL, MySQL, MongoDB, MariaDB, CockroachDB',
               operatingSystem: 'Cross-platform',
-              softwareRequirements: 'Java 8+'
+              softwareRequirements: 'Java 21+',
+              memoryRequirements: '4 GB',
+              license: 'https://raw.githubusercontent.com/kdhrubo/db2rest/master/LICENSE',
+              discussionUrl: 'https://github.com/kdhrubo/db2rest/discussions'
             }
           })}
         </script>
