@@ -201,6 +201,7 @@ const config = {
         isCloseable: false,
       },
 
+
       /*
       announcementBar: {
         id: 'support_us',
