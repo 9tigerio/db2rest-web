@@ -65,6 +65,9 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          blogTitle: 'DB2Rest Blog',
+          blogDescription: 'A blog about the latest changes to DB2Rest and other related topics.',
+          postsPerPage: 3,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           //editUrl:
@@ -102,6 +105,7 @@ const config = {
            */
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/roadmap', label: 'Roadmap', position: 'left'},
+          {to: '/support', label: 'Support', position: 'left'},
           {
             href: 'https://github.com/kdhrubo/db2rest',
             label: 'GitHub',
@@ -126,7 +130,7 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://discord.gg/XP7aqKsv',
+                href: 'https://discord.gg/gytFPNW656',
               },
               {
                 label: 'Slack',
