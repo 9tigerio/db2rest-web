@@ -9,25 +9,33 @@
     {
         "@context":"http://schema.org/",
         "@type":"Organization",
-        "name":"DB2Rest",
+        "name":"DB2Rest Support",
+        "description":"Support options for DB2Rest",
         "url":"http://db2rest.com",
         "contactPoint":[
             {"@type":"ContactPoint",
+            "name":"Enterprise Support",
             "email":"help@db2rest.com",
-            "contactType:"Enterprise customer service"
+            "contactType":"Enterprise customer service"
             },
             {
                 "@type":"ContactPoint",
+                "additionalType":"forum",
+                "name":"GitHub Discussions",
                 "url":"https://github.com/kdhrubo/db2rest/discussions",
-                "contactType":"GitHub Discussions"
+                "contactType":"Community support"
             },
             {
                 "@type":"ContactPoint",
-                "url":"https://discord.gg/XP7aqKsv",
-                "contactType":{
-                    "name":"Discord server",
-                    "url":"https://www.wikidata.org/entity/Q63198389"
-                }
+                "name":"Discord",
+                "contactType":"Community support",
+                "url":"https://discord.gg/XP7aqKsv"
+            },
+            {
+                "@type":"ContactPoint",
+                "name": "Slack",
+                "contactType":"Community support",
+                "url":"https://db2rest.slack.com/"
             }
         ]
     }
