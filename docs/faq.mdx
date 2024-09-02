@@ -1,19 +1,30 @@
 ---
 sidebar_position: 8
+title: Frequently Asked Questions (FAQs)
 ---
-import siteConfig from '/docusaurus.config.js';
-import CodeBlock from '@theme/CodeBlock';
 
+{/* Note that this is an MDX file (in case we want to use fancy stuff inside later on)
+    and so the heading id's must begin with a forward slash \{#abcdef}
+    See note about headingIds option: https://docusaurus.io/docs/migration/v3#headingids-option
+*/}
 
 # Frequently Asked Questions (FAQs)
 
-- [How can I handle same table/view names but in different databases?](#db-object-name-collision)
-- [Can DB2Rest handle multiple physical databases?](#support_multiple_physical_databases)
-- [Does DB2Rest provide an Open API specification?](#open_api_spec)
-- [Is there any SDK available for Python, GO, Javascript?](#language_sdk)
 
-<a name="db-object-name-collision"></a>
-## How can I handle same table/view names but in different databases?
+## Can DB2Rest handle multiple physical databases? \{#support_multi_databases}
+
+Yes DB2Rest can handle multiple physical databases.
+
+## Does DB2Rest provide an Open API specification? \{#open_api_spec}
+
+Yes DB2Rest provides open API Specification. Which can also be used for Go, Python, Javascript. It can be found by browsing to the automatically provided `/swagger-ui/` endpoint path such as http://127.0.0.1:8080/swagger-ui/index.html
+
+## Is there any SDK available for Python, GO, Javascript? \{#language_sdk}
+
+Currently, DB2Rest does not provide any client SDK for Python, GO, Javascript.
+
+## How can I handle same table/view names but in different databases? \{#db-object-name-collision}
+
 
 The DB2Rest database user account has access to multiple databases and these databases have tables or views that have same names.
 
@@ -29,7 +40,7 @@ So the schema looks like this
     - `DB2.users`
 
 
-In this case there is name collision i.e if no database/schema/catalog is not specified then the operation will fail.
+In this case there is name collision i.e if database/schema/catalog is not specified then the operation will fail.
 This can be resolved by specifying the schema/catalog as a header parameter.
 
     - For `GET` use header `Accept-Profile` to specify schema.
@@ -47,6 +58,10 @@ Accept-Profile: DB2
 ```
     - For `POST` use header `Content-Profile` to specify schema.
 
+```
+POST /users HTTP/1.1
+Content-Profile: DB2
+```
 :::tip
 
 In case of a join, specify the schema of the root table using `Accept-Profile`, where as schema for the other tables
@@ -55,22 +70,4 @@ can be specified directly as `schemaName` attribute.
 :::
 
 
-<a name="support_multiple_physical_databases"></a>
-## Can DB2Rest handle multiple physical databases?
-
-Yes DB2Rest can handle multiple physical databases.
-
-
-<a name="open_api_spec"></a>
-## Does DB2Rest provide an Open API specification?
-
-Yes DB2Rest provides open API Specification. Which can also be used for Go, Python, Javascript. It can be found by browsing to the automatically provided `/swagger-ui/` endpoint path such as http://127.0.0.1:8080/swagger-ui/index.html
-
-
-<a name="language_sdk"></a>
-## Is there any SDK available for Python, GO, Javascript?
-
-Currently, DB2Rest does not provide any client SDK for Python, GO, Javascript.
-
-
-For help, visit us on <a href="https://discord.gg/gytFPNW656">Discord</a> or our <a href="https://github.com/kdhrubo/db2rest/discussions">GitHub Discussions</a>
+For further help, visit us on <a href="https://discord.gg/gytFPNW656">Discord</a> or our <a href="https://github.com/kdhrubo/db2rest/discussions">GitHub Discussions</a>

@@ -108,8 +108,9 @@ const config = {
           {to: '/support', label: 'Support', position: 'left'},
           {
             href: 'https://github.com/kdhrubo/db2rest',
-            label: 'GitHub',
             position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
           },
         ],
       },
@@ -117,7 +118,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
                 label: 'Docs',
