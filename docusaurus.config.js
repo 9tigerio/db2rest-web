@@ -45,10 +45,10 @@ const config = {
   },
 
   customFields: {
-    version: 'V-1.0.9',
-    download_url: 'https://download.db2rest.com/db2rest-1.0.9.jar',
-    download_jar: 'db2rest-1.0.9.jar',
-    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.0.9.jar'
+    version: 'V-1.1.2',
+    download_url: 'https://download.db2rest.com/db2rest-1.1.2.jar',
+    download_jar: 'db2rest-1.1.2.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.1.2.jar'
   },
 
   presets: [
@@ -199,11 +199,12 @@ const config = {
       announcementBar: {
         id: 'support_us',
         content:
-            'We are updating the documentation to the latest release 1.1.1.',
+            'We are updating the documentation to the latest release 1.1.2.',
         backgroundColor: '#DAF7A6',
         textColor: '#091E42',
         isCloseable: false,
       },
+
 
       /*
       announcementBar: {
