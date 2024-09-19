@@ -21,12 +21,17 @@ import TabItem from '@theme/TabItem';
 One of the super features of DB2Rest is that one single instance can work with multiple separate databases. For example
 a DB2Rest node can connect to a MySQL and PostgreSQL database.
 
+:::note
+If you have tables or views in your databases with the SAME NAME, you will have to use an HTTP header as mentioned in our [FAQ](../faq/#db-object-name-collision),
+otherwise you are likely to get a DB object collision error.
+:::
+
 ## Use Environment Variables
 
 The first method to connect DB2Rest with multiple databases is similar to running with one database as described in the [getting started](../intro) section.
 The multiple database configuration can be set as environment variables.
 
-:::tip
+:::note
 
 The environment variable `SPRING_APPLICATION_JSON` property combines database configurations and must be provided as a **JSON format in a single line**.
 
@@ -97,7 +102,7 @@ app:
 
 ```
 
-:::tip
+:::note
 
 The `application-{profile}.yml` file must be saved (in the same folder) along with the jar distribution of DB2REST.
 :::
