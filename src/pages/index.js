@@ -60,7 +60,7 @@ export default function Home() {
               name: 'DB2Rest',
               description: 'Open source software that creates an instant low-code REST DATA API for databases. Connect any database, run anywhere.',
               brand: 'DB2Rest',
-              url: 'https://github.com/kdhrubo/db2rest',
+              url: 'https://github.com/9tigerio/db2rest',
               keywords: 'REST API, Open Source, Low-code, Database',
               offers: {
                 '@type': 'Offer',
@@ -74,9 +74,9 @@ export default function Home() {
                 geographicArea: 'Worldwide'
               },
               maintainer: {
-                '@type': 'Person',
-                name: 'Dhrubo Kayal',
-                url: 'https://www.github.com/kdhrubo/'
+                '@type': 'Organization',
+                name: '9tiger.io',
+                url: 'https://www.github.com/9tigerio/'
               },
               applicationCategory: 'REST API generator',
               applicationSubCategory: 'Database API',
@@ -85,7 +85,7 @@ export default function Home() {
               softwareRequirements: 'Java 21+',
               memoryRequirements: '4 GB',
               license: 'https://raw.githubusercontent.com/kdhrubo/db2rest/master/LICENSE',
-              discussionUrl: 'https://github.com/kdhrubo/db2rest/discussions'
+              discussionUrl: 'https://github.com/9tigerio/db2rest/discussions'
             }
           })}
         </script>
