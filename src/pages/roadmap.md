@@ -17,7 +17,7 @@ Updated: 02-July-2024
 - [ ] Document Metrics & health check
 
 ## Planned 
-(participate in our [GitHub Discussions](https://github.com/kdhrubo/db2rest/discussions) for wants or needs)
+(participate in our [GitHub Discussions](https://github.com/9tigerio/db2rest/discussions) for wants or needs)
 
 - [ ] Support for SQL Server
 - [ ] Multi-tenancy

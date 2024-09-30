@@ -107,7 +107,7 @@ const config = {
           {to: '/roadmap', label: 'Roadmap', position: 'left'},
           {to: '/support', label: 'Support', position: 'left'},
           {
-            href: 'https://github.com/kdhrubo/db2rest',
+            href: 'https://github.com/9tigerio/db2rest',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -152,7 +152,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/kdhrubo/db2rest',
+                href: 'https://github.com/9tigerio/db2rest',
               },
             ],
           },
