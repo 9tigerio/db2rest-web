@@ -51,7 +51,7 @@ Updated: 02-July-2024
 - [ ] Grpc Support
 - [ ] Cloud/SaaS
 - [ ] Chain - Ability to insert/update into multiple tables in same transaction. (ENTERPRISE EDITION)
-- [ ] Schema evolution with Liquibase/Flyway (ENTERPRISE EDITION)
+- [ ] Database migration and schema evolution through Liquibase/Flyway (ENTERPRISE EDITION)
 - [ ] Change data capture (CDC) with Webhooks to notify of database changes (ENTERPRISE EDITION)
 - [ ] Data Encryption, Masking(ENTERPRISE EDITION)
 - [ ] Sharding (ENTERPRISE EDITION)
