@@ -29,8 +29,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'kdhrubo', // Usually your GitHub org/user name.
-  projectName: 'db2rest', // Usually your repo name.
+  // organizationName: '9tigerio', // Usually your GitHub org/user name.
+  // projectName: 'db2rest', // Usually your repo name.
 
 
   onBrokenLinks: 'throw',
@@ -107,7 +107,7 @@ const config = {
           {to: '/roadmap', label: 'Roadmap', position: 'left'},
           {to: '/support', label: 'Support', position: 'left'},
           {
-            href: 'https://github.com/kdhrubo/db2rest',
+            href: 'https://github.com/9tigerio/db2rest',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -152,7 +152,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/kdhrubo/db2rest',
+                href: 'https://github.com/9tigerio/db2rest',
               },
             ],
           },
