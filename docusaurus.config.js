@@ -45,10 +45,10 @@ const config = {
   },
 
   customFields: {
-    version: 'V-1.2.1',
-    download_url: 'https://download.db2rest.com/db2rest-1.2.1.jar',
-    download_jar: 'db2rest-1.2.1.jar',
-    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.2.1.jar'
+    version: 'V-1.2.3',
+    download_url: 'https://download.db2rest.com/db2rest-1.2.3.jar',
+    download_jar: 'db2rest-1.2.3.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.2.3.jar'
   },
 
   presets: [
