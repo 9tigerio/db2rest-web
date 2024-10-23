@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_fitness_stats_sht6.svg').default,
     description: (
       <>
-        Database access logic typically consumes 30% of the total application development time. With DB2Rest instant REST API can boost development by 30x. Focus now on solving business logic
+        Database access logic typically consumes 30% of the total application development time. With DB2Rest instant REST API you can boost development by 30x. Focus now on solving business logic
         and crafting beautiful UI.
       </>
     ),
@@ -28,7 +28,7 @@ const FeatureList = [
         Svg: require('@site/static/img/undraw_chilling_re_4iq9.svg').default,
         description: (
             <>
-                DB2Rest can securely unlock legacy databases. Thus you can rapidly innovate and modernize by building new applications, integration and machine learning datasets.
+                DB2Rest can securely unlock legacy databases. Thus you can rapidly innovate and modernize by building new applications, integrate and query datasets for machine learning.
             </>
         ),
     },
@@ -38,7 +38,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_speed_test_re_pe1f.svg').default,
     description: (
       <>
-        DB2Rest is blazing fast - No Object Relational Mapping (ORM) overhead, Single Database round-trip, no code generation or compilation, Database Query Caching and batching. 
+        DB2Rest is blazing fast - It has no Object Relational Mapping (ORM) overhead, uses Single round-trip to databases, no code generation or compilation, and supports Database Query Caching and Batching. 
       </>
     ),
   },
@@ -58,7 +58,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_world_re_768g.svg').default,
     description: (
       <>
-      DB2Rest can be installed and run on premise bare-metals, Virtual Machines (VM), Docker, Kubernetes, Any cloud.
+      DB2Rest can be installed and run on premise, bare-metals, Virtual Machines (VM), Docker, Kubernetes, Any cloud.
       </>
     ),
   },
