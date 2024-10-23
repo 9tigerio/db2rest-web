@@ -4,7 +4,7 @@ sidebar_position: 12
 
 # Handle large result-sets with Pagination
 
-Sometimes the result of a query execution can fetch many records. It is inefficient to fetch a large number of row.
+Sometimes the result of a query execution can fetch many records. It is inefficient to fetch a large number of rows.
 It can generate a lot of network traffic as the consuming application may not require all the records.
 DB2Rest implements offset pagination to support limiting the results of a query.
 
@@ -100,11 +100,11 @@ The query above will skip 20 rows and then fetch the next 10 rows.
 
 :::warning
 
-If `OFFSET` is specified without `LIMIT`, then it will be ignored.
+If `offset` is specified without `limit`, then `offset` will be ignored.
 
 :::
 
 ## The Global LIMIT
 
-By default, DB2Rest puts a limit of 100 for read queries. The value can be changed by setting the value of the `DEFAULT_FETCH_LIMIT` configuration parameer.
+By default, DB2Rest puts a limit of 100 for read queries. The value can be changed by setting the value of the `DEFAULT_FETCH_LIMIT` configuration parameter.
 It is advised to set this value low (max 20) for optimal performance.
