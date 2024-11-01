@@ -44,7 +44,7 @@ export default function CustomersSection() {
   return (
     <section className={styles.features}>
       <div className="container">
-        <h1 className="text--center padding-horiz--md">CUSTOMERS</h1>
+        <h1 className="text--center padding-horiz--md color-primary">Happy Users</h1>
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
