@@ -5,16 +5,16 @@ import styles from './styles.module.css';
 const CustomerList = [
   {
     title: 'Lua On Beans',
-    Svg: require('@site/static/users/luaonbeans.png').default,
+    i: "https://images.db2rest.com/luaonbeans.png",
     description: (
       <>
-        DB2Rest provides REST API support for blazing fast Lua On Beans MVC framework.
+        DB2Rest provides REST Data API support for blazing fast Lua On Beans MVC framework.
       </>
     ),
   },
   {
     title: 'trackon',
-    Svg: require('@site/static/users/trackon-main-logo.png').default,
+    i: "https://images.db2rest.com/trackon-main-logo.png",
     description: (
       <>
         Trackon is a leading vehicle tracking company in Nepal. Trackon uses DB2Rest for providing fast and
@@ -31,7 +31,7 @@ function Customer({i, title, description}) {
 
             {/*<Svg className={styles.featureSvg} role="img" />*/}
 
-        <img
+        <img alt={title}
             src={i}
         />
 
