@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-const FeatureList = [
+const CustomerList = [
   {
     title: 'Lua On Beans',
     Svg: require('@site/static/users/luaonbeans.png').default,
@@ -24,17 +24,21 @@ const FeatureList = [
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Customer({i, title, description}) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
+        <div className="text--center">
 
-        {/*<Svg className={styles.featureSvg} role="img" />*/}
+            {/*<Svg className={styles.featureSvg} role="img" />*/}
 
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        <img
+            src={i}
+        />
+
+        </div>
+        <div className="text--center padding-horiz--md">
+            <Heading as="h3">{title}</Heading>
+            <p>{description}</p>
       </div>
     </div>
   );
@@ -46,8 +50,8 @@ export default function CustomersSection() {
       <div className="container">
         <h1 className="text--center padding-horiz--md blue-text"> Happy Users</h1>
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {CustomerList.map((props, idx) => (
+            <Customer key={idx} {...props} />
           ))}
         </div>
       </div>
