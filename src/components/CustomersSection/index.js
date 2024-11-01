@@ -6,6 +6,7 @@ const CustomerList = [
   {
     title: 'Lua On Beans',
     i: "https://images.db2rest.com/luaonbeans.png",
+    url: "https://luaonbeans.org/",
     description: (
       <>
         DB2Rest provides REST Data API support for blazing fast Lua On Beans MVC framework.
@@ -15,6 +16,7 @@ const CustomerList = [
   {
     title: 'trackon',
     i: "https://images.db2rest.com/trackon-main-logo.png",
+    url : "https://www.trackon-gps.com/",
     description: (
       <>
         Trackon is a leading vehicle tracking company in Nepal. Trackon uses DB2Rest for providing fast and
@@ -24,7 +26,7 @@ const CustomerList = [
   },
 ];
 
-function Customer({i, title, description}) {
+function Customer({i, title, url, description}) {
   return (
     <div className={clsx('col col--4')}>
         <div className="text--center">
@@ -37,7 +39,8 @@ function Customer({i, title, description}) {
 
         </div>
         <div className="text--center padding-horiz--md">
-            <Heading as="h3">{title}</Heading>
+            <a href={url}>{url}</a>
+            {/*<Heading as="h3">{title}</Heading>*/}
             <p>{description}</p>
       </div>
     </div>
