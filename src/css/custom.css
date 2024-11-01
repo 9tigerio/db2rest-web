@@ -43,3 +43,8 @@
 .header-github-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color);
 }
+
+
+.blue-text {
+  color: var(--ifm-color-primary);
+}
