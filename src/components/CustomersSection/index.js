@@ -4,20 +4,21 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'NIKE',
-    Svg: require('@site/static/img/nike-logo.svg').default,
+    title: 'Lua On Beans',
+    Svg: require('@site/static/users/luaonbeans.png').default,
     description: (
       <>
-        NIKE is using DB2Rest to build Intelligent Applications faster   
+        DB2Rest provides REST API support for blazing fast Lua On Beans MVC framework.
       </>
     ),
   },
   {
-    title: 'ADIDAS',
-    Svg: require('@site/static/img/adidas-logo.svg').default,
+    title: 'trackon',
+    Svg: require('@site/static/users/trackon-main-logo.png').default,
     description: (
       <>
-        ADIDAS is using DB2Rest to enable their developers to build faster with smarter applications
+        Trackon is a leading vehicle tracking company in Nepal. Trackon uses DB2Rest for providing fast and
+          secure access to vehicle tracking data.
       </>
     ),
   },
