@@ -14,12 +14,14 @@ keywords:
 import siteConfig from '/docusaurus.config.js';
 import CodeBlock from '@theme/CodeBlock';
 
-# Connect to DB2Rest
+# Integrate DB2Rest with PostgreSQL
 
 In order to connect and use DB2Rest to PostgreSQL, follow the steps outlined in the introduction or getting started guide.
 
 
-## Run DB2Rest.
+# Run DB2Rest
+
+## Setup Environment Variables
 
 Open terminal and set the following environment variables as shown below.
 
@@ -38,13 +40,15 @@ Replace the values for the following parameters:
 | 3.  | DB_PASSWORD    | Database password          |                                                                                                                                        |
 
 
+## Start DB2Rest
+
 Then execute the command below to start DB2Rest:
 
 <CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
 
 Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.
 
-### Verify DB2Rest Installation
+### Verify Installation
 
 The actuator endpoint can be used to test the installation.
 
