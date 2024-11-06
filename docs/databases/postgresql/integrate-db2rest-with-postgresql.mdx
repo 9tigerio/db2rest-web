@@ -11,10 +11,87 @@ keywords:
 
 ---
 
+import siteConfig from '/docusaurus.config.js';
+import CodeBlock from '@theme/CodeBlock';
+
 # Connect to DB2Rest
 
+In order to connect and use DB2Rest to PostgreSQL, follow the steps outlined in the introduction or getting started guide.
+
+
+## Run DB2Rest.
+
+Open terminal and set the following environment variables as shown below.
+
+```bash
+ export DB_USER=[DB_USER]
+ export DB_PASSWORD=[DB_PASSWORD]
+ export DB_URL=[DB_URL]
+````
+
+Replace the values for the following parameters:
+
+| Sl# | Parameter Name | Description                | Example                                                                                                                                |
+|-----|----------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| 1.  | DB_URL         | JDBC URL connection string | `jdbc:postgresql://localhost:5432/sakila?currentSchema=public`                                                                         |
+| 2.  | DB_USER        | Database user              |                                                                                                                                        |
+| 3.  | DB_PASSWORD    | Database password          |                                                                                                                                        |
+
+
+Then execute the command below to start DB2Rest:
+
+<CodeBlock language="jsx">$ java -jar {siteConfig.customFields.download_jar}</CodeBlock>
+
+Once this command is executed, within a few seconds, DB2Rest is ready to service your data access requests.
+
+### Verify DB2Rest Installation
+
+The actuator endpoint can be used to test the installation.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://[IP_ADDRESS]:8080/actuator/health \
+        --header 'User-Agent: insomnia/8.6.1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://[IP_ADDRESS]:8080/actuator/health \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The actuator health check service in DB2Rest will return the following response:
+
+
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+{
+	"status": "UP"
+}
+
+```
+The `status` value of `UP` confirms that the service is up and running.
 
 # Use Docker Compose
 
 
 
+For help, visit us on [Discord](https://discord.gg/kqeDatPGwU) or our [GitHub Discussions](https://github.com/9tigerio/db2rest/discussions)
