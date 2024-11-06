@@ -1,6 +1,6 @@
 {
   "label": "Support for Gzip",
-  "position": 500,
+  "position": 175,
   "link": {
     "type": "generated-index",
     "description": "Guide on connecting and working with multiple databases."
