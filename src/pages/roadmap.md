@@ -81,7 +81,6 @@ Updated: 05-November-2024
 - [x] Offset & limit pagination
 - [x] Twitter Handle - [DB2Rest](https://twitter.com/DB2Rest)
 - [x] New Documentation Website with Docusaurus - [Website](https://db2rest.com)
-- [x] [Custom query](https://github.com/9tigerio/db2rest/issues/670) using Jinja SQL templates ~~Custom SQL query Execution via HTTP POST~~ 
 - [x] Count query support
 - [x] Exists query support
 - [x] Stored procedure, stored function calls
@@ -96,4 +95,4 @@ Updated: 05-November-2024
 - [X] JSON data type support
 - [X] Support for SQL Server
 - [X] API Key auth
-- [X] SQL template support
+- [X] SQL template support - custom SQL query
