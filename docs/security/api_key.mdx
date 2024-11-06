@@ -1,0 +1,161 @@
+---
+sidebar_position: 1
+---
+
+# API Key Auth
+
+
+DBRest supports API Key authentication and authorization to protect the API end points. API Key auth is used for system
+to system integration.
+
+:::info
+
+API Key should be specified in the header with the key `X-API-KEY`.
+
+:::
+
+
+By default, auth is disabled in DB2Rest. It can be enabled by setting the
+`ENABLE_AUTH` environment variable to `true`.
+
+:::info
+
+If the parameter - `ENABLE_AUTH` is set to `true`, then authentication is enabled.
+
+:::
+
+
+## Auth Data Source
+
+The security data source is kept separate from application properties. Currently only file based datasource is supported.
+The absolute path of the data file can be specified with the `AUTH_DATA_SOURCE` configuration parameter.
+An example to set auth data source is shown below:
+
+```
+$ export AUTH_DATA_SOURCE = `file://${user.home}/git/db2rest/auth/auth-sample.yml`
+```
+
+
+## Auth Data Components
+
+### Name
+
+The first attribute in the auth data file is the `name`. It is the name of the data file or project.
+
+### Resource Roles
+
+In this section specify the protected resources or URI paths, HTTP method and the roles which are allowed to access this URI.
+
+### Excluded Resources
+
+In this section specify the resources which are not protected by DB2Rest security with the URI Paths and the HTTP method.
+
+### API Keys
+
+In this section specify the API key, roles and active status associated with a system accessing the database resources.
+
+
+## Sample Data File
+
+A sample auth data file is shown below:
+
+```
+
+name: db2rest-security
+
+resourceRoles:
+  - resource: "/v1/rdbms/pgdb/actor/**"
+    method: post
+    roles:
+      - role2
+      - role3
+      - role4
+  - resource: "/api/v2/host"
+    method: get
+    roles:
+      - role2
+      - role3
+      - role4
+
+
+excludedResources:
+  - resource: "/v1/rdbms/**"
+    method: get
+  - resource: "/v1/rdbms/pgdb/factor"
+    method: post
+  - resource: "/v1/rdbms/**"
+    method: put
+  - resource: "/v1/rdbms/**"
+    method: delete
+
+
+apiKeys:
+  - key: apikey1
+    roles: [admin]
+    active: true
+  - key: apikey2
+    roles: [admin]
+  - key: apiKey3
+    roles: [user]
+    active: true
+
+```
+
+:::warning
+
+Live reloading of this file is currently not supported.
+
+:::
+
+
+
+## Role Based Access Control (RBAC)
+
+DB2Rest supports RBAC control out of the box when security is enabled. It will first check the API key to find the matching key. If
+the key is active, it will extract the roles.
+In case of a successful match, it will go ahead and check the resource being requested is in the `resourceRoles`. If a matching resource is found,
+it will verify that the API key roles matches the allowed role list for the resource. Then the gate is opened to access the database resource.
+
+Each request must provide the API key as `X-API-KEY` header.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request POST \
+        --url http://localhost:8080/v1/rdbms/pgdb/actor \
+        --header 'X-API-KEY: apikey1' \
+        --header 'Content-Type: application/json' \
+        --header 'User-Agent: insomnia/8.6.1' \
+        --data '{
+
+            "first_name" : "Salman 456",
+            "last_name" : "Khan"
+        }'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '{
+
+        "first_name" : "Salman 456",
+        "last_name" : "Khan"
+
+    }' |  \
+        http POST http://localhost:8080/v1/rdbms/pgdb/actor \
+        Authorization:'X-API-KEY: apikey1' \
+        Content-Type:application/json \
+        User-Agent:insomnia/8.6.1
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
