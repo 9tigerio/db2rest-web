@@ -6,12 +6,13 @@ hide_table_of_contents: true
 
 # Roadmap
 
-Updated: 02-July-2024
+Updated: 05-November-2024
 
 ## In Progress
 
-- [ ] JWT/JWKS support /OAuth
-- [ ] JSON data type support
+- [ ] UUID support
+- [ ] Data Federation
+- [ ] Multi-tenancy
 - [ ] Documentation Deploy - AWS Lightsail
 - [ ] Documentation Deploy - to Azure
 - [ ] Document Metrics & health check
@@ -19,8 +20,6 @@ Updated: 02-July-2024
 ## Planned 
 (participate in our [GitHub Discussions](https://github.com/9tigerio/db2rest/discussions) for wants or needs)
 
-- [ ] Support for SQL Server
-- [ ] Multi-tenancy
 - [ ] Admin API - reload cache, change configuration at runtime etc.
 - [ ] Data access control
 - [ ] Support - Rate Limiting
@@ -28,7 +27,7 @@ Updated: 02-July-2024
 - [ ] Caching - Redis support (Requested on Redit)
 - [ ] Aggregate function
 - [ ] mTLS/Certificate auth 
-- [ ] Integration with AWS KMS, Hashicorp Vault
+- [ ] Integration with AWS KMS, Hashicorp Vault (Enterprise Edition)
 - [ ] HTTP2 support - (requested by a financial company)
 - [ ] Documentation - Support AWS RDS Postgres, Aurora Postgres
 - [ ] Youtube videos
@@ -44,11 +43,9 @@ Updated: 02-July-2024
 - [ ] Documentation - MongoDB Atlas
 - [ ] Documentation - MongoDB DigitalOcean
 - [ ] Documentation - AWS DocumentDB
-- [ ] Pre- and Post-processing Hooks
+- [ ] Pre- and Post-processing Hooks - Webhooks (ENTERPRISE EDITION)
 - [ ] Vector DB support
-- [ ] API Key auth
 - [ ] GraphQL Support
-- [ ] Grpc Support
 - [ ] Cloud/SaaS
 - [ ] Chain - Ability to insert/update into multiple tables in same transaction. (ENTERPRISE EDITION)
 - [ ] Database migration and schema evolution through Liquibase/Flyway (ENTERPRISE EDITION)
@@ -56,7 +53,6 @@ Updated: 02-July-2024
 - [ ] Data Encryption, Masking(ENTERPRISE EDITION)
 - [ ] Sharding (ENTERPRISE EDITION)
 - [ ] Audit table / data diff handling (ENTERPRISE EDITION)
-- [ ] Open policy agent support (ENTERPRISE EDITION)
 - [ ] Audit columns handling - created date, last updated date, created by, last updated by (ENTERPRISE EDITION)
 - [ ] Database visualization and query (ENTERPRISE EDITION)
 - [ ] Reporting / Jasper reports (ENTERPRISE EDITION)
@@ -68,6 +64,8 @@ Updated: 02-July-2024
 - [ ] Dataframe Capabilities (ENTERPRISE EDITION)
 - [ ] Natural Language to SQL (ENTERPRISE EDITION)
 - [ ] Ability to run ML algorithms (ENTERPRISE EDITION)
+- [ ] Database Documentation
+
 
 ## Completed / Done
 
@@ -95,3 +93,8 @@ Updated: 02-July-2024
 - [X] Observability - Grafana & Prometheus 
 - [X] Basic Auth
 - [X] Role Based Access Control (RBAC)
+- [X] JWT/JWKS support /OAuth
+- [X] JSON data type support
+- [X] Support for SQL Server
+- [X] API Key auth
+- [X] SQL template support
