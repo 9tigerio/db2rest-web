@@ -67,7 +67,7 @@ Updated: 05-November-2024
 - [ ] Database Documentation
 
 
-## Completed / Done
+## Completed 
 
 - [x] Support for MongoDB
 - [x] Support for Oracle
