@@ -94,12 +94,11 @@ Transfer-Encoding: chunked
 ```
 The `status` value of `UP` confirms that the service is up and running.
 
-# Use Docker Compose
+## Use Docker Compose
 
 Docker compose can be used to run both PostgreSQL and DB2Rest. The Docker compose file is listed below:
 
 ```yaml
-
 version: "3.8"
 services:
   db2rest-service:
@@ -122,10 +121,10 @@ services:
       - POSTGRES_PASSWORD=db2rest
       - POSTGRES_DB=empdb
 
-
-
 ```
 
+The docker compose file is available in the Github repository.
+[https://github.com/9tigerio/db2rest/blob/master/docker-compose/postgresql/docker-compose.yml]
 
 # Supported PostgreSQL Versions
 
