@@ -1,8 +1,8 @@
 {
-  "label": "Yugabyte",
-  "position": 110,
+  "label": "SQLServer",
+  "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "Complete Guide to integrate DB2Rest with Yugabyte."
+    "description": "Complete Guide to integrate DB2Rest with Microsoft SQL Server."
   }
 }
