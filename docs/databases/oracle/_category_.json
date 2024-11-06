@@ -1,8 +1,8 @@
 {
-  "label": "Yugabyte",
-  "position": 110,
+  "label": "Oracle",
+  "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Complete Guide to integrate DB2Rest with Yugabyte."
+    "description": "Complete Guide to integrate DB2Rest with Oracle."
   }
 }

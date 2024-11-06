@@ -1,8 +1,8 @@
 {
-  "label": "Tembo PostgreSQL",
+  "label": "Tembo",
   "position": 60,
   "link": {
     "type": "generated-index",
-    "description": "Run DB2Rest on Tembo PostgreSQL platform"
+    "description": "Run DB2Rest on Tembo PostgreSQL platform."
   }
 }
