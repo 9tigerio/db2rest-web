@@ -1,6 +1,6 @@
 {
-  "label": "Actuator",
-  "position": 50,
+  "label": "Heath and Metrics",
+  "position": 100,
   "link": {
     "type": "generated-index",
     "description": "Guide on health check, metrics and production grade features."
