@@ -72,12 +72,11 @@ Updated: 05-November-2024
 - [x] Support for MongoDB
 - [x] Support for Oracle
 - [x] Support Tembo
-- [x] Deploy to Digital Ocean
+- [x] Deploy to DigitalOcean
 - [x] Multi-table implicit Join - with one to many based on select path.
 - [x] Outer Join
 - [x] Cross Join
 - [x] TSID support
-- [x] API Key support - unkey.dev
 - [x] Open API specification 3.x 
 - [x] Offset & limit pagination
 - [x] Twitter Handle - [DB2Rest](https://twitter.com/DB2Rest)
