@@ -1,0 +1,8 @@
+{
+  "label": "Observability",
+  "position": 110,
+  "link": {
+    "type": "generated-index",
+    "description": "Guide to integrate DB2Rest with Observability Platforms and Tools."
+  }
+}
