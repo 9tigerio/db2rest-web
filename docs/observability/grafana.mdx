@@ -4,56 +4,14 @@ sidebar_position: 2
 
 # Grafana
 
-![DB2REST_Grafana](./assets/db2rest_grafana.png)
+
+DB2Rest can be easily configured to expose metrics data for Grafana. In order to enable Prometheus to scrape metrics
+set the `PROMETHEUS_EXPORT_ENABLED` parameter to `true`. This will enable the actuator endpoint `/actuator/prometheus` which can be used for scraping.
 
 
-DB2Rest can be
 
 
-The actuator health check endpoint can be used to test the installation. Once DB2Rest has been [installed](../intro), the following `GET` requests
-will inform the status of the server.
 
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-    <TabItem value="cURL" label="cURL" default>
-        ```bash
-
-        curl --request GET \
-        --url http://[IP_ADDRESS]:8080/actuator/health \
-        --header 'User-Agent: insomnia/8.6.1'
-
-
-        ```
-    </TabItem>
-    <TabItem value="httpie" label="HTTPie">
-        ```bash
-
-        http GET http://[IP_ADDRESS]:8080/actuator/health \
-        User-Agent:insomnia/8.6.1
-
-        ```
-    </TabItem>
-
-</Tabs>
-
-
-The actuator health check service in DB2Rest will return the following response:
-
-
-```http
-HTTP/1.1 200
-Content-Type: application/json
-Transfer-Encoding: chunked
-
-{
-	"status": "UP"
-}
-
-```
-The `status` value of `UP` confirms that the service is up and running.
 
 
 
