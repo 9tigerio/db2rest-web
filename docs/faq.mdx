@@ -69,5 +69,11 @@ can be specified directly as `schemaName` attribute.
 
 :::
 
+## Does DB2Rest support GZIP compression of HTTP Response? \{#support_multiple_physical_databases}
 
-For further help, visit us on <a href="https://discord.gg/gytFPNW656">Discord</a> or our <a href="https://github.com/9tigerio/db2rest/discussions">GitHub Discussions</a>
+Gzip compression is a technique used to reduce the size of HTTP responses by compressing them before sending them over the network. DB2Rest provides
+support for gzip compression. In order to enable gzip compression set the parameter `GZIP_ENABLED` to `true`. It is also possible to set the
+minimum response size for the compression to kick-in. This can be set using the `GZIP_MIN_RESPONSE_SIZE` parameter. The default value is 1024 bytes.
+
+
+For help, visit us on [Discord](https://discord.gg/kqeDatPGwU) or our [GitHub Discussions](https://github.com/9tigerio/db2rest/discussions)
