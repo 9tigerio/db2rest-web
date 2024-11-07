@@ -22,9 +22,13 @@ sidebar_position: 3
 | 14. | AUTH_DATA_SOURCE           | Provide the absolute path of the auth data as a file.                                           | -                                                                                                                                             |
 | 15. | DEFAULT_FETCH_LIMIT        | Limits the number of rows that will be retrieved for a read query.                              | 100                                                                                                                                           |
 | 16. | PROMETHEUS_EXPORT_ENABLED  | Enable Monitoring with Prometheus and Grafana Observability Stack                               | <ul><li>false(default)</li><li>true</li></ul>                                                                                                 |
-
-
-
+| 17. | DATADOG_EXPORT_ENABLED     | Enable Monitoring with Datadog                                                                  | <ul><li>false(default)</li><li>true</li></ul>                                                                                                 |
+| 18. | DATADOG_API_KEY            | Datadog API Key                                                                                 | -                                                                                                                                             |
+| 19. | DATADOG_APPLICATION_KEY    | Datadog Application Key                                                                         | -                                                                                                                                             |
+| 20. | DATADOG_EXPORT_URI         | Datadog export URI - this is where the data will be posted.                                     | -                                                                                                                                             |    
+| 21. | DATADOG_EXPORT_INTERVAL    | Interval after which the data will be scraped and posted.                                       | Default: 30s                                                                                                                                  |  
+  
+       
 
 
 :::tip
