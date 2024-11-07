@@ -95,4 +95,5 @@ Updated: 05-November-2024
 - [X] JSON data type support
 - [X] Support for SQL Server
 - [X] API Key auth
+- [X] API Key auth - Unkey.dev
 - [X] SQL template support - custom SQL query

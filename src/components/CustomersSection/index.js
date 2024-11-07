@@ -24,6 +24,17 @@ const CustomerList = [
       </>
     ),
   },
+    {
+        title: 'rentacyblerfriend',
+        i: "https://images.db2rest.com/rent_a_cyber_friend.png",
+        url : "https://www.rentacyberfriend.com/",
+        description: (
+            <>
+                RentACyberFriend.com is a social platform based on the concept of Pen Pal. RentACyberFriend uses DB2Rest to securely
+                share data with other systems and simplify integrations.
+            </>
+        ),
+    },
 ];
 
 function Customer({i, title, url, description}) {
