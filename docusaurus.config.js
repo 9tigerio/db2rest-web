@@ -200,7 +200,7 @@ const config = {
       announcementBar: {
         id: 'support_us',
         content:
-            'Major update to documentation is underway for version 1.3.0. Please be patient.',
+            'Major update to documentation is underway for version 1.3.0.',
         backgroundColor: '#DAF7A6',
         textColor: '#091E42',
         isCloseable: false,
