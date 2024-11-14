@@ -1,0 +1,8 @@
+{
+  "label": "Remote Procedure Call",
+  "position": 45,
+  "link": {
+    "type": "generated-index",
+    "description": "Detailed guide to invoke stored procedures and functions over REST."
+  }
+}
