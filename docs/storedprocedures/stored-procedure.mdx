@@ -7,6 +7,17 @@ sidebar_position: 1
 
 DB2Rest makes it very easy to invoke stored procedures for different databases.
 
+## Stored Procedure Endpoint
+
+The API endpoint for calling stored procedure is `/{dbId}/procedure/{procName}`, where `dbId` is the configured database identifier and `procName`
+is the name of the stored procedure.
+
+
+## Stored Function Endpoint
+
+The API endpoint for calling stored function is `/{dbId}/function/{funcName}`, where `dbId` is the configured database identifier and `funcName`
+is the name of the stored function.
+
 
 ## PostgreSQL
 
@@ -30,13 +41,6 @@ $$;
 The `GetMovieRentalRateProc` stored procedure accepts a `varchar` datatype and returns the `numeric` rental value.
 This stored procedure can be invoked using the following endpoint.
 
-:::tip
-
-The API endpoint for calling stored procedure is `/{dbId}/procedure/{procName}`, where `dbId` is the configured database identifier and `procName`
-is the name of the stored procedure.
-
-:::
-
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -44,8 +48,6 @@ import TabItem from '@theme/TabItem';
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
-
-
 
         curl 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' -i -X POST \
         -H 'Content-Type: application/json;charset=UTF-8' \
@@ -80,9 +82,87 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 19
 
-{"rentalrate":0.99}
+{
+    "rentalrate":0.99
+}
 ```
 
+### Stored Function
 
 
+Consider the stored function below:
 
+```sql
+
+CREATE OR REPLACE FUNCTION GetMovieRentalRateFunc(movieTitle varchar)
+    RETURNS numeric
+	LANGUAGE plpgsql
+AS $$
+	DECLARE
+		rentalRate numeric;
+	BEGIN
+		SELECT rental_rate INTO rentalRate FROM film WHERE title = movieTitle;
+		return rentalRate;
+	END;
+$$;
+
+
+```
+
+The `GetMovieRentalRateFunc` stored function accepts a `varchar` datatype and returns the `numeric` rental value.
+This stored function can be invoked using the following endpoint as shown below.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+
+        ```bash
+
+        curl 'http://localhost:8080/v1/rdbms/pgsqldb/function/GetMovieRentalRateFunc' -i -X POST \
+        -H 'Content-Type: application/json;charset=UTF-8' \
+        -H 'Accept: application/json' \
+        -d '       {
+        "movieTitle": "ACADEMY DINOSAUR"
+    }
+        '
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '       {
+        "movieTitle": "ACADEMY DINOSAUR"
+    }
+        ' | http POST 'http://localhost:8080/v1/rdbms/pgsqldb/function/GetMovieRentalRateFunc' \
+        'Content-Type:application/json;charset=UTF-8' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The returned movie rental rate is shown below:
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 19
+
+{
+    "rentalrate":0.99
+}
+```
+
+:::info
+
+ **`pgsqldb`** in the examples above is the database identifier.
+ **`http://localhost:8080/v1/rdbms`** is the base url for REST API.
+
+:::

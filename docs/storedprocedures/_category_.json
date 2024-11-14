@@ -1,6 +1,6 @@
 {
   "label": "Stored Procedures",
-  "position": 150,
+  "position": 70,
   "link": {
     "type": "generated-index",
     "description": "Invoke remote functions with stored procedures for different databases."
