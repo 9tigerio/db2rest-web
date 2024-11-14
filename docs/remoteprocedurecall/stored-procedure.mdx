@@ -155,3 +155,20 @@ The API calls remain same irrespective of the database system.
 Oracle Stored Procedure is not supported as of current version.
 
 :::
+
+
+## PostgreSQL Issues
+
+In case of PostgreSQL Server version >= 11, ensure that the `DB_URL` has the `escapeSyntaxCallMode` parameter set to `callIfNoReturn`.
+
+```
+DB_URL=jdbc:postgresql://localhost:5432/sakila?escapeSyntaxCallMode=callIfNoReturn
+
+```
+
+In the absence of this parameter the following error may be shown:
+
+```
+Hint: To call a procedure, use CALL.
+
+```
