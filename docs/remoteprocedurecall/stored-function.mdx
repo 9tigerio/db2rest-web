@@ -7,6 +7,8 @@ sidebar_position: 2
 
 DB2Rest makes it very easy to invoke stored functions for different databases as REST API.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Stored Function Endpoint
 
@@ -39,8 +41,7 @@ $$;
 The `GetMovieRentalRateFunc` stored function accepts a `varchar` datatype and returns the `numeric` rental value.
 This stored function can be invoked using the following endpoint as shown below.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -72,7 +73,15 @@ import TabItem from '@theme/TabItem';
 
 </Tabs>
 
+The response is shown below:
 
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 20
+
+{"returnvalue":0.99}
+```
 
 ## MySQL
 
@@ -92,3 +101,49 @@ END;
 
 ```
 
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+
+        ```bash
+
+        curl 'http://localhost:8080/v1/rdbms/pgsqldb/function/GetMovieRentalRateFunc' -i -X POST \
+        -H 'Content-Type: application/json;charset=UTF-8' \
+        -H 'Accept: application/json' \
+        -d '       {
+        "movieTitle": "ACADEMY DINOSAUR"
+    }
+        '
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '       {
+        "movieTitle": "ACADEMY DINOSAUR"
+    }
+        ' | http POST 'http://localhost:8080/v1/rdbms/pgsqldb/function/GetMovieRentalRateFunc' \
+        'Content-Type:application/json;charset=UTF-8' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+The response is shown below:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 20
+
+{"returnvalue":0.99}
+```
+
+:::info
+
+The example above shows how DB2Rest provides a unified interface to call stored procedure for any database.
+The API calls remain same irrespective of the database system.
+
+:::
