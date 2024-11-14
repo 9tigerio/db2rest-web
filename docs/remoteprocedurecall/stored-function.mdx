@@ -16,8 +16,6 @@ is the name of the stored function.
 
 ## PostgreSQL
 
-### Stored Function
-
 
 Consider the stored function below:
 
@@ -76,4 +74,21 @@ import TabItem from '@theme/TabItem';
 
 
 
+## MySQL
+
+Consider the MySQL stored function below:
+
+```sql
+
+CREATE FUNCTION GetMovieRentalRateFunc(movieTitle varchar(100))
+    RETURNS DECIMAL(4, 2)
+    DETERMINISTIC
+BEGIN
+        DECLARE rentalRate DECIMAL(4, 2);
+        SET rentalRate = 0.00;
+        SELECT rental_rate INTO rentalRate FROM film WHERE title = movieTitle;
+        RETURN (rentalRate);
+END;
+
+```
 

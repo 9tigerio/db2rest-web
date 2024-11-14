@@ -15,7 +15,6 @@ is the name of the stored procedure.
 
 ## PostgreSQL
 
-### Stored Procedure
 
 Consider the stored procedure below:
 
@@ -81,7 +80,65 @@ Content-Length: 19
 }
 ```
 
+## MySQL
+
+Consider the MySQL stored procedure below:
+
+```sql
+
+CREATE PROCEDURE GetMovieRentalRateProc(IN movieTitle varchar(100), OUT rentalRate DECIMAL(4, 2))
+    BEGIN
+        SELECT rental_rate INTO rentalRate FROM film WHERE title = movieTitle;
+    END;
+
+```
 
 
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' -i -X POST \
+        -H 'Content-Type: application/json;charset=UTF-8' \
+        -H 'Accept: application/json' \
+        -d '       {
+        "movieTitle": "ACADEMY DINOSAUR"
+    }'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '       {
+        "movieTitle" : "ACADEMY DINOSAUR"
+    }
+        ' | http POST 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' \
+        'Content-Type:application/json;charset=UTF-8' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
 
 
+The returned movie rental rate is shown below:
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 19
+
+{
+    "rentalrate":0.99
+}
+```
+
+:::info
+
+The example above shows how DB2Rest provides a unified interface to call stored procedure for any database.
+The API calls remain same irrespective of the database system.
+
+:::
