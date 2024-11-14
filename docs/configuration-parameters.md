@@ -27,8 +27,8 @@ sidebar_position: 3
 | 19. | DATADOG_APPLICATION_KEY    | Datadog Application Key                                                                         | -                                                                                                                                             |
 | 20. | DATADOG_EXPORT_URI         | Datadog export URI - this is where the data will be posted.                                     | -                                                                                                                                             |    
 | 21. | DATADOG_EXPORT_INTERVAL    | Interval after which the data will be scraped and posted.                                       | Default: 30s                                                                                                                                  |  
-  
-       
+| 22. | INCLUDED_SCHEMAS           | Comma separated list of schemas from which the meta-data about tables will be loaded.           | -                                                                                                                                             |  
+
 
 
 :::tip
