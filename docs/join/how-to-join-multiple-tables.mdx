@@ -41,16 +41,13 @@ otherwise the endpoint will only return 1 of the columns because of a column nam
 The key attributes of request body is described below:
 
 | Sl# | Attribute  | Mandatory | Description                                                                                         |
-|-----|------------|-----------|-----------------------------------------------------------------------------------------------------|
+| --- | ---------- | --------- | --------------------------------------------------------------------------------------------------- |
 | 1   | schemaName | N         | Schema/Database catalog of the join table.                                                          |
 | 2   | table      | Y         | Table to join with the root table.                                                                  |
 | 3   | fields     | N         | List of columns to retrieve from join tables                                                        |
-| 4   | type       | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER` |
+| 4   | joinType   | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER` |
 | 5   | on         | N         | Join columns.                                                                                       |
 | 6   | withTable  | N         | Join with another table.                                                                            |
-
-
-
 
 ## Inner Join
 
@@ -60,8 +57,8 @@ The key attributes of request body is described below:
 
 The example below shows how to join `review` table with `film` to retrieve all the reviews for each film.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -81,7 +78,6 @@ import TabItem from '@theme/TabItem';
     </TabItem>
 
 </Tabs>
-
 
 The response from this query is shown below.
 
@@ -163,10 +159,7 @@ junction/join table `film_actor` and `actor` to retrieve the list of film with t
 
 </Tabs>
 
-
-
 ## Left Join
-
 
 The `LEFT JOIN` keyword returns all records from the left table (A), and the matching records from the right table (B).
 The result is 0 records from the right side, if there is no match.
@@ -255,12 +248,10 @@ Content-Length: 730
 
 ## Right Join
 
-
 The `RIGHT JOIN` keyword returns all records from the right table (B), and the matching records from the left table (A).
 The result is 0 records from the left side, if there is no match.
 
 ![Right Join](./assets/right.png)
-
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -280,7 +271,6 @@ The result is 0 records from the left side, if there is no match.
     </TabItem>
 
 </Tabs>
-
 
 This will return the following result:
 
@@ -341,11 +331,9 @@ Content-Length: 741
     ]
 ```
 
-
 ## Self Join
 
 A self join is a regular join, but the table is joined with itself.
-
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -386,9 +374,7 @@ A self join is a regular join, but the table is joined with itself.
 
 </Tabs>
 
-
 ### Self Join - with compound condition
-
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -428,7 +414,6 @@ A self join is a regular join, but the table is joined with itself.
     </TabItem>
 
 </Tabs>
-
 
 ### Self Join - with compound condition and filter
 
@@ -475,14 +460,10 @@ A self join is a regular join, but the table is joined with itself.
 
 </Tabs>
 
-
-
 ## Cross Join
-
 
 A cross join returns the Cartesian product of rows from the tables included in the join. It does not require any join condition.
 In other words, it will combine each row from the first table with each row from the second table.
-
 
 :::danger
 
@@ -508,8 +489,6 @@ This is potentially an expensive and dangerous operation since it can lead to a 
     </TabItem>
 
 </Tabs>
-
-
 
 ## Combine Inner and Outer Join
 
@@ -569,7 +548,6 @@ This is potentially an expensive and dangerous operation since it can lead to a 
     </TabItem>
 
 </Tabs>
-
 
 This will return the following result: (truncated)
 
