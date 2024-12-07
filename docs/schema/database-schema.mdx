@@ -1,0 +1,68 @@
+---
+sidebar_position: 2
+---
+
+# Database meta information
+
+
+DB2Rest makes it very easy to view the database schema, all tables and views within an database schema as REST API.
+Optionally it will return all column information.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Schema Endpoint
+
+The API endpoint for viewing the schema is `/{dbId}/$schemas?columns=true`, where `dbId` is the configured database identifier.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgsqldb/$schemas?columns=true' \
+        -H 'Accept: application/json'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgsqldb/$schemas?columns=true' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+The response is shown below:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 324
+
+[
+    {
+        schema: "public",
+        name: "categories",
+        type: "TABLE",
+        columns: [
+            {
+                name: "category_id",
+                pk: true,
+                dataType: "int4"
+            },
+            {
+                name: "name",
+                pk: false,
+                dataType: "varchar"
+            }
+        ]
+    },
+    ...
+]
+```
