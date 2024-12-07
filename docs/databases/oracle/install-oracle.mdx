@@ -200,6 +200,36 @@ The `status` attribute shows that the application service is ready to handle dat
 
 ```
 
+
+# Create Oracle Objects
+
+CREATE TABLESPACE tbs_perm_01
+DATAFILE 'tbs_perm_01.dat'
+SIZE 20M
+ONLINE;
+
+
+CREATE TEMPORARY TABLESPACE tbs_temp_01
+TEMPFILE 'tbs_temp_01.dbf'
+SIZE 5M;
+
+
+CREATE USER LARRY
+IDENTIFIED BY LARRY
+DEFAULT TABLESPACE tbs_perm_01
+TEMPORARY TABLESPACE tbs_temp_01
+QUOTA 20M on tbs_perm_01;
+
+
+GRANT create session TO LARRY;
+GRANT create table TO LARRY;
+GRANT create view TO LARRY;
+GRANT create any trigger TO LARRY;
+GRANT create any procedure TO LARRY;
+GRANT create sequence TO LARRY;
+GRANT create synonym TO LARRY;
+
+
 Finally, refer to the DB2Rest documentation for further learning and exploring API features.
 
 For help, visit us on [Discord](https://discord.gg/fEFnNmUq) or our [GitHub Discussions](https://github.com/9tigerio/db2rest/discussions)

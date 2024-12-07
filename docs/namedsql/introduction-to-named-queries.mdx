@@ -1,0 +1,174 @@
+---
+sidebar_position: 1
+---
+
+# Introduction
+
+
+DB2Rest makes it very easy to invoke stored procedures for different databases.
+
+## Stored Procedure Endpoint
+
+The API endpoint for calling stored procedure is `/{dbId}/procedure/{procName}`, where `dbId` is the configured database identifier and `procName`
+is the name of the stored procedure.
+
+
+## PostgreSQL
+
+
+Consider the stored procedure below:
+
+```sql
+
+CREATE OR REPLACE PROCEDURE GetMovieRentalRateProc(movieTitle IN varchar, rentalRate OUT numeric)
+	LANGUAGE plpgsql
+AS  $$
+	BEGIN
+		SELECT rental_rate INTO rentalRate FROM film WHERE title = movieTitle;
+	END;
+$$;
+
+
+```
+
+The `GetMovieRentalRateProc` stored procedure accepts a `varchar` datatype and returns the `numeric` rental value.
+This stored procedure can be invoked using the following endpoint.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' -i -X POST \
+        -H 'Content-Type: application/json;charset=UTF-8' \
+        -H 'Accept: application/json' \
+        -d '       {
+            "movieTitle": "ACADEMY DINOSAUR"
+        }'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '       {
+        "movieTitle" : "ACADEMY DINOSAUR"
+    }
+        ' | http POST 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' \
+        'Content-Type:application/json;charset=UTF-8' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The returned movie rental rate is shown below:
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 19
+
+{
+    "rentalrate":0.99
+}
+```
+
+## MySQL
+
+Consider the MySQL stored procedure below:
+
+```sql
+
+CREATE PROCEDURE GetMovieRentalRateProc(IN movieTitle varchar(100), OUT rentalRate DECIMAL(4, 2))
+    BEGIN
+        SELECT rental_rate INTO rentalRate FROM film WHERE title = movieTitle;
+    END;
+
+```
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' -i -X POST \
+        -H 'Content-Type: application/json;charset=UTF-8' \
+        -H 'Accept: application/json' \
+        -d '       {
+        "movieTitle": "ACADEMY DINOSAUR"
+    }'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        echo '       {
+        "movieTitle" : "ACADEMY DINOSAUR"
+    }
+        ' | http POST 'http://localhost:8080/v1/rdbms/pgsqldb/procedure/GetMovieRentalRateProc' \
+        'Content-Type:application/json;charset=UTF-8' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The returned movie rental rate is shown below:
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 19
+
+{
+    "rentalrate":0.99
+}
+```
+
+:::info
+
+The example above shows how DB2Rest provides a unified interface to call stored procedure for any database.
+The API calls remain same irrespective of the database system.
+
+:::
+
+
+## Other Supported Databases
+
+    - MariaDB
+    - Microsoft SQLServer
+
+
+:::danger
+
+Oracle Stored Procedure is not supported as of current version.
+
+:::
+
+
+## PostgreSQL Issues
+
+In case of PostgreSQL Server version >= 11, ensure that the `DB_URL` has the `escapeSyntaxCallMode` parameter set to `callIfNoReturn`.
+
+```
+DB_URL=jdbc:postgresql://localhost:5432/sakila?escapeSyntaxCallMode=callIfNoReturn
+
+```
+
+In the absence of this parameter the following error may be shown:
+
+```
+Hint: To call a procedure, use CALL.
+
+```
