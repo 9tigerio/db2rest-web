@@ -10,6 +10,52 @@ to add JSON specific operators.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## `jbe`
+
+The `jbe` operator performs an equality check on a certain attribute. Lets retrieve all the products where brand is `Apple`.
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=id, data->>'name':name,data->>'price':price&filter=data**brand=jbe=Apple' \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=id, data->>'name':name,data->>'price':price&filter=data**brand=jbe=Apple' \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The query above returns the following result:
+
+```http
+[
+	{
+		"id": 1,
+		"name": "iPhone 15 Pro",
+		"price": "999.99"
+	},
+	{
+		"id": 3,
+		"name": "Leather Case for iPhone 15 Pro",
+		"price": "69.99"
+	}
+]
+
+```
+
+
 ## `jsonbContain`
 
 This filter operator checks if a JSON document contains another JSON document.
