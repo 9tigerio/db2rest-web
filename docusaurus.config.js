@@ -45,10 +45,10 @@ const config = {
   },
 
   customFields: {
-    version: 'V-1.2.3',
-    download_url: 'https://download.db2rest.com/db2rest-1.2.3.jar',
-    download_jar: 'db2rest-1.2.3.jar',
-    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.2.3.jar'
+    version: 'V-1.4.1',
+    download_url: 'https://download.db2rest.com/db2rest-1.4.1.jar',
+    download_jar: 'db2rest-1.4.1.jar',
+    download_url_oracle_9i: 'https://download.db2rest.com/db2rest-oracle9i-1.4.1.jar'
   },
 
   presets: [
@@ -200,7 +200,7 @@ const config = {
       announcementBar: {
         id: 'support_us',
         content:
-            'Major update to documentation is underway for version 1.3.0.',
+            'Major update to documentation is underway for version 1.4.1.',
         backgroundColor: '#DAF7A6',
         textColor: '#091E42',
         isCloseable: false,
