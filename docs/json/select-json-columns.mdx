@@ -9,7 +9,7 @@ DB2Rest supports retrieving values from JSON or JSONB columns of `PostgreSQL` da
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## '->' Operator
+## `->` Operator
 
 Consider the following `products` table definition.
 
@@ -77,3 +77,32 @@ The query above returns the following result:
 
 ```
 
+## `->>` Operator
+
+The `->>` operator is also supported as shown below:
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data->>'name':product_name \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data->>'name':product_name \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+This will also return the same result as above.
