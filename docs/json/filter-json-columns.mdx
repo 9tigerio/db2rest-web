@@ -57,3 +57,28 @@ The query above returns the following result:
 
 ```
 
+## `jsonContain`
+
+Now let us retrieve the product whose price is 999.99
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=id, data->>'name':name,data->>'price':price&filter=data=jsonContain='{"price": 999.99}' \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=id, data->>'name':name,data->>'price':price&filter=data=jsonContain='{"price": 999.99}' \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
