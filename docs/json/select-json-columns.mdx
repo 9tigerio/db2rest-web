@@ -235,3 +235,51 @@ The result is shown below.
 ]
 
 ```
+
+## `#>>` Operator
+
+The `#>>` operator can also be used to retrieve specific attribute value.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data%23>>'{attributes.color}':colors \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data%23>>'{attributes.color}':colors \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The result is shown below.
+
+```http
+[
+	{
+		"colors": "Graphite"
+	},
+	{
+		"colors": "Black"
+	},
+	{
+		"colors": "Saddle Brown"
+	},
+	{
+		"colors": "White"
+	}
+]
+
+```
