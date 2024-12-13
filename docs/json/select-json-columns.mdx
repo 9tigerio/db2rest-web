@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# JSON Column Selection
+# Select JSON Column Values
 
 DB2Rest supports retrieving values from JSON or JSONB columns of `PostgreSQL` database.
 
@@ -106,3 +106,132 @@ The `->>` operator is also supported as shown below:
 
 
 This will also return the same result as above.
+
+## `#>` Operator
+
+This operator extracts a JSON sub-object at a specified path. The query below retrieves the `attributes`.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data%23>'{attributes}':attributes \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data%23>'{attributes}':attributes \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+:::tip
+
+The `#>` operator has to be escaped in the URL.
+
+:::
+
+The result is shown below.
+
+```http
+[
+	{
+		"attributes": {
+			"color": "Graphite",
+			"display": "6.1-inch Super Retina XDR display",
+			"storage": "256GB",
+			"processor": "A15 Bionic chip"
+		}
+	},
+	{
+		"attributes": {
+			"size": "42mm",
+			"color": "Black",
+			"display": "AMOLED display",
+			"sensors": [
+				"heart rate monitor",
+				"ECG",
+				"SpO2"
+			]
+		}
+	},
+	{
+		"attributes": {
+			"color": "Saddle Brown",
+			"material": "Genuine leather",
+			"compatible_devices": [
+				"iPhone 15 Pro",
+				"iPhone 15 Pro Max"
+			]
+		}
+	},
+	{
+		"attributes": {
+			"color": "White",
+			"compatible_devices": [
+				"iPhone",
+				"Samsung Galaxy",
+				"Apple Watch",
+				"Samsung Galaxy Watch"
+			]
+		}
+	}
+]
+
+```
+
+It is also possible to retrieve specific attribute using the `#>` operator as shown in the next query.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data%23>'{attributes.color}':colors \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=data%23>'{attributes.color}':colors \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The result is shown below.
+
+```http
+[
+	{
+		"colors": "Graphite"
+	},
+	{
+		"colors": "Black"
+	},
+	{
+		"colors": "Saddle Brown"
+	},
+	{
+		"colors": "White"
+	}
+]
+
+```
