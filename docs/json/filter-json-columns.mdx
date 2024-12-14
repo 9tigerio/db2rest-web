@@ -142,3 +142,57 @@ The result is shown below:
 ]
 
 ````
+## `jbKeyExist`
+
+The following query checks if a key exists in a JSONB object.
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/products?fields=id, data->>'name':name,data->>'price':price&filter=data**price=jbKeyExist=''' \
+        --header 'User-Agent: insomnia/9.2.0'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET 'http://localhost:8080/v1/rdbms/pgdb/products?fields=id, data->>'name':name,data->>'price':price&filter=data**price=jbKeyExist=''' \
+        User-Agent:insomnia/9.2.0
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+The result is shown below:
+
+````json lines
+
+[
+	{
+		"id": 1,
+		"name": "iPhone 15 Pro",
+		"price": "999.99"
+	},
+	{
+		"id": 2,
+		"name": "Samsung Galaxy Watch 4",
+		"price": "349.99"
+	},
+	{
+		"id": 3,
+		"name": "Leather Case for iPhone 15 Pro",
+		"price": "69.99"
+	},
+	{
+		"id": 4,
+		"name": "Wireless Charging Pad",
+		"price": "29.99"
+	}
+]
+
+````
