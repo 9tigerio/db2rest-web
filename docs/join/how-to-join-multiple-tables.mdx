@@ -40,14 +40,15 @@ otherwise the endpoint will only return 1 of the columns because of a column nam
 
 The key attributes of request body is described below:
 
-| Sl# | Attribute  | Mandatory | Description                                                                                         |
-| --- | ---------- | --------- | --------------------------------------------------------------------------------------------------- |
-| 1   | schemaName | N         | Schema/Database catalog of the join table.                                                          |
-| 2   | table      | Y         | Table to join with the root table.                                                                  |
-| 3   | fields     | N         | List of columns to retrieve from join tables                                                        |
-| 4   | joinType   | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER` |
-| 5   | on         | N         | Join columns.                                                                                       |
-| 6   | withTable  | N         | Join with another table.                                                                            |
+| Sl# | Attribute  | Mandatory | Description                                                                                                                                    |
+| --- | ---------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | schemaName | N         | Schema/Database catalog of the join table.                                                                                                     |
+| 2   | table      | Y         | Table to join with the root table.                                                                                                             |
+| 3   | fields     | N         | List of columns to retrieve from join tables                                                                                                   |
+| 4   | joinType   | N         | Type of join - allowed values - `INNER`, `LEFT`, `RIGHT`, `OUTER`, `CROSS`. Default value : `INNER`                                            |
+| 5   | on         | N         | Join columns.                                                                                                                                  |
+| 6   | withTable  | N         | Join with another table.                                                                                                                       |
+| 7   | filter     | N         | Filter the data using RSQL filter. The column filter uses [RSQL](./filter-data-with-rsql) syntax as described [here](./filter-data-with-rsql). |
 
 ## Inner Join
 
@@ -66,12 +67,12 @@ import TabItem from "@theme/TabItem";
         $ curl 'http://localhost:8080/v1/rdbms/db/review/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
-        -d '[{"table":"film","fields":["title","release_year"],"type":"INNER","on":["film_id==film_id"]}]'
+        -d '[{"table":"film","fields":["title","release_year"],"joinType":"INNER","on":["film_id==film_id"]}]'
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"film","fields":["title","release_year"],"type":"INNER","on":["film_id==film_id"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/review/_expand' \
+        $ echo '[{"table":"film","fields":["title","release_year"],"joinType":"INNER","on":["film_id==film_id"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/review/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
@@ -172,12 +173,12 @@ The result is 0 records from the right side, if there is no match.
         $ curl 'http://localhost:8080/v1/rdbms/db/users/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
-        -d '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"LEFT","on":["auid==auid"]}]'
+        -d '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"joinType":"LEFT","on":["auid==auid"]}]'
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"LEFT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/users/_expand' \
+        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"joinType":"LEFT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/users/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
@@ -259,12 +260,12 @@ The result is 0 records from the left side, if there is no match.
         $ curl 'http://localhost:8080/v1/rdbms/db/users/_expand' -i -X POST \
         -H 'Content-Type: application/json' \
         -H 'Accept: application/json' \
-        -d '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"RIGHT","on":["auid==auid"]}]'
+        -d '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"joinType":"RIGHT","on":["auid==auid"]}]'
         ```
     </TabItem>
     <TabItem value="httpie" label="HTTPie">
         ```bash
-        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"type":"RIGHT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/users/_expand' \
+        $ echo '[{"table":"userprofile","fields":["apid","auid","firstname","lastname","email","phone"],"joinType":"RIGHT","on":["auid==auid"]}]' | http POST 'http://localhost:8080/v1/rdbms/db/users/_expand' \
         'Content-Type:application/json' \
         'Accept:application/json'
         ```
