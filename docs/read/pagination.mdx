@@ -107,4 +107,5 @@ If `offset` is specified without `limit`, then `offset` will be ignored.
 ## The Global LIMIT
 
 By default, DB2Rest puts a limit of 100 for read queries. The value can be changed by setting the value of the `DEFAULT_FETCH_LIMIT` configuration parameter.
-It is advised to set this value low (max 20) for optimal performance.
+
+Performance can vary depending on the amount of RAM given to the Java Heap (`-Xmx` Java Option) for DB2Rest, as well as the number of fields requested, their content length, or even database query performance and indexing itself, and thus the `DEFAULT_FETCH_LIMIT` or `&limit` parameter can be adjusted and even increased significantly given adequate resources.  DB2Rest has been tested using 1000's of rows as the limit, even with only 2GB of RAM `-Xmx 2G` and simple records being returned from a PostgreSQL query and can still perform extremely fast for most applications.
