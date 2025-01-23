@@ -493,6 +493,12 @@ This is potentially an expensive and dangerous operation since it can lead to a 
 
 ## Combine Inner and Outer Join
 
+Following along with our syntax in the URL below,
+here we are fetching the field `title` from our `film` database and renaming it with an [alias](../read/column-alias) of `name`.
+The max rows returned is the default 100, since we are not specifying the [limit](../read/pagination#the-limit-clause) parameter.
+The `data` asks to join it with the `language` table, and further, we ask to left join (extend) each `film`
+with `altLangId` and `altLangName` when its `language_id` matches the `original_language_id`.
+
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
         ```bash
