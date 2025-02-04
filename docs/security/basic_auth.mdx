@@ -26,6 +26,14 @@ $ export AUTH_DATA_SOURCE = `file://${user.home}/git/db2rest/auth/auth-sample.ym
 ```
 
 
+:::tip
+
+The auth data source parameter must be prefixed with `file://` if the authentication data is sourced from a file.
+In case the data is loaded from a remote location prefix it with `http` or `https`.
+
+:::
+
+
 ## Auth Data Components
 
 ### Name
