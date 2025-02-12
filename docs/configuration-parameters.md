@@ -28,6 +28,9 @@ sidebar_position: 3
 | 20. | DATADOG_EXPORT_URI         | Datadog export URI - this is where the data will be posted.                                     | -                                                                                                                                             |    
 | 21. | DATADOG_EXPORT_INTERVAL    | Interval after which the data will be scraped and posted.                                       | Default: 30s                                                                                                                                  |  
 | 22. | INCLUDED_SCHEMAS           | Comma separated list of schemas from which the meta-data about tables will be loaded.           | -                                                                                                                                             |  
+| 23. | CORS_ORIGIN_URL           | Comma seperated list of allowed Cross Origin URLs from where requests will be sent to server.           | Default: *                                                                                                                                             |  
+| 24. | CORS_HEADERS_ALLOWED           | Comma seperated list of Headers which will be allowed for the requests.           | Default: *                                                                                                                                             | 
+| 25. | CORS_METHODS_ALLOWED           | Comma seperated list of Methods which will be allowed for the requests.           | Default: `GET,POST`                                                                                                                                             | 
 
 
 
