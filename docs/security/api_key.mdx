@@ -127,15 +127,47 @@ Live reloading of this file is currently not supported.
 
 ## Role Based Access Control (RBAC)
 
-DB2Rest supports RBAC control out of the box when security is enabled. It will first check the API key to find the matching key. If
-the key is active, it will extract the roles.
-In case of a successful match, it will go ahead and check the resource being requested is in the `resourceRoles`. If a matching resource is found,
-it will verify that the API key roles matches the allowed role list for the resource. Then the gate is opened to access the database resource.
+API Key auth supports RBAC control out of the box. It first checks the API key to find the matching key. If
+the key is found and active, it will extract the roles.
 
-Each request must provide the API key as `X-API-KEY` header.
+In case of a successful match, the API Key auth provider checks the resource being requested is in the `resourceRoles`.
+If a matching resource is found, it will verify that the API key roles matches the allowed role list for the resource.
+
+Then the gate is opened to access the database resource.
+
+
+
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+
+### Example `GET` request
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
+        curl --request GET \
+        --url http://localhost:8080/v1/rdbms/db/actor \
+        --header 'User-Agent: insomnia/10.3.1' \
+        --header 'X-API-KEY: apikey1'
+
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+
+        http GET http://localhost:8080/v1/rdbms/db/actor \
+        User-Agent:insomnia/10.3.1 \
+        X-API-KEY:apikey1
+        ```
+    </TabItem>
+
+</Tabs>
+
+### Example `POST` request
 
 <Tabs>
     <TabItem value="cURL" label="cURL" default>
@@ -148,7 +180,7 @@ import TabItem from '@theme/TabItem';
         --header 'User-Agent: insomnia/8.6.1' \
         --data '{
 
-            "first_name" : "Salman 456",
+            "first_name" : "Salman",
             "last_name" : "Khan"
         }'
 
@@ -160,7 +192,7 @@ import TabItem from '@theme/TabItem';
 
         echo '{
 
-        "first_name" : "Salman 456",
+        "first_name" : "Salman",
         "last_name" : "Khan"
 
     }' |  \
@@ -173,5 +205,6 @@ import TabItem from '@theme/TabItem';
     </TabItem>
 
 </Tabs>
+
 
 
