@@ -5,24 +5,26 @@ sidebar_position: 1
 # API Key Auth
 
 
-DBRest supports API Key authentication and authorization to protect the API end points. API Key auth is used for system
+DBRest supports API Key authentication and authorization to protect the API end-points. API Key auth is used for system
 to system integration.
 
+By default, auth is disabled . It can be enabled by setting the `ENABLE_AUTH` environment variable to `true`.
+
 :::info
+
+For API Key based authentication - set the parameter `AUTH_PROVIDER` to `apiKey`. The default value is `basic` which
+enables basic authentication.
+
+:::
+
+
+:::note
 
 API Key should be specified in the header with the key `X-API-KEY`.
 
 :::
 
 
-By default, auth is disabled in DB2Rest. It can be enabled by setting the
-`ENABLE_AUTH` environment variable to `true`.
-
-:::info
-
-If the parameter - `ENABLE_AUTH` is set to `true`, then authentication is enabled.
-
-:::
 
 
 ## Auth Data Source
@@ -70,10 +72,16 @@ A sample auth data file is shown below:
 name: db2rest-security
 
 resourceRoles:
-  - resource: "/v1/rdbms/pgdb/actor/**"
+  - resource: "/v1/rdbms/db/actor/**"
     method: post
     roles:
-      - role2
+      - admin
+      - role3
+      - role4
+  - resource: "/v1/rdbms/db/actor/**"
+    method: get
+    roles:
+      - admin
       - role3
       - role4
   - resource: "/api/v2/host"
@@ -85,14 +93,15 @@ resourceRoles:
 
 
 excludedResources:
-  - resource: "/v1/rdbms/**"
+  - resource: "/v1/rdbms/db/actor2"
     method: get
-  - resource: "/v1/rdbms/pgdb/factor"
+  - resource: "/v1/rdbms/db/actor2"
     method: post
-  - resource: "/v1/rdbms/**"
+  - resource: "/v1/rdbms/db/actor2"
     method: put
-  - resource: "/v1/rdbms/**"
+  - resource: "/v1/rdbms/db/actor2"
     method: delete
+
 
 
 apiKeys:
@@ -104,6 +113,7 @@ apiKeys:
   - key: apiKey3
     roles: [user]
     active: true
+
 
 ```
 
