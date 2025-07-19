@@ -1,0 +1,601 @@
+---
+title: SQLite Usage Guide with db2rest
+description: Comprehensive usage guide with examples for SQLite REST API operations using db2rest
+sidebar_position: 2
+---
+
+# SQLite Usage Guide with db2rest
+
+This guide provides detailed examples of using db2rest with SQLite database, covering all CRUD operations, advanced querying, and special features.
+
+## Base URL Structure
+
+All SQLite API endpoints follow this pattern:
+```
+http://localhost:8080/v1/{dbId}/{tableName}
+```
+
+Where:
+- `dbId`: Database identifier (e.g., `sqlitedb`)
+- `tableName`: Target table name
+
+## Create Operations (POST)
+
+### Basic Record Creation
+
+Create a new film record:
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/film \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "ACADEMY DINOSAUR",
+    "description": "A Epic Drama of a Feminist And a Mad Scientist",
+    "release_year": 2006,
+    "language_id": 1,
+    "rental_duration": 6,
+    "rental_rate": 0.99,
+    "length": 86,
+    "replacement_cost": 20.99,
+    "rating": "PG",
+    "special_features": "Deleted Scenes,Behind the Scenes"
+  }'
+```
+
+**Response:**
+```json
+{
+  "row": 1,
+  "keys": {
+    "film_id": 1001
+  }
+}
+```
+
+### Create with Subset of Columns
+
+Create a film with only specific columns:
+
+```bash
+curl -X POST "http://localhost:8080/v1/sqlitedb/film?columns=title,description,language_id" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "NEW MOVIE",
+    "description": "A great movie",
+    "language_id": 1,
+    "extra_field": "ignored"
+  }'
+```
+
+### Create Actor
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/actor \
+  -H "Content-Type: application/json" \
+  -d '{
+    "first_name": "JOHN",
+    "last_name": "DOE"
+  }'
+```
+
+**Response:**
+```json
+{
+  "row": 1,
+  "keys": {
+    "actor_id": 201
+  }
+}
+```
+
+### Create Employee with Boolean Field
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/employee \
+  -H "Content-Type: application/json" \
+  -d '{
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "is_active": true
+  }'
+```
+
+### Bulk Create Operations
+
+Create multiple records in a single request:
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/actor/_bulk \
+  -H "Content-Type: application/json" \
+  -d '[
+    {
+      "first_name": "BRAD",
+      "last_name": "PITT"
+    },
+    {
+      "first_name": "ANGELINA",
+      "last_name": "JOLIE"
+    }
+  ]'
+```
+
+**Response:**
+```json
+{
+  "rows": 2,
+  "keys": [
+    {"actor_id": 202},
+    {"actor_id": 203}
+  ]
+}
+```
+
+## Read Operations (GET)
+
+### Get All Records
+
+Retrieve all films:
+
+```bash
+curl -X GET http://localhost:8080/v1/sqlitedb/film \
+  -H "Accept: application/json"
+```
+
+**Response:**
+```json
+[
+  {
+    "film_id": 1,
+    "title": "ACADEMY DINOSAUR",
+    "description": "A Epic Drama of a Feminist And a Mad Scientist",
+    "release_year": 2006,
+    "language_id": 1,
+    "rental_duration": 6,
+    "rental_rate": 0.99,
+    "length": 86,
+    "replacement_cost": 20.99,
+    "rating": "PG",
+    "special_features": "Deleted Scenes,Behind the Scenes",
+    "last_update": "2023-01-01T10:00:00"
+  }
+]
+```
+
+### Get Record by ID
+
+```bash
+curl -X GET http://localhost:8080/v1/sqlitedb/film/1 \
+  -H "Accept: application/json"
+```
+
+### Field Selection
+
+Get specific fields only:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?fields=film_id,title,language_id" \
+  -H "Accept: application/json"
+```
+
+**Response:**
+```json
+[
+  {
+    "film_id": 1,
+    "title": "ACADEMY DINOSAUR",
+    "language_id": 1
+  }
+]
+```
+
+### Pagination
+
+Get paginated results:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?limit=2&offset=0" \
+  -H "Accept: application/json"
+```
+
+### Sorting
+
+Sort by title ascending:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?sort=title&fields=film_id,title" \
+  -H "Accept: application/json"
+```
+
+Sort by multiple fields:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?sort=release_year,-title" \
+  -H "Accept: application/json"
+```
+
+### Filtering with RSQL
+
+#### Basic Filters
+
+Filter by language ID:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=language_id==1" \
+  -H "Accept: application/json"
+```
+
+#### Comparison Operators
+
+```bash
+# Greater than
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=rental_rate>1.0"
+
+# Less than or equal
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=length<=90"
+
+# Not equal
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=rating!=G"
+
+# Like operator
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=title=like='ACADEMY*'"
+```
+
+#### Logical Operators
+
+```bash
+# AND condition
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=language_id==1;rental_rate>1.0"
+
+# OR condition
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=rating==G,rating==PG"
+
+# Complex conditions
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=(language_id==1;rental_rate>1.0),rating==R"
+```
+
+#### IN Operator
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=rating=in=(G,PG,PG-13)"
+```
+
+#### Boolean Filtering
+
+Filter employees by active status:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/employee?filter=is_active==true" \
+  -H "Accept: application/json"
+```
+
+**Response:**
+```json
+[
+  {
+    "emp_id": 1,
+    "first_name": "Alice",
+    "last_name": "Smith",
+    "is_active": 1,
+    "created_at": "2023-01-01T10:00:00"
+  }
+]
+```
+
+## Update Operations (PUT/PATCH)
+
+### Update Single Record
+
+Update a film by ID:
+
+```bash
+curl -X PUT http://localhost:8080/v1/sqlitedb/film/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "UPDATED TITLE",
+    "rental_rate": 2.99
+  }'
+```
+
+**Response:**
+```json
+{
+  "rows": 1
+}
+```
+
+### Bulk Update
+
+Update multiple records with filter:
+
+```bash
+curl -X PUT "http://localhost:8080/v1/sqlitedb/film?filter=language_id==1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "rental_rate": 3.99
+  }'
+```
+
+### Conditional Update
+
+Update with specific conditions:
+
+```bash
+curl -X PUT "http://localhost:8080/v1/sqlitedb/employee?filter=is_active==false" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "is_active": true
+  }'
+```
+
+## Delete Operations (DELETE)
+
+### Delete by ID
+
+```bash
+curl -X DELETE http://localhost:8080/v1/sqlitedb/film/1
+```
+
+**Response:**
+```json
+{
+  "rows": 1
+}
+```
+
+### Delete with Filter
+
+Delete all inactive employees:
+
+```bash
+curl -X DELETE "http://localhost:8080/v1/sqlitedb/employee?filter=is_active==false"
+```
+
+### Soft Delete
+
+For tables with soft delete columns:
+
+```bash
+curl -X DELETE "http://localhost:8080/v1/sqlitedb/film/1?soft=true"
+```
+
+## Join Operations
+
+### Inner Join
+
+Get films with their language information:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?join=language:language_id=language.language_id" \
+  -H "Accept: application/json"
+```
+
+### Cross Join
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?join=actor&joinType=cross&limit=5" \
+  -H "Accept: application/json"
+```
+
+### Join with Filtering
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?join=language:language_id=language.language_id&filter=language.name==English" \
+  -H "Accept: application/json"
+```
+
+## Count Operations
+
+### Basic Count
+
+Get total number of films:
+
+```bash
+curl -X GET http://localhost:8080/v1/sqlitedb/film/_count \
+  -H "Accept: application/json"
+```
+
+**Response:**
+```json
+{
+  "count": 1000
+}
+```
+
+### Count with Filter
+
+Count active employees:
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/employee/_count?filter=is_active==true" \
+  -H "Accept: application/json"
+```
+
+## Template Operations
+
+### Execute Custom Queries
+
+Execute a predefined query template:
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/_template/films_by_rating \
+  -H "Content-Type: application/json" \
+  -d '{
+    "rating": "PG"
+  }'
+```
+
+## JSON Data Handling
+
+### Create Record with JSON
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/metadata \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "app_config",
+    "config": {
+      "theme": "dark",
+      "notifications": true,
+      "features": ["feature1", "feature2"]
+    }
+  }'
+```
+
+### Query JSON Fields
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/metadata?filter=name==app_config" \
+  -H "Accept: application/json"
+```
+
+## Date/Time Operations
+
+### Create with DateTime
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/film \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "TIME MOVIE",
+    "language_id": 1,
+    "last_update": "2023-12-01T15:30:00"
+  }'
+```
+
+### Filter by Date Range
+
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=last_update>=2023-01-01T00:00:00;last_update<=2023-12-31T23:59:59" \
+  -H "Accept: application/json"
+```
+
+## Error Handling
+
+### Invalid Table
+
+```bash
+curl -X GET http://localhost:8080/v1/sqlitedb/non_existent_table \
+  -H "Accept: application/json"
+```
+
+**Response:**
+```json
+{
+  "timestamp": "2023-12-01T10:00:00.000+00:00",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Table 'non_existent_table' not found",
+  "path": "/v1/sqlitedb/non_existent_table"
+}
+```
+
+### Invalid Column
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/film \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "TEST",
+    "invalid_column": "value"
+  }'
+```
+
+**Response:**
+```json
+{
+  "timestamp": "2023-12-01T10:00:00.000+00:00",
+  "status": 400,
+  "error": "Bad Request",
+  "detail": "Column not found film.invalid_column",
+  "path": "/v1/sqlitedb/film"
+}
+```
+
+## Performance Tips
+
+### Use Field Selection
+
+Instead of retrieving all columns:
+```bash
+# Inefficient
+curl -X GET http://localhost:8080/v1/sqlitedb/film
+
+# Efficient
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?fields=film_id,title"
+```
+
+### Implement Pagination
+
+For large datasets:
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?limit=50&offset=0"
+```
+
+### Use Appropriate Filters
+
+Filter at the database level:
+```bash
+curl -X GET "http://localhost:8080/v1/sqlitedb/film?filter=language_id==1&limit=10"
+```
+
+## SQLite-Specific Considerations
+
+### Boolean Values
+
+SQLite stores booleans as integers (0/1):
+- `true` → `1`
+- `false` → `0`
+
+### Auto-increment Keys
+
+SQLite uses `INTEGER PRIMARY KEY AUTOINCREMENT` for auto-generated IDs.
+
+### Case Sensitivity
+
+SQLite is case-insensitive for SQL keywords but case-sensitive for identifiers.
+
+### Data Type Affinity
+
+SQLite uses dynamic typing with type affinity:
+- TEXT
+- NUMERIC  
+- INTEGER
+- REAL
+- BLOB
+
+## Advanced Features
+
+### Custom SQL Templates
+
+Create custom query templates for complex operations:
+
+```sql
+-- Template: films_by_actor.sql
+SELECT f.film_id, f.title, a.first_name, a.last_name
+FROM film f
+JOIN film_actor fa ON f.film_id = fa.film_id
+JOIN actor a ON fa.actor_id = a.actor_id
+WHERE a.actor_id = :actorId
+```
+
+Execute the template:
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/_template/films_by_actor \
+  -H "Content-Type: application/json" \
+  -d '{"actorId": 1}'
+```
+
+### Batch Operations
+
+For high-performance bulk operations, use batch endpoints:
+
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/actor/_batch \
+  -H "Content-Type: application/json" \
+  -d '[
+    {"first_name": "Actor1", "last_name": "LastName1"},
+    {"first_name": "Actor2", "last_name": "LastName2"}
+  ]'
+```
+
+This comprehensive guide covers all major SQLite operations available through db2rest. For configuration details, see the [SQLite Configuration Guide](./sqlite-configuration.mdx).

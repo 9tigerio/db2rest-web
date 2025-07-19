@@ -1,0 +1,739 @@
+---
+title: SQLite Configuration with db2rest
+description: Complete guide to configure SQLite database with db2rest for REST API generation
+sidebar_position: 1
+---
+
+# SQLite Configuration with db2rest
+
+This guide provides comprehensive instructions for configuring SQLite database with db2rest to automatically generate REST APIs using Docker or JAR distribution.
+
+## Installation Methods
+
+db2rest can be installed and run in two ways:
+1. **Docker** - Recommended for containerized environments
+2. **JAR Distribution** - Standalone executable for direct deployment
+
+## System Requirements
+
+### Minimum Requirements
+- **Java 21+** (Required for JAR distribution)
+- **2-4 GB RAM** for basic usage
+- **4-8 GB RAM** for Docker deployment
+- **SQLite database file** or ability to create one
+
+### Why Java 21?
+db2rest requires Java 21+ because it leverages [Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html) for high scalability, enabling handling of very high volume requests even on a single machine.
+
+## Creating SQLite Database Files
+
+Before using db2rest with SQLite, you need to create a SQLite database file. This section shows various methods to create and populate SQLite databases.
+
+### Method 1: Using SQLite Command Line Tool
+
+#### Install SQLite CLI
+
+**Windows:**
+```bash
+# Download from https://sqlite.org/download.html
+# Or using Chocolatey
+choco install sqlite
+```
+
+**macOS:**
+```bash
+# Using Homebrew
+brew install sqlite
+
+# SQLite is also pre-installed on macOS
+sqlite3 --version
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install sqlite3
+```
+
+**Linux (CentOS/RHEL):**
+```bash
+sudo yum install sqlite
+# or for newer versions
+sudo dnf install sqlite
+```
+
+#### Create Database and Schema
+
+```bash
+# Create a new SQLite database file
+sqlite3 /path/to/your/database.db
+```
+
+Once in the SQLite shell, create your schema:
+
+```sql
+-- Create tables based on your requirements
+CREATE TABLE film (
+    film_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    release_year INTEGER,
+    language_id INTEGER,
+    rental_duration INTEGER DEFAULT 3,
+    rental_rate REAL DEFAULT 4.99,
+    length INTEGER,
+    replacement_cost REAL DEFAULT 19.99,
+    rating TEXT DEFAULT 'G',
+    special_features TEXT,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE actor (
+    actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE employee (
+    emp_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    is_active INTEGER DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert sample data
+INSERT INTO film (title, description, release_year, language_id, rental_rate, length) VALUES
+('ACADEMY DINOSAUR', 'A Epic Drama of a Feminist And a Mad Scientist', 2006, 1, 0.99, 86),
+('ACE GOLDFINGER', 'A Astounding Epistle of a Database Administrator', 2006, 1, 4.99, 48),
+('ADAPTATION HOLES', 'A Astounding Reflection of a Lumberjack', 2006, 1, 2.99, 50);
+
+INSERT INTO actor (first_name, last_name) VALUES
+('PENELOPE', 'GUINESS'),
+('NICK', 'WAHLBERG'),
+('ED', 'CHASE');
+
+INSERT INTO employee (first_name, last_name, is_active) VALUES
+('Alice', 'Smith', 1),
+('Bob', 'Johnson', 1),
+('Charlie', 'Brown', 0);
+
+-- Exit SQLite shell
+.quit
+```
+
+#### Execute SQL from File
+
+You can also execute SQL scripts from files:
+
+```bash
+# Create schema.sql file with your DDL statements
+sqlite3 /path/to/your/database.db < schema.sql
+
+# Or execute specific file within SQLite shell
+sqlite3 /path/to/your/database.db
+.read schema.sql
+.quit
+```
+
+### Method 2: Using DB Browser for SQLite (GUI)
+
+#### Install DB Browser
+
+- **Download**: https://sqlitebrowser.org/dl/
+- **Available for**: Windows, macOS, Linux
+
+#### Create Database
+
+1. Open DB Browser for SQLite
+2. Click "New Database"
+3. Choose location and name for your database file
+4. Use the GUI to:
+   - Create tables
+   - Define columns and constraints
+   - Insert sample data
+   - Execute custom SQL
+
+### Method 3: Using Programming Languages
+
+#### Python Example
+
+```python
+import sqlite3
+from datetime import datetime
+
+# Create connection and database file
+conn = sqlite3.connect('/path/to/your/database.db')
+cursor = conn.cursor()
+
+# Create tables
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS film (
+    film_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    release_year INTEGER,
+    language_id INTEGER,
+    rental_rate REAL DEFAULT 4.99,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS actor (
+    actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+''')
+
+# Insert sample data
+films = [
+    ('ACADEMY DINOSAUR', 'A Epic Drama', 2006, 1, 0.99),
+    ('ACE GOLDFINGER', 'A Astounding Epistle', 2006, 1, 4.99)
+]
+
+cursor.executemany(
+    'INSERT INTO film (title, description, release_year, language_id, rental_rate) VALUES (?, ?, ?, ?, ?)',
+    films
+)
+
+actors = [
+    ('PENELOPE', 'GUINESS'),
+    ('NICK', 'WAHLBERG')
+]
+
+cursor.executemany(
+    'INSERT INTO actor (first_name, last_name) VALUES (?, ?)',
+    actors
+)
+
+# Commit and close
+conn.commit()
+conn.close()
+
+print("Database created successfully!")
+```
+
+#### Node.js Example
+
+```javascript
+const sqlite3 = require('sqlite3').verbose();
+
+// Create database
+const db = new sqlite3.Database('/path/to/your/database.db');
+
+// Create tables
+db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS film (
+        film_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT,
+        release_year INTEGER,
+        language_id INTEGER,
+        rental_rate REAL DEFAULT 4.99,
+        last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
+    
+    db.run(`CREATE TABLE IF NOT EXISTS actor (
+        actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        first_name TEXT NOT NULL,
+        last_name TEXT NOT NULL,
+        last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
+    
+    // Insert sample data
+    const stmt = db.prepare('INSERT INTO film (title, description, release_year, language_id, rental_rate) VALUES (?, ?, ?, ?, ?)');
+    stmt.run('ACADEMY DINOSAUR', 'A Epic Drama', 2006, 1, 0.99);
+    stmt.run('ACE GOLDFINGER', 'A Astounding Epistle', 2006, 1, 4.99);
+    stmt.finalize();
+    
+    const actorStmt = db.prepare('INSERT INTO actor (first_name, last_name) VALUES (?, ?)');
+    actorStmt.run('PENELOPE', 'GUINESS');
+    actorStmt.run('NICK', 'WAHLBERG');
+    actorStmt.finalize();
+});
+
+db.close((err) => {
+    if (err) {
+        console.error(err.message);
+    } else {
+        console.log('Database created successfully!');
+    }
+});
+```
+
+### Method 4: Using Online SQLite Tools
+
+For quick prototyping, you can use online SQLite tools:
+
+- **SQLite Online**: https://sqliteonline.com/
+- **DB Fiddle**: https://www.db-fiddle.com/
+- **SQLite Viewer**: https://inloop.github.io/sqlite-viewer/
+
+### Sample Database Downloads
+
+For testing purposes, you can download sample SQLite databases:
+
+- **Sakila Sample Database**: https://github.com/jOOQ/sakila
+- **Chinook Database**: https://github.com/lerocha/chinook-database
+- **Northwind Database**: Various SQLite versions available online
+
+### Verifying Your Database
+
+After creating your SQLite database, verify it's working:
+
+```bash
+# Check database file exists
+ls -la /path/to/your/database.db
+
+# List tables
+sqlite3 /path/to/your/database.db ".tables"
+
+# Check table schema
+sqlite3 /path/to/your/database.db ".schema film"
+
+# Count records
+sqlite3 /path/to/your/database.db "SELECT COUNT(*) FROM film;"
+
+# View sample data
+sqlite3 /path/to/your/database.db "SELECT * FROM film LIMIT 5;"
+```
+
+### Database File Permissions
+
+Ensure proper file permissions for db2rest to access your database:
+
+```bash
+# Make database readable and writable
+chmod 664 /path/to/your/database.db
+
+# For Docker, ensure the directory is accessible
+chmod 755 /path/to/database/directory
+```
+
+## Method 1: Docker Installation
+
+### Prerequisites
+- Docker Desktop installed and running
+- SQLite database file accessible to the container
+
+### Step 1: Install Docker
+Download Docker Desktop from the [official website](https://docs.docker.com/desktop/) for your operating system (Mac, Windows, or Linux).
+
+### Step 2: Prepare SQLite Database
+Create your SQLite database file with the required schema:
+
+```sql
+-- Sample SQLite schema
+CREATE TABLE film (
+    film_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    release_year INTEGER,
+    language_id INTEGER,
+    rental_duration INTEGER DEFAULT 3,
+    rental_rate REAL DEFAULT 4.99,
+    length INTEGER,
+    replacement_cost REAL DEFAULT 19.99,
+    rating TEXT DEFAULT 'G',
+    special_features TEXT,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE actor (
+    actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE employee (
+    emp_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    is_active INTEGER DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### Step 3: Run db2rest with Docker
+
+Use the official db2rest Docker image from [Docker Hub](https://hub.docker.com/repository/docker/kdhrubo/db2rest/general):
+
+```bash
+# Basic Docker run command
+docker run -p 8080:8080 \
+  -e DB_URL="jdbc:sqlite:/data/your-database.db" \
+  -e DB_USER="" \
+  -e DB_PASSWORD="" \
+  -v /path/to/your/database:/data \
+  kdhrubo/db2rest:latest
+```
+
+#### Docker Environment Variables
+- `DB_URL`: SQLite JDBC connection string
+- `DB_USER`: Leave empty for SQLite
+- `DB_PASSWORD`: Leave empty for SQLite
+
+#### Volume Mounting
+Mount your SQLite database file into the container:
+
+```bash
+# Example with specific database file
+docker run -p 8080:8080 \
+  -e DB_URL="jdbc:sqlite:/data/sakila.db" \
+  -e DB_USER="" \
+  -e DB_PASSWORD="" \
+  -v /Users/yourname/databases/sakila.db:/data/sakila.db \
+  kdhrubo/db2rest:latest
+```
+
+#### Docker Compose
+For easier management, use Docker Compose:
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+services:
+  db2rest:
+    image: kdhrubo/db2rest:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=jdbc:sqlite:/data/sakila.db
+      - DB_USER=
+      - DB_PASSWORD=
+    volumes:
+      - ./databases/sakila.db:/data/sakila.db
+    restart: unless-stopped
+```
+
+Run with:
+```bash
+docker-compose up -d
+```
+
+## Method 2: JAR Distribution
+
+### Prerequisites
+- Java 21+ installed and configured
+- SQLite database file
+
+### Step 1: Install Java 21+
+
+Download and install Java 21 from one of these sources:
+- **OpenJDK**: https://jdk.java.net/21/
+- **Oracle JDK**: https://docs.oracle.com/en/java/javase/21/install/
+- **Amazon Corretto**: https://aws.amazon.com/corretto/
+
+Verify installation:
+```bash
+java -version
+# Should show version 21 or higher
+```
+
+### Step 2: Download db2rest JAR
+
+Download the latest db2rest JAR file:
+
+```bash
+# Download latest version (v1.4.1)
+wget https://download.db2rest.com/db2rest-1.4.1.jar
+
+# Or using curl
+curl -O https://download.db2rest.com/db2rest-1.4.1.jar
+```
+
+### Step 3: Configure Environment Variables
+
+Set the database connection parameters:
+
+```bash
+# Linux/Mac
+export DB_URL="jdbc:sqlite:/path/to/your/database.db"
+export DB_USER=""  # Empty for SQLite
+export DB_PASSWORD=""  # Empty for SQLite
+
+# Windows (Command Prompt)
+set DB_URL=jdbc:sqlite:C:\path\to\your\database.db
+set DB_USER=
+set DB_PASSWORD=
+
+# Windows (PowerShell)
+$env:DB_URL="jdbc:sqlite:C:\path\to\your\database.db"
+$env:DB_USER=""
+$env:DB_PASSWORD=""
+```
+
+### Step 4: Run db2rest
+
+Start the application:
+
+```bash
+java -jar db2rest-1.4.1.jar
+```
+
+#### Custom Port
+To run on a different port:
+
+```bash
+java -jar db2rest-1.4.1.jar --server.port=9090
+```
+
+#### With Additional JVM Options
+For production environments:
+
+```bash
+java -Xmx2g -Xms1g -jar db2rest-1.4.1.jar
+```
+
+## Database Configuration
+
+### SQLite Connection Strings
+
+Common SQLite JDBC URL patterns:
+
+```bash
+# Absolute path (Linux/Mac)
+jdbc:sqlite:/home/user/databases/myapp.db
+
+# Absolute path (Windows)
+jdbc:sqlite:C:/databases/myapp.db
+
+# Relative path
+jdbc:sqlite:./data/myapp.db
+
+# In-memory database (for testing)
+jdbc:sqlite::memory:
+```
+
+## Verification
+
+Once db2rest is running, verify the installation:
+
+### 1. Check Application Status
+
+Visit: http://localhost:8080/actuator/health
+
+**Expected Response:**
+```json
+{
+  "status": "UP"
+}
+```
+
+### 2. List Available Tables
+
+Visit: http://localhost:8080/v1/sqlitedb
+
+**Expected Response:**
+```json
+[
+  {
+    "name": "film",
+    "type": "TABLE"
+  },
+  {
+    "name": "actor",
+    "type": "TABLE"
+  },
+  {
+    "name": "employee",
+    "type": "TABLE"
+  }
+]
+```
+
+### 3. Test API Endpoint
+
+Test a simple GET request:
+
+```bash
+curl -X GET http://localhost:8080/v1/sqlitedb/film \
+  -H "Accept: application/json"
+```
+
+## SQLite Dialect Features
+
+The SQLite dialect in db2rest provides the following features:
+
+### Supported Data Types
+
+- **Text Types**: TEXT, VARCHAR, CHAR
+- **Numeric Types**: INTEGER, REAL, NUMERIC
+- **Date/Time Types**: DATETIME, TIMESTAMP
+- **JSON Types**: JSON (stored as TEXT)
+- **Boolean Types**: BOOLEAN (stored as INTEGER)
+- **Binary Types**: BLOB
+
+### Type Processing
+
+The SQLite dialect automatically handles:
+
+- **JSON Conversion**: Automatically serializes/deserializes JSON data
+- **DateTime Conversion**: Converts ISO format strings to LocalDateTime
+- **Boolean Mapping**: Maps true/false to 1/0 integers
+- **Auto-increment Keys**: Supports INTEGER PRIMARY KEY AUTOINCREMENT
+
+### Naming Conventions
+
+SQLite dialect uses backticks (`) for identifier quoting:
+
+```sql
+SELECT * FROM `table_name` WHERE `column_name` = ?
+```
+
+### Limitations
+
+- **No Alias Support**: SQLite dialect doesn't support table aliases in some contexts
+- **No Batch Return Keys**: Batch operations don't return generated keys
+- **Case Sensitivity**: Identifiers are case-sensitive
+
+## Advanced Configuration
+
+### Custom Database ID
+
+By default, db2rest uses the database name as the ID. For SQLite, you can specify a custom database ID:
+
+```bash
+# Using environment variable
+export DB_ID=myapp
+
+# The API will be available at:
+# http://localhost:8080/v1/myapp/table_name
+```
+
+### Multiple SQLite Databases
+
+To connect multiple SQLite databases, use configuration files or environment variables with prefixes:
+
+```bash
+# Primary database
+export DB_URL=jdbc:sqlite:/data/main.db
+
+# Secondary database
+export DB2_URL=jdbc:sqlite:/data/analytics.db
+export DB2_ID=analytics
+```
+
+### Performance Tuning
+
+For better performance with SQLite:
+
+```bash
+# Enable WAL mode for better concurrency
+sqlite3 your-database.db "PRAGMA journal_mode=WAL;"
+
+# Optimize synchronous mode
+sqlite3 your-database.db "PRAGMA synchronous=NORMAL;"
+
+# Set cache size (in KB)
+sqlite3 your-database.db "PRAGMA cache_size=10000;"
+```
+
+## Testing Your Configuration
+
+### Basic API Tests
+
+Once db2rest is running, test your SQLite configuration:
+
+#### 1. Health Check
+```bash
+curl http://localhost:8080/actuator/health
+```
+
+#### 2. Database Schema
+```bash
+curl http://localhost:8080/v1/sqlitedb
+```
+
+#### 3. Table Data
+```bash
+curl http://localhost:8080/v1/sqlitedb/your_table_name
+```
+
+#### 4. Create Record
+```bash
+curl -X POST http://localhost:8080/v1/sqlitedb/employee \
+  -H "Content-Type: application/json" \
+  -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "is_active": true
+  }'
+```
+
+### Database Connection Validation
+
+To validate your SQLite database connection:
+
+```bash
+# Check if database file exists and is accessible
+sqlite3 /path/to/your/database.db ".tables"
+
+# Verify table structure
+sqlite3 /path/to/your/database.db ".schema table_name"
+
+# Test data access
+sqlite3 /path/to/your/database.db "SELECT COUNT(*) FROM table_name;"
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database File Not Found**
+   ```
+   Error: no such table: table_name
+   ```
+   - Ensure the SQLite database file exists at the specified path
+   - Check file permissions
+
+2. **Driver Class Not Found**
+   ```
+   ClassNotFoundException: org.sqlite.JDBC
+   ```
+   - Add SQLite JDBC dependency to your project
+
+3. **Connection Issues**
+   ```
+   SQLException: database is locked
+   ```
+   - Ensure no other processes are accessing the database
+   - Use connection pooling for concurrent access
+
+### Performance Considerations
+
+- **WAL Mode**: Enable Write-Ahead Logging for better concurrency
+  ```sql
+  PRAGMA journal_mode=WAL;
+  ```
+
+- **Synchronous Mode**: Adjust for performance vs. durability trade-off
+  ```sql
+  PRAGMA synchronous=NORMAL;
+  ```
+
+- **Connection Pooling**: Configure HikariCP for production use
+  ```yaml
+  spring:
+    datasource:
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 2
+        connection-timeout: 30000
+  ```
+
+## Next Steps
+
+Once your SQLite database is configured with db2rest:
+
+1. Start your application
+2. Access the automatically generated REST APIs
+3. Use the comprehensive API endpoints for CRUD operations
+4. Explore advanced features like filtering, sorting, and pagination
+
+For detailed usage examples and API operations, see the [SQLite Usage Guide](./sqlite-usage.mdx).
