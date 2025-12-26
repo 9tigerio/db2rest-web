@@ -4,7 +4,14 @@ sidebar_position: 1
 
 # Introduction to Named SQL
 
-With named SQL it is possible to write SQL queries in an external file and turn it into DATA API endpoints.
+With named SQL it is possible to write SQL in an external file and turn it into DATA API endpoints.
+
+
+Supported SQL operations are:
+* select
+* insert
+* update
+* delete
 
 
 ## Named SQL Endpoint
@@ -23,14 +30,14 @@ db2rest:
   
 ```
 
-## Example
+## Example via http POST
 
 
 Consider the Named SQL `select_some_employees.sql` below:
 
 ```sql
 
-select * from employees where employee_id > {{start}} and employee_id < {{end}}
+select * from employees where employee_id > {{content.start}} and employee_id < {{content.end}}
 
 ```
 
@@ -44,11 +51,93 @@ import TabItem from '@theme/TabItem';
     <TabItem value="cURL" label="cURL" default>
         ```bash
 
+        curl 'http://localhost:8080/v1/rdbms/pgsqldb/sql/select_some_employees' -i -X POST \
+        -H 'Content-Type: application/json;charset=UTF-8' \
+        -H 'Accept: application/json' \
+        --data '{
+
+        "start" : 3,
+        "end" : 5
+
+        }'
+
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '{
+
+        "start" : 3,
+        "end" : 5
+
+        }' |  \
+        http POST 'http://localhost:8080/v1/rdbms/sql/select_some_employees' \
+        'Content-Type:application/json;charset=UTF-8' \
+        'Accept:application/json'
+
+        ```
+    </TabItem>
+
+</Tabs>
+
+
+The returned employee is shown below:
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 19
+
+{
+    "employee_id":4,
+    "name": "Bill Jackson"
+}
+```
+
+
+
+<br/><br/><br/><br/>
+
+
+## Example via http GET
+
+
+Consider the Named SQL `select_some_employees.sql` below.
+Note: type casts to like integer might be needed, depending on how template variables are passed.
+
+```sql
+
+select * from employees where employee_id >
+    { % if params.start %}
+        {{ params.start }}::integer
+    { % elif paths.start %}
+        {{ paths.start }}::integer
+    { % elif headers.start %}
+        {{ headers.start }}::integer
+    { % endif %}
+and employee_id <
+    { % if params.end %}
+        {{ params.end }}::integer
+    { % elif paths.end %}
+        {{ paths.end }}::integer
+    { % elif headers.end %}
+        {{ headers.end }}::integer
+    { % endif %}
+```
+
+The `select_some_employees` named sql can be invoked using the following endpoint, passing variables via the path.
+
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+
         curl 'http://localhost:8080/v1/rdbms/pgsqldb/sql/select_some_employees/3/5' -i -X GET \
         -H 'Content-Type: application/json;charset=UTF-8' \
 		-H 'paths:start,end' \
         -H 'Accept: application/json' \
-        
+
 
         ```
     </TabItem>
@@ -79,4 +168,3 @@ Content-Length: 19
     "name": "Bill Jackson"
 }
 ```
-
