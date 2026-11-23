@@ -12,7 +12,6 @@ Updated: 05-November-2024
 
 - [ ] UUID support
 - [ ] Data Federation
-- [ ] Multi-tenancy
 - [ ] Documentation Deploy - AWS Lightsail
 - [ ] Documentation Deploy - to Azure
 - [ ] Document Metrics & health check
@@ -68,7 +67,7 @@ Updated: 05-November-2024
 
 
 ## Completed 
-
+- [x] Multi-tenancy
 - [x] Support for MongoDB
 - [x] Support for Oracle
 - [x] Support Tembo
