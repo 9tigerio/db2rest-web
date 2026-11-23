@@ -1,0 +1,93 @@
+---
+sidebar_position: 4
+---
+
+# Database TLS with a Private CA
+
+Many teams only allow TLS connections to their databases, often with server certificates signed by a private or
+internal Certificate Authority (CA). DB2Rest connects through the standard JDBC drivers, so TLS is configured
+with the usual driver settings in the `DB_URL`, plus the CA certificate the driver should trust.
+
+:::warning
+
+Always verify the server certificate. Settings like `sslmode=require` (PostgreSQL), `trustServerCertificate=true`
+(SQL Server) or `sslMode=REQUIRED` (MySQL) encrypt the connection but accept any certificate, which leaves it
+open to man-in-the-middle attacks.
+
+:::
+
+## PostgreSQL, CockroachDB and YugabyteDB
+
+There are two ways to give the PostgreSQL driver your CA certificate.
+
+### Option 1: point the driver at the CA file
+
+Set `sslmode=verify-full` and `sslrootcert` to the CA certificate in PEM format.
+
+```bash
+DB_URL='jdbc:postgresql://db.internal:5432/mydb?sslmode=verify-full&sslrootcert=/certs/ca.crt'
+```
+
+`verify-full` checks that the certificate is signed by the CA **and** that the host name in the URL matches the
+certificate. Use `verify-ca` only if the host name cannot match, for example when connecting through an IP address
+that is not in the certificate.
+
+:::info
+
+If `sslrootcert` is not set, the driver looks for `~/.postgresql/root.crt` and fails at startup with
+`Could not open SSL root certificate file` when it is missing.
+
+:::
+
+### Option 2: use the JVM trust store
+
+If you already manage a Java trust store, tell the driver to use it with `sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory`
+and pass the trust store to the JVM through `JAVA_TOOL_OPTIONS`.
+
+```bash
+keytool -importcert -noprompt -alias db-ca -file ca.crt \
+  -keystore truststore.p12 -storetype PKCS12 -storepass changeit
+
+DB_URL='jdbc:postgresql://db.internal:5432/mydb?sslmode=verify-full&sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory'
+JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/certs/truststore.p12 -Djavax.net.ssl.trustStorePassword=changeit'
+```
+
+:::note
+
+The JVM trust store set this way **replaces** the default list of public CAs for the whole process. If DB2Rest also
+calls services with public certificates (for example a JWKS endpoint for JWT auth), import your CA into a copy of the
+JDK `cacerts` file instead of starting from an empty trust store.
+
+:::
+
+## MySQL, MariaDB, SQL Server and Oracle
+
+These drivers use the JVM trust store, so create `truststore.p12` as shown above and pass it with
+`JAVA_TOOL_OPTIONS`, or reference it in the URL where the driver supports that. Turn on certificate and host name
+verification in the URL:
+
+| Database   | Example `DB_URL` |
+|------------|------------------|
+| MySQL      | `jdbc:mysql://db.internal:3306/mydb?sslMode=VERIFY_IDENTITY&trustCertificateKeyStoreUrl=file:/certs/truststore.p12&trustCertificateKeyStoreType=PKCS12&trustCertificateKeyStorePassword=changeit` |
+| MariaDB    | `jdbc:mariadb://db.internal:3306/mydb?sslMode=verify-full&serverSslCert=/certs/ca.crt` |
+| SQL Server | `jdbc:sqlserver://db.internal:1433;databaseName=mydb;encrypt=true;trustServerCertificate=false;trustStore=/certs/truststore.p12;trustStorePassword=changeit` |
+| Oracle     | `jdbc:oracle:thin:@tcps://db.internal:2484/mydb` with the trust store passed through `JAVA_TOOL_OPTIONS` |
+
+Check your driver's documentation for the exact option names of the version you use.
+
+## Running in Docker
+
+Mount the certificate directory read-only and refer to the files by their path inside the container.
+
+```bash
+docker run -p 8080:8080 \
+  -v "$(pwd)/certs:/certs:ro" \
+  -e DB_URL='jdbc:postgresql://db.internal:5432/mydb?sslmode=verify-full&sslrootcert=/certs/ca.crt' \
+  -e DB_USER=[DB_USER] \
+  -e DB_PASSWORD=[DB_PASSWORD] \
+  kdhrubo/db2rest:latest
+```
+
+For the trust store option, add `-e JAVA_TOOL_OPTIONS='-Djavax.net.ssl.trustStore=/certs/truststore.p12 -Djavax.net.ssl.trustStorePassword=changeit'`.
+
+With [multiple databases](../multidb/connect-multiple-db), set the same TLS options on the URL of each database.
