@@ -1,0 +1,152 @@
+---
+sidebar_position: 3
+---
+
+# Join on JSON Column Values
+
+DB2Rest can join tables on a value stored inside a JSON or JSONB column of a `PostgreSQL` database.
+The join `on` condition accepts the same JSON paths as [`fields`](./select-json-columns) and [`filter`](./filter-json-columns).
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Consider the following two tables. `tbl_jsonb` keeps a lookup key inside its `data` column, and
+`tbl_translation` holds the value for each key.
+
+```sql
+CREATE TABLE tbl_jsonb (
+    id integer PRIMARY KEY,
+    data jsonb NOT NULL
+);
+
+CREATE TABLE tbl_translation (
+    key varchar(50) PRIMARY KEY,
+    value varchar(100) NOT NULL
+);
+
+INSERT INTO tbl_jsonb (id, data) VALUES
+    (1, '{"key_1": "greeting", "brand": "Apple"}'),
+    (2, '{"key_1": "farewell", "brand": "Samsung"}'),
+    (3, '{"key_1": "untranslated", "brand": "Apple"}');
+
+INSERT INTO tbl_translation (key, value) VALUES
+    ('greeting', 'Hello'),
+    ('farewell', 'Goodbye');
+```
+
+In plain SQL the join would be:
+
+```sql
+SELECT j.id, t.value
+FROM tbl_jsonb j
+JOIN tbl_translation t ON j.data ->> 'key_1' = t.key;
+```
+
+## Inner Join on a JSON key
+
+Use `column**key` in the `on` condition to compare the text value of a JSON key. It is the same as `column->>'key'`.
+The left side of the condition refers to the root table and the right side to the joined table.
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/tbl_jsonb/_expand?fields=id,data**key_1:translation_key' \
+        --header 'Content-Type: application/json' \
+        --data '[
+            {
+                "table": "tbl_translation",
+                "fields": ["value"],
+                "joinType": "INNER",
+                "on": ["data**key_1==key"]
+            }
+        ]'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[{"table":"tbl_translation","fields":["value"],"joinType":"INNER","on":["data**key_1==key"]}]' | \
+        http POST 'http://localhost:8080/v1/rdbms/pgdb/tbl_jsonb/_expand?fields=id,data**key_1:translation_key' \
+        'Content-Type:application/json'
+        ```
+    </TabItem>
+</Tabs>
+
+The query above returns the following result:
+
+```json
+[
+    {
+        "id": 1,
+        "translation_key": "greeting",
+        "value": "Hello"
+    },
+    {
+        "id": 2,
+        "translation_key": "farewell",
+        "value": "Goodbye"
+    }
+]
+```
+
+## Left Join on a JSON key
+
+The `->>` operator can be written out in full as well. With a `LEFT` join, rows whose key has no match are
+returned with `null` for the joined columns.
+
+<Tabs>
+    <TabItem value="cURL" label="cURL" default>
+        ```bash
+        curl --request POST \
+        --url 'http://localhost:8080/v1/rdbms/pgdb/tbl_jsonb/_expand?fields=id' \
+        --header 'Content-Type: application/json' \
+        --data '[
+            {
+                "table": "tbl_translation",
+                "fields": ["value"],
+                "joinType": "LEFT",
+                "on": ["data->>'"'"'key_1'"'"'==key"]
+            }
+        ]'
+        ```
+    </TabItem>
+    <TabItem value="httpie" label="HTTPie">
+        ```bash
+        echo '[{"table":"tbl_translation","fields":["value"],"joinType":"LEFT","on":["data->>'"'"'key_1'"'"'==key"]}]' | \
+        http POST 'http://localhost:8080/v1/rdbms/pgdb/tbl_jsonb/_expand?fields=id' \
+        'Content-Type:application/json'
+        ```
+    </TabItem>
+</Tabs>
+
+```json
+[
+    { "id": 1, "value": "Hello" },
+    { "id": 2, "value": "Goodbye" },
+    { "id": 3, "value": null }
+]
+```
+
+## Combine with a JSON filter
+
+JSON filters on the root table work together with the join. The query below keeps only the `Apple` rows.
+
+```bash
+curl --request POST \
+--url 'http://localhost:8080/v1/rdbms/pgdb/tbl_jsonb/_expand?fields=id&filter=data**brand=jbe=Apple' \
+--header 'Content-Type: application/json' \
+--data '[{"table":"tbl_translation","fields":["value"],"joinType":"INNER","on":["data**key_1==key"]}]'
+```
+
+```json
+[
+    { "id": 1, "value": "Hello" }
+]
+```
+
+:::tip
+
+Use `**` or `->>`, which return text, when comparing a JSON key with a `varchar` column. The `*` and `->` forms
+return `jsonb`, and PostgreSQL will not compare `jsonb` with `varchar` directly.
+
+:::
