@@ -1,0 +1,64 @@
+---
+sidebar_position: 28
+---
+
+# Restrict Tables
+
+:::info
+
+Available from DB2Rest 1.6.10.
+
+:::
+
+[`INCLUDED_SCHEMAS`](./restrict-schemas) limits DB2Rest to a set of schemas. To go further and expose only some tables
+or views, use `INCLUDED_TABLES`. Tables that do not match are not loaded at startup, so they cannot be reached through
+the REST API, and their columns are never read. On large databases this also shortens startup.
+
+`INCLUDED_TABLES` is a comma separated list of patterns:
+
+```bash
+export INCLUDED_SCHEMAS=public,sales
+export INCLUDED_TABLES='film*,actor,sales.order_*'
+```
+
+With the settings above DB2Rest loads:
+
+- `film`, `film_actor`, `film_category` and any other table starting with `film`, in both schemas
+- `actor`, in both schemas
+- `order_items`, `order_lines` and so on, only from the `sales` schema
+
+## Pattern rules
+
+| Pattern          | Matches                                                                      |
+|------------------|------------------------------------------------------------------------------|
+| `film`           | The table `film` in every included schema                                    |
+| `film*`          | Any table whose name starts with `film`                                      |
+| `t_?`            | `t_1`, `t_a`, but not `t_10` (`?` matches exactly one character)             |
+| `sales.order_*`  | Tables starting with `order_` in the `sales` schema only                     |
+
+- Matching is not case-sensitive.
+- A pattern without a dot is matched against the table name only. A pattern with a dot is matched against
+  `schema.table`. For MySQL and MariaDB, which use catalogs instead of schemas, use `database.table`.
+- Views are filtered the same way as tables.
+- If `INCLUDED_TABLES` is not set or empty, every table in the included schemas is loaded.
+
+:::tip
+
+Joins can only use tables that were loaded, so include every table you want to join with.
+
+:::
+
+## Multiple databases
+
+When connecting to [multiple databases](../multidb/connect-multiple-db), set `tables` on each database entry:
+
+```yaml
+app:
+  databases:
+    - id: pgdb
+      url: jdbc:postgresql://localhost:5432/sakila
+      username: postgres
+      password: postgres
+      schemas: public
+      tables: film*,actor
+```
