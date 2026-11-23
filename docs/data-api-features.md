@@ -40,7 +40,7 @@ sidebar_position: 5
 
 **Multi-tenancy**
 
-- [ ] Tenant Id column
+- [x] Tenant Id column
 - [x] Schema per tenant
 - [ ] Database per tenant
 

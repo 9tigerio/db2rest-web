@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+---
+
+# OAuth
+
+DBRest supports OAuth authentication and authorization to protect the API end points.
+
+This is an explanation how to use Auth0.com as an OAuth provider for DB2Rest, steps:
+1. Go to https://manage.auth0.com/
+2. Create or login in with an admin (tenant) account
+3. Create or view an application, with a name like `db2rest`
+4. Create the users in the Users & Roles -> Users section.
+5. Create Roles in the Roles section (or use the default roles).
+6. Assign roles to the users in the Users & Roles -> Users section.
+7. Go to your Auth0 Dashboard > Actions > Triggers > post-login.
+8. Click Add Action > Create New Action.
+9. Name it like "Add Roles to Token" and paste the following JavaScript code:
+```javascript
+exports.onExecutePostLogin = async (event, api) => {
+  if (event.authorization && event.authorization.roles) {
+    api.accessToken.setCustomClaim(`urn:db2rest:roles`, event.authorization.roles);
+  }
+};
+```
+10. Make sure the rolesNamespace value matches the db2rest application.yaml config rolesNamespace value, by default it's `urn:db2rest:roles`.
+11. Click "Deploy" in the top right corner to save and deploy the action.
+12. In db2rest add `auth` section to the application.yaml:
+
+```yaml
+db2rest:
+  templates: templates
+  allowSafeDelete: false
+  auth:
+    data:
+      source: file:auth.yml
+    enabled: true
+    provider: jwt
+    jwt:
+      algorithm: RS256
+      jwksUrl: https://<your auth0 application domain>/.well-known/jwks.json
+      rolesNamespace: urn:db2rest:roles
+```
+13. Change the jwt token from encripted to signed in the auth0 admin dashboard by adding a new API under Applications, with a name like `db2rest` and identifier `urn:db2rest`.
+14. In the `db2rest` application settings page, under API access grand both permissions for this `db2rest` api
+15. In your frontend pass the `audience` value: `urn:db2rest` with the login call/redirect to get the access token.
